@@ -1,0 +1,14 @@
+Start Macro Trigger
+Running ID : 20140626085302
+-------------------------------------------------------------
+
+Process Name : Trigger Macro :: C:\Tomcat_9.0\webapps\te5\TrialSummary\AutoSummary.xls at 06/26/2014 8:53:56
+Status : Completed sucessfully
+
+-------------------------------------------------------------
+
+Process Name : Trigger Macro :: C:\Tomcat_9.0\webapps\te5\TrialSummary\AutoSummary.xls at 06/26/2014 8:53:56
+Status : not Completed
+Error : Automation error
+The object invoked has disconnected from its clients. 
+-------------------------------------------------------------

@@ -1,0 +1,64 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10smp i686) [Netscape]">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#59188E" alink="#FF0000">
+
+<center>
+<h1>
+UIL Translators - Lab</h1></center>
+&nbsp;
+<h3>
+Exercise 1</h3>
+
+<ul>
+<li>
+Add a uil translator called "test" to your list with the <tt><font color="#3333FF">uil
+create</font></tt> command.</li>
+
+<li>
+Confirm that the translator is in the list with the <tt><font color="#3333FF">uil
+list </font></tt>command.</li>
+
+<li>
+Select the new translator with the <tt><font color="#3333FF">uil set index</font></tt>
+command</li>
+
+<li>
+Remove the translator with the <tt><font color="#3333FF">uil remove</font></tt>
+command</li>
+</ul>
+
+<h3>
+Exercise 2 (Safari Users Only)</h3>
+
+<ul>
+<li>
+Copy the files <tt><font color="#3333FF">work.exe</font></tt>, <tt><font color="#3333FF">reserve.img</font></tt>,
+<tt><font color="#3333FF">flash.img</font></tt>, and <tt><font color="#3333FF">mfgtest.dll</font></tt>
+to the C:/cil directory</li>
+
+<li>
+Start Niagara through the <b>Niagara (SPTI)</b> path</li>
+
+<li>
+Create an instance of simscsi that automatically starts work using the
+command: <tt><font color="#3333FF">uil create simscsi 1</font></tt></li>
+
+<li>
+Select the new translator with <tt><font color="#3333FF">uil set index
+&lt;index of simscsi></font></tt></li>
+
+<li>
+Send an<tt><font color="#3333FF"> inquiry</font></tt> to the simulator</li>
+
+<li>
+Unload the simulator and kill work.exe with the command: <tt><font color="#3333FF">uil
+remove &lt;index of simscsi></font></tt></li>
+</ul>
+
+</body>
+</html>

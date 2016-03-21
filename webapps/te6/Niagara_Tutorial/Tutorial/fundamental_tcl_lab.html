@@ -1,0 +1,168 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Fundamental TCL Commands - Lab</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<center>
+<h1>
+Fundamental TCL Commands - Lab</h1></center>
+For this lab we will be using Niagara to debug a script file I put together.&nbsp;
+Here is the file:
+<br>&nbsp;
+<h3>
+<a href="lab2.tcl">Lab2.tcl</a></h3>
+
+<p><br>Right click on the link above and choose "Save As".&nbsp; Save the
+file in the C:/CIL directory.
+<p>Next start Niagara.&nbsp; You will see a display similar to the following:
+<p><img SRC="NiagaraStartup.jpg" NOSAVE height=329 width=528>
+<p>Next type <tt><font color="#3333FF">source C:/cil/lab2.tcl</font></tt>,
+as shown above.&nbsp; Note the use of <i>forward</i> slashes in filenames.&nbsp;
+Backward slashes define escape sequences in TCL.&nbsp; To use them you
+would need to double them up like this:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">source C:\\cil\\lab2.tcl</font></tt></blockquote>
+It is simply easier to stick with forward slashes (it also makes your scripts
+work in UNIX platforms).&nbsp; Now that your file is sourced, open <tt><font color="#3333FF">lab2.tcl
+</font></tt>in
+your favorite text editor.&nbsp; This file has some bugs that you need
+to find.&nbsp; Here is the file for our reference:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">puts "Sourcing lab 2"</font></tt>
+<p><tt><font color="#3333FF">#----------------------------------------</font></tt>
+<br><tt><font color="#3333FF"># Test Script - This one should work</font></tt>
+<br><tt><font color="#3333FF">#----------------------------------------</font></tt>
+<p><tt><font color="#3333FF">proc test1 {} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; puts "lab 2 was sourced successfully"</font></tt>
+<br><tt><font color="#3333FF">}</font></tt>
+<p><tt><font color="#3333FF">#----------------------------------------</font></tt>
+<br><tt><font color="#3333FF"># Exercise 1 - Fix the problem</font></tt>
+<br><tt><font color="#3333FF">#----------------------------------------</font></tt>
+<p><tt><font color="#3333FF">proc ex1 {n} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; if {n>0} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+puts "positive"</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; } else {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+puts "negative"</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; }</font></tt>
+<br><tt><font color="#3333FF">}</font></tt>
+<p><tt><font color="#3333FF">#----------------------------------------</font></tt>
+<br><tt><font color="#3333FF"># Exercise 2 - Fix the problem</font></tt>
+<br><tt><font color="#3333FF">#----------------------------------------</font></tt>
+<p><tt><font color="#3333FF">proc ex2 {a b} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; if {$a+$b} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+puts "a+b is not zero"</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; }</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; else {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+puts "a+b is zero"</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; }</font></tt>
+<br><tt><font color="#3333FF">}</font></tt>
+<p><tt><font color="#3333FF">#----------------------------------------</font></tt>
+<br><tt><font color="#3333FF"># Exercise 3 - Fix the problem</font></tt>
+<br><tt><font color="#3333FF">#----------------------------------------</font></tt>
+<p><tt><font color="#3333FF">proc ex3 {rows} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; for {set i 0} {$i &lt;
+10} {incr $i} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for {set y 0} {$y &lt; $rows} {incr $y} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for {set x 0} {$x &lt;= $y} {incr $x} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+puts -nonewline " "</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+puts "\\"</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; }</font></tt>
+<br><tt><font color="#3333FF">}</font></tt>
+<p><tt><font color="#3333FF">#---------------------------------------------</font></tt>
+<br><tt><font color="#3333FF"># Exercise 4 - Rewrite ex #3 using while
+loops</font></tt>
+<br><tt><font color="#3333FF">#&nbsp;&nbsp;&nbsp;&nbsp; Here's a start:</font></tt>
+<br><tt><font color="#3333FF">#---------------------------------------------</font></tt>
+<p><tt><font color="#3333FF">proc ex4 {rows} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; set i 0</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; while {$i &lt; 10} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for {set y 0} {$y &lt; $rows} {incr $y} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for {set x 0} {$x &lt;= $y} {incr $x} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+puts -nonewline " "</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+puts "\\"</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+incr i</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; }</font></tt>
+<br><tt><font color="#3333FF">}</font></tt>
+<p><tt><font color="#3333FF">#---------------------------------------------</font></tt>
+<br><tt><font color="#3333FF"># Exercise 5 - Rewrite ex #3 but make the</font></tt>
+<br><tt><font color="#3333FF">#&nbsp;&nbsp; zigzags go both ways (hint:
+incr y -1)</font></tt>
+<br><tt><font color="#3333FF">#---------------------------------------------</font></tt>
+<p><tt><font color="#3333FF">proc ex5 {rows} {</font></tt>
+<br><tt><font color="#3333FF">}</font></tt>
+<p>Start by typing:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">test1</font></tt></blockquote>
+You should see "lab2 was sourced successfully".&nbsp; Now for the first
+exercise.&nbsp; Type:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">ex1 5</font></tt></blockquote>
+<font color="#000000">This time you see an error, as shown below:</font>
+<p><img SRC="ex1_error.jpg" NOSAVE height=251 width=430>
+<p>The error is in red.&nbsp; With your mouse pointer, click on the red
+text.&nbsp; A new window will appear that gives more information:
+<br>&nbsp;
+<blockquote><img SRC="ex1_error_trace.jpg" NOSAVE height=290 width=376></blockquote>
+
+<p><br>This window gives a stack trace of where the error occurred. 
+At
+first the information looks confusing but, after you get used to it, the
+information can be helpful.&nbsp; The first line tells you exactly what
+TCL did not like and the following lines tell you the context of the error.&nbsp;
+This information can be helpful when debugging more complex programs.&nbsp;
+Note that "ex1" is is green.&nbsp; This means that you can click on the
+"ex1" to get even more information.&nbsp; Try it...
+<p>Fix the problem and get the following to run successfully:
+<br>&nbsp;
+<blockquote><tt>ex1 5</tt>
+<br><tt>ex1 -4</tt></blockquote>
+Now to debug the other 4 exercises (all errors are small typos in the code).&nbsp;
+After debugging, the following inputs should run without errors:
+<br>&nbsp;
+<br>&nbsp;
+<blockquote><tt>ex2 5 5</tt>
+<br><tt>ex2 5 -5</tt>
+<p><tt>ex3 5</tt>
+<br><tt>ex3 10</tt>
+<p><tt>ex4 5</tt>
+<br><tt>ex4 10</tt>
+<p><tt>ex5 5</tt>
+<br><tt>ex5 10</tt>
+<br>&nbsp;</blockquote>
+Use the "click on red error" technique to help you in your debugging.&nbsp;
+Also remember that all non white text in the stack trace can be clicked
+on for more information...
+<p>Good Luck!
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;</blockquote>
+
+<br>&nbsp;
+</body>
+</html>

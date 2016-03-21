@@ -1,0 +1,229 @@
+<html>
+<head>
+
+<style type="text/css">
+h1.html_title {
+	color: black;
+	text-align: center;
+}
+h3.section_title {
+	color: black;
+	text-align: center;
+}
+body {
+	font-size: 10pt;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+div.code_text {
+	color: #0000FF;
+	margin-left: 20px;
+	font-family: courier;
+}
+</style>
+
+<title>Niagara: ATA Commands</title>
+</head>
+
+<body>
+<h1 class="html_title">Niagara ATA Commands</h1>
+
+Niagara has built in support for almost 200 ATA Commands. These commands are
+parsed from a parameter file making it easy to add new commands and modify 
+existing ones. To see a list of these commands use the function:<br><br>
+<div class="code_text">get_ata_list</div><br>
+
+This outputs a list of all defined ATA commands. To see this list sorted, type:
+<br><br>
+<div class="code_text">lsort [get_ata_list]</div><br>
+
+To look at the options available to a CDB command, we will look at the read dma
+extended command in depth. We'll start with:<br><br>
+<div class="code_text">read_dma_ext -help</div><br>
+
+This produces the following output:<br>
+<div class="code_text"><pre>
+****************************************
+
+Command Name(s): read_dma_ext,rddmaex,rdmx
+
+Description: Reads sectors from the disk using DMA.On UNC returns LBA of first fail.
+
+Default Parm Order: lba, sect_count
+
+Buffer Data Sent: &lt;None&gt;
+Buffer Data Received: &lt;sect_count&gt; Blocks
+
+Parameters:
+
+    Name          Range           Default    | Description
+    -----------------------------------------+----------------------------------
+    -sect_count   (0-0xFF)        0x1        | Transfer Length in Sectors. Note: 0=65536
+    -lba          (0-0xFF)        0x0        | Logical Block Address lower 32 bits
+    -lbahigh      (0-0xFF)        0x0        | Logical Block Address upper 16 bits
+    -uil          (0-?)           &lt;current&gt;  | Temporary UIL override
+    -dev          (0-?)           &lt;current&gt;  | Temporary device index override
+    -ri           (0-?)           &lt;current&gt;  | Temporary receive buffer override
+    -cmd_timeout  (0-?)           0          | Persistent timeout override (0=no override)
+    -dummy        (0-1)           0          | Don't actually send the command
+</pre></div><br>
+
+A lot of information is contained in this output:
+<ul>
+	<li>Command Name(s): This outputs the name of the command 
+		(<font color=blue>read_dma_ext</font>) and any shorthand aliases 
+		(<font color=blue>rddmaex, rdmx</font>)</li>
+	<li>Description: Gives a brief description of the command's function</li>
+	<li>Default Parm Order: This is the order that Niagara accepts parameters</li>
+    <li>Buffer Data Sent: The amount of data this command transfers to the
+	    target</li>
+    <li>Buffer Data Received: The amount of data this command expects from the
+	    target</li>
+    <li>Parameters: These flags can be used to set options for the command.
+	    Default operation is also indicated</li>
+</ul>
+
+<br>
+<h3 class="section_title">Different Forms of Read DMA</h3>
+
+<div class="code_text">read_dma_ext<br>rddmaex<br>rdmx</div><br>
+
+With no parameters, <font color=blue>read_dma_ext</font> is called with default
+parameters. To see what these parameters are, check "Parameters" in the help.
+<br><br>
+<div class="code_text">read_dma_ext 123 5</div><br>
+
+This command will read 5 sectors from LBA 123. The Default Parm Order in the 
+help indicates the order in which the parameters occur.
+<br><br>
+<div class="code_text">
+read_dma_ext -lba 123 -sect_count 5<br>
+read_dma_ext -sect_count 5 -lba 123<br>
+rdmx 123 -sect_count 5
+</div><br>
+
+These three commands are all equivalent to the previous command. When you 
+specify the parameter name (ie. -lba) the order in which they come does not 
+matter. As shown in the third command, you can mix both default and named
+parameters, however after the first named parameter the rest must be named as
+well.<br><br>
+
+<div class="code_text">read_dma_ext -lba 123 -sect_count 5 -dummy 1</div><br>
+
+When the "dummy" flag is set, the ATA command is not actually called. Instead 
+the resulting FIS is returned.
+
+<br>
+<h3 class="section_title">Command Response Format</h3>
+
+Below we see the response of a typical command:<br><br>
+<img src="rdmx.gif" width=513 height=408><br><br>
+
+This response contains several pieces of information:<br>
+<ul>
+	<li>CMD: The command FIS that was sent to the device</li>
+	<li>RET: The return FIS from the device</li>
+	<li>SATA: For SATA devices, the SATA Control Registers are displayed</li>
+	<li>Hex Dump: This shows the information returned by the command, the 
+	    information is also stored in our receive buffer (in the next section
+		we look at buffers in detail)</li>
+</ul>
+
+One thing to note is that although 512 bytes were transferred, only 256 are
+displayed. Niagara, by default, will truncate the returned data to 256 bytes
+and indicate this with the "..." after the dump. The amount of data displayed
+can be controlled with the following command:<br><br>
+<div class="code_text">feedback maxlen &lt;bytes&gt;</div><br>
+
+where maxlen is the maximum number of bytes you want displayed. Niagara will
+display the lesser of either this number or the number actually returned.<br>
+
+<br>
+<h3 class="section_title">The Return FIS</h3>
+
+The Return FIS is displayed and the values it contains are often useful for ATA
+commands like <font color=blue>check_power_mode</font>. Parts of the FIS can be
+returned with the following command:<br><br>
+<div class="code_text">ata get &lt;value&gt;</div><br>
+
+Where &lt;value&gt; is one of the following:<br>
+<ul>
+	<li>status: The status register</li>
+	<li>error: The error register</li>
+	<li>errlba: The combined 32bit lba</li>
+	<li>errlbahi: The upper 16bits of the lba</li>
+	<li>scr: The sector count register</li>
+	<li>snr: The sector number register</li>
+	<li>clr: The cylinder low register</li>
+	<li>chr: The cylinder high register</li>
+	<li>dhr: The device / head register</li>
+</ul>
+
+The SATA Control registers can also be retrieved with the following command:
+<br><br>
+<div class="code_text">sata get &lt;value&gt;</div><br>
+
+Where &lt;value&gt; is one of the following:<br>
+<ul>
+	<li>status: The status register</li>
+	<li>error: The error register</li>
+	<li>control: The control register</li>
+	<li>active: The active register</li>
+</ul>
+
+<br>
+<h3 class="section_title">NCQ Commands</h3>
+
+Normally, when you enter a command in Niagara, Niagara will wait until the 
+command completes before returning. This is not always ideal and Niagara 
+provides two methods around the normal behavior:<br><br>
+<div class="code_text">qmode stacked<br>qmode concurrent</div><br>
+
+In stacked mode, each command you enter will be placed on a stack and they will
+all be issued when you type <font color=blue>qctl send</font>. In concurrent 
+mode, the commands are issued as you type them, but Niagara does not wait for 
+them to complete before allowing the next one to be sent. This mode is more
+useful in scripts as the delay to type in another command will probably be much
+greater than the time needed to finish the first command. One thing to note is 
+that not all drivers support queueing, and if they do not, they will return an
+error when you try to set the queue mode. To receive outstanding commands use
+the following commands (The first will receive one command, the second will
+receive all commands):<br><br>
+<div class="code_text">qctl recv<br>qctl recv all</div><br>
+
+To see the order the commands returned in, as well as their status, issue the
+following command:<br><br>
+<div class="code_text">qctl table_info</div><br>
+
+In order to keep track of outstanding commands, Niagara internally tags each
+command sent to the drive. For ATA NCQ commands, there is also a tag stored in
+the sector count register. These two tags need to line up, and you should not
+issue two commands with the same tag simultaniously. You can either manually 
+set tags and keep track of the outstanding ones, or you can let Niagara handle
+the tags for you. To handle the tags yourself use the following commands:
+<br><br>
+<div class="code_text">qctl set next_tag 3<br>read_fpdma_queued -tag 3</div><br>
+
+This will set the next tag Niagara uses to 3 and then issue a read fpdma 
+command with a tag of 3. Another thing to note is that Niagara will handle the
+bit shift of the tag when it places it in the sector count register. To let 
+Niagara handle the tags for you, use the following commands:<br><br>
+<div class="code_text">sata set_auto_tags on<br>read_fpdma_queued</div><br>
+
+This will tell Niagara to handle the tag management and then issue a read fpdma
+using the next available tag. To turn off this automatic handling of tags use
+the following command:<br><br>
+<div class="code_text">sata set_auto_tags off</div><br>
+
+<br>
+<h3 class="section_title">Aliases</h3>
+
+The following aliases can be used in place of "0" and "1":<br>
+<ul>
+	<li>Zero: <font color=blue>0, false, no, stop</font></li>
+	<li>One: <font color=blue>1, true, yes, start</font></li>
+</ul>
+
+</body>
+</html>
+

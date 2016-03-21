@@ -1,0 +1,19 @@
+Start Macro Trigger
+Running ID : 20140613135212
+-------------------------------------------------------------
+
+Process Name : Trigger Macro :: C:\Tomcat_9.0\webapps\te5\TrialSummary\AutoSummary.xls at 06/13/2014 14:38:40
+Status : not Completed
+Error : Automation error
+The remote procedure call failed. 
+-------------------------------------------------------------
+
+Process Name : Trigger Macro :: C:\Tomcat_9.0\webapps\te5\TrialSummary\AutoSummary.xls at 06/13/2014 14:38:40
+Status : not Completed
+Error : The remote server machine does not exist or is unavailable
+-------------------------------------------------------------
+
+Process Name : Trigger Macro :: C:\Tomcat_9.0\webapps\te5\TrialSummary\AutoSummary.xls at 06/13/2014 14:38:40
+Status : not Completed
+Error : The remote server machine does not exist or is unavailable
+-------------------------------------------------------------

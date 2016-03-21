@@ -1,0 +1,350 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (Windows NT 5.0; U) [Netscape]">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<center>
+<h1>
+Basic TCL Syntax</h1></center>
+Understanding basic TCL syntax is a vital step for mastering the Niagara
+system.&nbsp; Because the use of TCL expands beyond Niagara, learning the
+syntax will build a foundation for other applications as well.
+<br>
+<hr WIDTH="100%">
+<center>
+<h3>
+TCL Foundations</h3></center>
+TCL fits into a class of languages known as "shell" languages.&nbsp; These
+types of languages are also known as "string substitution" languages.&nbsp;
+Although modern versions of TCL are not implemented as pure string substitution
+languages (these languages are slow when implemented literately), it is
+helpful to think of TCL in terms of string substitution.
+<br>&nbsp;
+<center>
+<h3>
+Basic TCL Command Flow</h3></center>
+TCL commands use the following steps when evaluating a command:
+<center>
+<p><img SRC="tcl_command_flow.gif" NOSAVE height=202 width=122>
+<p>
+<hr WIDTH="100%"></center>
+
+<center>
+<h3>
+Tokenization / Execution</h3></center>
+Here I explain tokenization followed by execution (the next section explains
+substitution).&nbsp; ALL commands in TCL follow the following format:
+<br>&nbsp;
+<blockquote><tt><font color="#3366FF">&lt;command name> &lt;argument 1>
+&lt;argument 2> &lt;argument 3> &lt;...></font></tt></blockquote>
+
+<p><br>Basically, we have a word, followed by more words called arguments.&nbsp;
+Each word is separated by one or more spaces.&nbsp; The first word is ALWAYS
+the command name (this is not always the case in many other languages,
+such as C).&nbsp; Here are some examples:
+<br>&nbsp;
+<ol>
+<li>
+<tt><font color="#3333FF">puts hello</font></tt></li>
+
+<li>
+<tt><font color="#3333FF">set name Matt</font></tt></li>
+
+<li>
+<tt><font color="#3333FF">set&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name&nbsp;&nbsp;&nbsp;&nbsp;
+Matt</font></tt></li>
+
+<li>
+<tt><font color="#3333FF">beep</font></tt></li>
+</ol>
+In the TCL examples above:
+<br>&nbsp;
+<ol>
+<li>
+The command name is "puts", the argument is "hello"</li>
+
+<li>
+The command name is "set", the first argument is "name" the second is "Matt"</li>
+
+<li>
+This command is identical to #2 (extra spaces are ignored)</li>
+
+<li>
+This command name is "beep" and has no arguments</li>
+</ol>
+
+<p><br>Now for the explanation of tokenization:&nbsp; Both the command
+name and the arguments in a TCL command are known as "tokens".&nbsp; Tokens
+are important because most commands expect a specific number of tokens
+(or a certain token format).&nbsp; This will be explored further in the
+next section...
+<p>Note:&nbsp; The word "token" is sometimes refered to by TCL documents
+as as a "word".
+<center>
+<p>
+<hr WIDTH="100%"></center>
+
+<p><br>
+<center>
+<h3>
+String Substitution</h3></center>
+For TCL, it is convienent to think of each command as a string (the interpreter
+models this behavior).&nbsp; A string is a sequence of characters ending
+with a new line.&nbsp; TCL commands are represented 1-per-line unless special
+symbols are used (;, and \ modify this behavior -- we will talk about these
+later).&nbsp; The <b>first </b>thing TCL does with a command string is
+scan the string left to right, looking for special characters and identifying
+tokens.&nbsp; These characters are as follows:
+<br>&nbsp;
+<ul>
+<li>
+$ - The dollar sign is used to represent a variable.&nbsp; Variables are
+substituted with values.</li>
+
+<li>
+"" - Quotes are used to group a string segment that contains spaces into
+a single token.&nbsp; Tokens are explained in the next section</li>
+
+<li>
+{} - Braces group a string segment into a single token AND prevent substitutions
+from occurring within the braces</li>
+
+<li>
+[] - Brackets evaluate contents between the [] as a command and substitute
+in the results.</li>
+</ul>
+
+<center>
+<h4>
+TCL's $ At Work</h4></center>
+Here we look at some examples using $:
+<blockquote>&nbsp;
+<br><tt><font color="#3333FF">> set name Matt</font></tt>
+<br><tt><font color="#3333FF">Matt</font></tt>
+<br><tt><font color="#3333FF">> puts $name</font></tt>
+<br><tt><font color="#3333FF">Matt</font></tt></blockquote>
+
+<p><br>In this example the $name variable was substituted with "Matt" therefore
+presenting the token/execute part of TCL with "puts Matt"
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">> set p puts</font></tt>
+<br><tt><font color="#3333FF">puts</font></tt>
+<br><tt><font color="#3333FF">> set m Hello</font></tt>
+<br><tt><font color="#3333FF">> $p $m</font></tt>
+<br><tt><font color="#3333FF">Hello</font></tt></blockquote>
+In this example $p was replaced with "puts" and $m was replaced with "Hello".&nbsp;
+This passed "puts Hello" to the token/execute portion of TCL.
+<br>&nbsp;
+<center>
+<h4>
+Quotes - When you want spaces in your token</h4></center>
+By default, TCL uses spaces to determine token splits.&nbsp; Because there
+are many times where you want spaces in a single token (such as printing
+a message to the screen), TCL provides "" to allow the use of spaces.&nbsp;
+Here are some examples:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">> set message I .... anchovies</font></tt>
+<br><tt><font color="#FF0000">wrong # args: should be "set varName ?newValue?"</font></tt></blockquote>
+TCL did not like what we did here.&nbsp; Specifically, "set" requires 2
+additional tokens for varname and value, we provide 4.&nbsp; The use of
+"" gives the "set" command what it wants:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">> set message "I .... anchovies"</font></tt>
+<br><tt><font color="#3333FF">I .... anchovies</font></tt></blockquote>
+Now the "set" command is happy...&nbsp; Note how the actual quotes themselves
+are not a part of the new expression.&nbsp; Now we will show that the string
+inside of the "" is still open for substitution:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">> set ps paste</font></tt>
+<br><tt><font color="#3333FF">paste</font></tt>
+<br><tt><font color="#3333FF">> set sw sweet</font></tt>
+<br><tt><font color="#3333FF">sweet</font></tt>
+<br><tt><font color="#3333FF">> set r red</font></tt>
+<br><tt><font color="#3333FF">red</font></tt>
+<br><tt><font color="#3333FF">> set b blue</font></tt>
+<br><tt><font color="#3333FF">blue</font></tt>
+<br><tt><font color="#3333FF">> puts " roses are $r \n violets are $b \n
+$ps is $sw \n but don't eat the glue"</font></tt>
+<br><tt><font color="#3333FF">&nbsp;roses are red</font></tt>
+<br><tt><font color="#3333FF">&nbsp;violets are blue</font></tt>
+<br><tt><font color="#3333FF">&nbsp;paste is sweet</font></tt>
+<br><tt><font color="#3333FF">&nbsp;but don't eat the glue</font></tt></blockquote>
+
+<p><br>Note the multiple substitution and the use of \n for newlines.&nbsp;&nbsp;
+What if the situation comes up where you want to use a " in your string?&nbsp;
+Like C, TCL uses \ to allow this to happen:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">> puts "hello"</font></tt>
+<br><tt><font color="#3333FF">hello</font></tt>
+<br><tt><font color="#3333FF">> puts "Ivan said \"hello\""</font></tt>
+<br><tt><font color="#3333FF">Ivan said "hello"</font></tt></blockquote>
+<b><font color="#3333FF">*Question:</font> </b>Is it possible to define
+a variable that contains spaces?
+<p><b><font color="#3333FF">*Question:</font> </b>What will this do?&nbsp;
+Why?
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">> set cmd "puts hello"</font></tt>
+<br><tt><font color="#3333FF">> $cmd</font></tt></blockquote>
+
+<center>
+<h4>
+Braces - Protecting A String From Change</h4></center>
+Braces work nearly identically to quotes with one very significant difference:
+String substitutions do not take place within braces.&nbsp; In other words,
+$ stay $, "" stay "" and everything else that might change does not.&nbsp;
+Here are the same examples above, with braces instead of quotes:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">> set message {I .... anchovies}</font></tt>
+<br><tt><font color="#3333FF">I .... anchovies</font></tt></blockquote>
+No change here, the "" example did no substitution anyway.&nbsp; Like the
+"", the {} are filtered out...&nbsp; Here we are identical to the "" case
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">> set ps paste</font></tt>
+<br><tt><font color="#3333FF">paste</font></tt>
+<br><tt><font color="#3333FF">> set sw sweet</font></tt>
+<br><tt><font color="#3333FF">sweet</font></tt>
+<br><tt><font color="#3333FF">> set r red</font></tt>
+<br><tt><font color="#3333FF">red</font></tt>
+<br><tt><font color="#3333FF">> set b blue</font></tt>
+<br><tt><font color="#3333FF">blue</font></tt>
+<br><tt><font color="#3333FF">> puts { roses are $r \n violets are $b \n
+$ps is $sw \n but don't eat the glue}</font></tt>
+<br><tt><font color="#3333FF">roses are $r \n violets are $b \n $ps is
+$sw \n but don't eat the glue</font></tt></blockquote>
+Note that nothing was substituted above, everything was taken as-is.&nbsp;
+Here we see the fundamental difference between "" and {}.
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">> puts "hello"</font></tt>
+<br><tt><font color="#3333FF">hello</font></tt>
+<br><tt><font color="#3333FF">> puts {Ivan said \"hello\"}</font></tt>
+<br><tt><font color="#3333FF">Ivan said \"hello\"</font></tt></blockquote>
+Again, no substitution occurs between the braces.&nbsp; Therefore the \
+stay (i.e., we don't need to use them).
+<p>Is this property useful?&nbsp; As it turns out, this property is <b>fundamental</b>
+in how TCL operates.&nbsp; Specifically, the {} provide an excellent tool
+for conditional functions (i.e. if) and loops (i.e. for, while) to specify
+code segments.&nbsp; This is explored further in the next module.
+<p><b><font color="#3333FF">**Question:</font> </b>Why is {} useful when
+defining code segments?
+<br>&nbsp;
+<center>
+<h4>
+Brackets [] - Substituting Command Results</h4></center>
+Lets say you are writing a procedure to do some simple circle calculations:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">proc circle_calc {r} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; set pi 3.14159</font></tt>
+<br><tt><font color="#3333FF">&nbsp; set d [expr 2*$r]</font></tt>
+<br><tt><font color="#3333FF">&nbsp; set cir [expr $pi*2*$r]</font></tt>
+<br><tt><font color="#3333FF">&nbsp; set area [expr pow([expr $pi*$r],2)]</font></tt>
+<p><tt><font color="#3333FF">&nbsp; return "d = $d, cir = $cir, area =
+$area"</font></tt>
+<br><tt><font color="#3333FF">}</font></tt>
+<br>&nbsp;</blockquote>
+Notice the use of [] here.&nbsp; Specifically the use of these symbols
+in the "set" command allow the "expr" statements to be executed as a separate
+command.&nbsp; Now we see the same function implemented a different way:
+<blockquote>&nbsp;
+<br><tt><font color="#3333FF">proc circle_calc2 {r} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; set pi 3.14159</font></tt>
+<br><tt><font color="#3333FF">&nbsp; return "d = [expr 2*$r], cir = [expr
+$pi*2*$r], area = [expr pow([expr $pi*$r],2)]"</font></tt>
+<br><tt><font color="#3333FF">}</font></tt></blockquote>
+
+<p><br>Here we allow the substitutions to occur directly within our return
+string.&nbsp; In TCL, [] form the basis of a "function call" in that it
+allows subcommands to be executed and substituted prior to the execution
+of the current string.&nbsp; <b><font color="#3333FF">Question 1:</font></b>&nbsp;
+What would happen in we used braces in place of quotes in the code above?
+<b><font color="#3333FF">*Question
+2:&nbsp;</font></b> What would happen if we used quotes in place of braces
+in the code above?
+<br>&nbsp;
+<p>
+<hr WIDTH="100%">
+<br>&nbsp;
+<center>
+<h3>
+Multiple Commands / Line</h3></center>
+Multiple commands per line are accomplished with the ; character:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">> puts a</font></tt>
+<br><tt><font color="#3333FF">> puts b</font></tt>
+<br><tt><font color="#3333FF">> puts c</font></tt></blockquote>
+Could be stated as:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">> puts a; puts b; puts c</font></tt></blockquote>
+
+<hr WIDTH="100%">
+<br>&nbsp;
+<br>&nbsp;
+<center>
+<h3>
+Extending a line</h3></center>
+The \ character can be used to extend a line.&nbsp; To do so, simply include
+the \ character as the <b>last character</b> on the line:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">> expr 1+2+3+4+5</font></tt></blockquote>
+Is the same as:
+<blockquote><tt><font color="#3333FF">> expr 1+\</font></tt>
+<br><tt><font color="#3333FF">2+3+\</font></tt>
+<br><tt><font color="#3333FF">4+5</font></tt></blockquote>
+Another way to extend a line is to leave an unmatched " or { or [.&nbsp;
+TCL will wait for you to close these structures before evalutating the
+command.
+<p>
+<hr WIDTH="100%">
+<br>&nbsp;
+<center>
+<h3>
+Comments</h3></center>
+Comments are lines that begin with a pound sign:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">#this is a comment</font></tt>
+<br><tt><font color="#3333FF">puts "hello"</font></tt></blockquote>
+In order for a line to be a comment, # must be the first character of the
+"command"
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">#this is a comment</font></tt>
+<br><tt><font color="#3333FF">set i 6&nbsp;&nbsp;&nbsp; #this will not
+work</font></tt>
+<br><tt><font color="#3333FF">set i 6&nbsp;&nbsp; ;# Using a semicolon
+works, though</font></tt></blockquote>
+
+<center>
+<h3>
+That is It! (...)</h3></center>
+Now you know the complete story on TCL syntax.&nbsp; The next trick is
+understanding the syntax to a depth where different combinations of the
+symbols above make sense.&nbsp; The purpose of the lab associated with
+this module is to test your understanding with increasingly complex patterns.&nbsp;
+The other challenge is understanding what different TCL commands expect
+as arguments. In general, TCL command either expect raw data (<tt><font color="#000099">set</font></tt>,
+<tt><font color="#000099">puts</font></tt>, <tt><font color="#000099">expr</font></tt>)
+or code (<tt><font color="#000099">if</font></tt>, <tt><font color="#000099">while</font></tt>).&nbsp;
+In the first case, string substitution usually consists of $ or [].&nbsp;
+In the code case, {} is common.&nbsp; Note that NONE of the TCL commands
+(including <tt><font color="#000099">for</font></tt>, <tt><font color="#000099">while</font></tt>,
+<tt><font color="#000099">proc</font></tt>, <tt><font color="#000099">etc</font></tt>)
+<b>require</b>&nbsp; the use of braces.&nbsp; It is simply a fact that
+braces make more sense in many cases.&nbsp; This will be explored in more
+detail in the next module...
+<br>&nbsp;
+<br>&nbsp;
+<center>
+<h2>
+Q/A</h2></center>
+
+<p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<center>
+<h3>
+<a href="tcl_syntax_lab.html">Lab</a></h3></center>
+
+</body>
+</html>

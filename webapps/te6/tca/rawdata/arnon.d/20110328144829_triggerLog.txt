@@ -1,0 +1,13 @@
+Start Macro Trigger
+Running ID : 20110328144829
+-------------------------------------------------------------
+
+Process Name : Trigger Macro :: C:\Tomcat_9.0\webapps\te\tca\rawdata\arnon.d\GraphMacro.xls at 3/28/2011 2:48:56 PM
+Status : Completed sucessfully
+
+-------------------------------------------------------------
+
+Process Name : Trigger Macro :: C:\Tomcat_9.0\webapps\te\tca\rawdata\arnon.d\GraphMacro.xls at 3/28/2011 2:48:56 PM
+Status : not Completed
+Error : Object required
+-------------------------------------------------------------

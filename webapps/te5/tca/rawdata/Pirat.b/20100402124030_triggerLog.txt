@@ -1,0 +1,13 @@
+Start Macro Trigger
+Running ID : 20100402124030
+-------------------------------------------------------------
+
+Process Name : Trigger Macro :: C:\Tomcat_9.0\webapps\te\tca\rawdata\Pirat.b\GraphMacro.xls at 4/2/2010 12:40:34 PM
+Status : Completed sucessfully
+
+-------------------------------------------------------------
+
+Process Name : Trigger Macro :: C:\Tomcat_9.0\webapps\te\tca\rawdata\Pirat.b\GraphMacro.xls at 4/2/2010 12:40:34 PM
+Status : not Completed
+Error : Object required
+-------------------------------------------------------------

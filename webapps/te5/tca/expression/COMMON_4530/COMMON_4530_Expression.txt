@@ -1,0 +1,9 @@
+if ( ( OW_ID >=-21.5   ||  OW_OD >=-21.5 )   &&  OW_SER>=-5.2  &&  OW_MCW <=0.1100 ) {
+
+sysoutput0="FAIL";
+
+}else{
+
+sysoutput0="PASS";
+
+}

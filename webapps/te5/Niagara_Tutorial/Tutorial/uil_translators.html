@@ -1,0 +1,366 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10smp i686) [Netscape]">
+   <title>UIL Translators</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#59188E" alink="#FF0000">
+
+<center>
+<h1>
+UIL Translators</h1></center>
+The <tt><font color="#3333FF">uil</font></tt> command allow you to add,
+remove, and manipulate translators.&nbsp; The <tt><font color="#3333FF">uil</font></tt>
+command is broken into the following sub-commands:
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER WIDTH="25%" BGCOLOR="#FFFF00" NOSAVE >
+<tr NOSAVE>
+<td NOSAVE><tt>uil</tt></td>
+
+<td><tt>count</tt></td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>uil</tt></td>
+
+<td NOSAVE><tt>create</tt></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><tt>uil</tt></td>
+
+<td><tt>get</tt></td>
+
+<td><tt>autosense</tt></td>
+</tr>
+
+<tr NOSAVE>
+<td><tt>uil</tt></td>
+
+<td NOSAVE><tt>get</tt></td>
+
+<td><tt>callback</tt></td>
+</tr>
+
+<tr>
+<td><tt>uil</tt></td>
+
+<td><tt>get</tt></td>
+
+<td><tt>index</tt></td>
+</tr>
+
+<tr>
+<td><tt>uil</tt></td>
+
+<td><tt>get</tt></td>
+
+<td><tt>version</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>uil</tt></td>
+
+<td NOSAVE><tt>info</tt></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><tt>uil</tt></td>
+
+<td><tt>list</tt></td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>uil</tt></td>
+
+<td NOSAVE><tt>load</tt></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><tt>uil</tt></td>
+
+<td><tt>message</tt></td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>uil</tt></td>
+
+<td NOSAVE><tt>name</tt></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><tt>uil</tt></td>
+
+<td><tt>parse</tt></td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>uil</tt></td>
+
+<td NOSAVE><tt>remove</tt></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><tt>uil</tt></td>
+
+<td><tt>set</tt></td>
+
+<td><tt>autosense</tt></td>
+</tr>
+
+<tr>
+<td><tt>uil</tt></td>
+
+<td><tt>set</tt></td>
+
+<td><tt>callback</tt></td>
+</tr>
+
+<tr>
+<td><tt>uil</tt></td>
+
+<td><tt>set</tt></td>
+
+<td><tt>index</tt></td>
+</tr>
+
+<tr>
+<td><tt>uil</tt></td>
+
+<td><tt>set</tt></td>
+
+<td><tt>loglevel</tt></td>
+</tr>
+</table>
+
+<p>Below is a list of current uil translators (2/15/2002), and their function:
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER WIDTH="95%" NOSAVE >
+<tr NOSAVE>
+<th NOSAVE>Name</th>
+
+<th NOSAVE>Interface</th>
+
+<th NOSAVE>Platform(s)</th>
+
+<th NOSAVE>Card Support</th>
+
+<th NOSAVE>Hot Swap?</th>
+
+<th NOSAVE>Low Level?</th>
+
+<th NOSAVE>Queueing?</th>
+
+<th NOSAVE>High Speed?</th>
+</tr>
+
+<tr NOSAVE>
+<td>sg</td>
+
+<td NOSAVE>FCAL/SCSI</td>
+
+<td>Linux</td>
+
+<td>Generic HBA</td>
+
+<td><font color="#009900">Yes</font></td>
+
+<td><font color="#FF0000">No*</font></td>
+
+<td><font color="#009900">Yes</font></td>
+
+<td><font color="#009900">Yes</font></td>
+</tr>
+
+<tr>
+<td>Serial</td>
+
+<td>Serial</td>
+
+<td>Linux, Win9x, WinNT</td>
+
+<td>COM Port</td>
+
+<td><font color="#009900">Yes</font></td>
+
+<td><font color="#009900">Yes</font></td>
+
+<td><font color="#FF0000">No</font></td>
+
+<td><font color="#FF0000">No</font></td>
+</tr>
+
+<tr>
+<td>Test</td>
+
+<td>None</td>
+
+<td>Linux, Win9x</td>
+
+<td>None</td>
+
+<td><font color="#FF0000">No</font></td>
+
+<td><font color="#FF0000">No</font></td>
+
+<td><font color="#FF0000">No</font></td>
+
+<td><font color="#009900">Yes</font></td>
+</tr>
+
+<tr>
+<td>ASPI</td>
+
+<td>FCAL/SCSI</td>
+
+<td>Win9x, WinNT</td>
+
+<td>Generic HBA</td>
+
+<td><font color="#FF0000">No</font></td>
+
+<td><font color="#FF0000">No</font></td>
+
+<td><font color="#FF0000">No</font></td>
+
+<td><font color="#009900">Yes</font></td>
+</tr>
+
+<tr>
+<td>SPTI</td>
+
+<td>FCAL/SCSI</td>
+
+<td>WinNT</td>
+
+<td>Generic HBA</td>
+
+<td><font color="#009900">Yes*</font></td>
+
+<td><font color="#FF0000">No</font></td>
+
+<td><font color="#FF0000">No</font></td>
+
+<td><font color="#009900">Yes</font></td>
+</tr>
+
+<tr>
+<td>iTech</td>
+
+<td>FCAL/SCSI</td>
+
+<td>WinNT</td>
+
+<td>iTech Custom</td>
+
+<td><font color="#009900">Yes</font></td>
+
+<td><font color="#009900">Yes</font></td>
+
+<td><font color="#009900">Yes</font></td>
+
+<td><font color="#FF0000">No*</font></td>
+</tr>
+
+<tr>
+<td>Safari</td>
+
+<td>TCP/IP Custom</td>
+
+<td>WinNT</td>
+
+<td>"Work.exe"</td>
+
+<td><font color="#CC6600">NA</font></td>
+
+<td><font color="#FF0000">No</font></td>
+
+<td><font color="#FF0000">No</font></td>
+
+<td><font color="#FF0000">No</font></td>
+</tr>
+
+<tr>
+<td>SimSCSI</td>
+
+<td>TCP/IP SCSI SIM</td>
+
+<td>WinNT</td>
+
+<td>"Work.exe"</td>
+
+<td><font color="#CC6600">NA</font></td>
+
+<td><font color="#009900">Yes</font></td>
+
+<td><font color="#009900">Yes</font></td>
+
+<td><font color="#FF0000">No</font></td>
+</tr>
+</table>
+
+<center>
+<h3>
+Managing uil Translators</h3></center>
+The command to see what uil translators are available is:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">uil list</font></tt></blockquote>
+For example:
+<p><img SRC="uil_list.gif" NOSAVE height=241 width=388>
+<p>In this case, Niagara has three uil translators loaded.&nbsp; Note the
+index, version, and number of devices connected.&nbsp; To change the current
+uil, use the command <tt><font color="#3333FF">uil set index</font></tt>
+(<tt><font color="#3333FF">usi</font></tt> is a shortname alias). The format
+for this command is:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">uil set index &lt;index></font></tt>
+<br>&nbsp;</blockquote>
+You can also create new UIL's and remove UIL's dynamically.&nbsp; The command
+to create a new uil is:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">uil create &lt;driver name> ?option1?
+?option2? ?...?</font></tt></blockquote>
+Here are some examples:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">uil create test</font></tt>
+<br><tt><font color="#3333FF">uil create itech</font></tt>
+<br><tt><font color="#3333FF">uil create spti</font></tt>
+<br><tt><font color="#3333FF">uil create simscsi</font></tt>
+<br><tt><font color="#3333FF">uil create simscsi 1</font></tt></blockquote>
+Note the parameter we passed to the simscsi driver in the last example
+tells simscsi to start <b>work.exe</b> automatically.&nbsp; Parameters
+after the uil name in the examples above are different depending on which
+driver being loaded (most drivers have no startup parameters).&nbsp; Parameters
+are always optional, if not included the driver will load with a default
+configuration. In most cases, it is ok to have multiple instances of the
+same uil type.&nbsp; To remove a uil translator, the command is:
+<blockquote><tt><font color="#3333FF">uil remove &lt;uil index></font></tt>
+<br>&nbsp;</blockquote>
+If the simscsi driver automatically launched <b>work.exe</b>, it will automatically
+kill it when this command is called.
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

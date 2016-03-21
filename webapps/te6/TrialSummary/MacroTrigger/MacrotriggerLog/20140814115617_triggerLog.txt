@@ -1,0 +1,13 @@
+Start Macro Trigger
+Running ID : 20140814115617
+-------------------------------------------------------------
+
+Process Name : Trigger Macro :: C:\Tomcat_9.0\webapps\te5\TrialSummary\AutoSummary.xls at 08/14/2014 12:20:05
+Status : Completed sucessfully
+
+-------------------------------------------------------------
+
+Process Name : Trigger Macro :: C:\Tomcat_9.0\webapps\te5\TrialSummary\AutoSummary.xls at 08/14/2014 12:20:06
+Status : not Completed
+Error : Object required
+-------------------------------------------------------------

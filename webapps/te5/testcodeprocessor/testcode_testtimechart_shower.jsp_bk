@@ -1,0 +1,215 @@
+<%       
+
+String[] similarHeader = new String[13];
+		similarHeader[0] = "<td>WW</td>";
+		//similarHeader[1] = "<td>YearOfWeek</td>";
+		similarHeader[1] = "<td>PROC</td>";
+		similarHeader[2] = "<td>MTYPE</td>";
+		similarHeader[3] = "<td>TesttimeGroup</td>";
+		similarHeader[4] = "<td>YieldFirstPass</td>";
+		similarHeader[5] = "<td>LatestYield</td>";
+		//similarHeader[7] = "<td>UnitQty</td>";>
+		similarHeader[6] = "<td>FromEndDate</td>";
+		similarHeader[7] = "<td>ToEndDate</td>";
+		similarHeader[8] = "<td>UpdateDate</td>";
+		similarHeader[9] = "<td>Mss</td>";
+		similarHeader[10] = "<td>TestCode</td>";
+		similarHeader[11] = "<td>Plan</td>";
+		similarHeader[12] = "<td>YieldBd</td>";
+
+String[] allDriveHeader = new String[7];
+allDriveHeader[0] = "<td>95%Unit</td>";				allDriveHeader[1] = "<td>99%Unit</td>";
+allDriveHeader[2] = "<td>MeanUnit</td>";				allDriveHeader[3] = "<td>MinUnit</td>";
+allDriveHeader[4] = "<td>MaxUnit</td>";				allDriveHeader[5] = "<td>SDevUnit</td>";
+allDriveHeader[6] = "<td>CountUnit</td>";
+
+String[] passerDriveHeader = new String[7];
+passerDriveHeader[0] = "<td>95%Passer</td>";			passerDriveHeader[1] = "<td>99%Passer</td>";
+passerDriveHeader[2] = "<td>MeanPasser</td>";			passerDriveHeader[3] = "<td>MinPasser</td>";
+passerDriveHeader[4] = "<td>MaxPasser</td>";			passerDriveHeader[5] = "<td>SDevPasser</td>";
+passerDriveHeader[6] = "<td>CountPasser</td>";
+String[] testerHeader = new String[7];		
+testerHeader[0] = "<td>95%Tester</td>";				testerHeader[1] = "<td>99%Tester</td>";				
+testerHeader[2] = "<td>MeanTester</td>";				testerHeader[3] = "<td>MinTester</td>";
+testerHeader[4] = "<td>MaxTester</td>";				testerHeader[5] = "<td>SdevTester</td>";
+testerHeader[6] = "<td>CountTester</td>";
+
+String[] byDriveTestCodeHeader = new String[7];
+byDriveTestCodeHeader[0] = "<td>95%BdTc</td>";	byDriveTestCodeHeader[1] = "<td>99%BdTc</td>";
+byDriveTestCodeHeader[2] = "<td>MeanBdTc</td>";	byDriveTestCodeHeader[3] = "<td>MinBdTc</td>";
+byDriveTestCodeHeader[4] = "<td>MaxBdTc</td>";		byDriveTestCodeHeader[5] = "<td>SdevBdTc</td>";
+byDriveTestCodeHeader[6] = "<td>FuncBdTc</td>";
+
+String[] testTimeTestCodeHeader = new String[7];
+testTimeTestCodeHeader[0] = "<td>95%ByBatch</td>";	testTimeTestCodeHeader[1] = "<td>99%ByBatch</td>";
+testTimeTestCodeHeader[2] = "<td>MeanByBatch</td>";	testTimeTestCodeHeader[3] = "<td>MinByBatch</td>";
+testTimeTestCodeHeader[4] = "<td>MaxByBatch</td>";	testTimeTestCodeHeader[5] = "<td>SdevByBatch</td>";
+testTimeTestCodeHeader[6] = "<td>CountByBatch</td>";
+		
+		
+ int colCount = 2; 
+ Hashtable hastt2Group = new Hashtable<Integer,Object>(); 
+ for (int processIndex = 0; processIndex < processID.size(); processIndex++){ %>
+	<tr>
+	   <td width="100%" align="left" >
+		  <div id="content-Process-header">Process ID <%=(Integer)processID.get(processIndex)%></div>
+	   </td>
+	</tr>
+
+    <!--%
+	 
+    for(int entryCount=0 ; entryCount < mtype.size()  ;  entryCount++){
+	     hasttGroup.put((Integer)processID.get(processIndex), ttMonitor.getTestTimeGroup((String)mtype.get(entryCount), (Integer)processID.get(processIndex)));
+		 Vector tt2Group = (Vector)hasttGroup.get((Integer)processID.get(processIndex));
+	     for ( int ttCount = 0 ; ttCount < tt2Group.size(); ttCount+=colCount){
+    %-->>
+
+		<tr>
+			<td width="100%" align="center" >
+				<table width="100%" border="0">
+				  <tr>
+					<td width="50%"> <div id="<%=(Integer)6400%>_<%=(String)"CBE6"%>_<%=(String)"ABCD"%>" style="width:100%; height:500px;"></div></td>
+                    
+					
+
+				  </tr>
+				</table>
+			
+			<!--%}
+			 %-->
+			 
+			 <!-- Show test time table -->
+			<!--*************************************
+			Show Table when comboBox checked!
+			----------------------------------------------------------------
+			showdataTable is a variable from "testcode_Testtimemorniter.jsp"
+			*************************************-->
+
+				<table width="100%" border="1"  cellspacing="0" bordercolor ="#AEAEAE">
+	
+					  
+					  <div id="content-Process-header">Detail Table</div>
+					 
+					 <!--
+					 ***********************************
+					 Header zone
+					 ***********************************
+					 -->
+					  <tr align="center">
+						
+						
+		
+					
+					
+
+					   </tr>
+					<!-- 
+					***********************************
+					End of Header zone
+					***********************************			
+					-->
+					 <!-- Data zone--> 
+					<tr align="center">
+							
+							
+							<td><%=36%></td>
+							<!--<td><%=2016%></td> -->
+							<td><%=6400%></td>
+							<td><%="CBE6"%></td>
+							
+							<td><%="ABCD"%></td>
+							<td><%=70.21%></td>
+							<td><%=65.525%></td>
+							<!--td><-%=((Testtimemorniter)v.get(q)).getUnitqty()%></td-->
+							<td><%=2016-03-01%></td>
+							<td><%=2016-03-31%></td>
+							<td><%=2016-04-01%></td>
+							<td><%=70%></td>
+							<td><%="CBE1.0G"%></td>
+							<td><%=111%></td>
+							<td><%=70.00%></td>
+							
+						<%if (reportByAllDrives.equals("checked")){%>
+							<td><%=68.25%></td>
+							<td><%=69.66%></td>
+							<td><%=68.88%></td>
+							<td><%=2.69%></td>
+							<td><%=118.88%></td>			
+							<td><%=99.44%></td>
+							<td><%=123456%></td>
+							
+						<%}else if (reportByPasserDrives.equals("checked")){%>
+							<td><%=68.22%></td>
+							<td><%=72.43%></td>
+							<td><%=69.43%></td>
+							<td><%=1.44%></td>
+							<td><%=125.58%></td>
+							<td><%=88.46%></td>	
+							<td><%=121245%></td>	
+							
+						<%}else if (reportByTester.equals("checked")){%>
+							<td><%=68.22%></td>
+							<td><%=72.43%></td>
+							<td><%=69.43%></td>
+							<td><%=1.44%></td>
+							<td><%=125.58%></td>
+							<td><%=88.46%></td>	
+							<td><%=121245%></td>		
+							
+						<%}else if (reportByDriveTestCode.equals("checked")){%>	
+							<td><%=68.25%></td>
+							<td><%=69.66%></td>
+							<td><%=68.88%></td>
+							<td><%=2.69%></td>
+							<td><%=118.88%></td>			
+							<td><%=99.44%></td>
+							<td><%=123456%></td>
+							
+						<%}else if (reportByTestTimeTestCode.equals("checked")){%>
+							<td><%=68.22%></td>
+							<td><%=72.43%></td>
+							<td><%=69.43%></td>
+							<td><%=1.44%></td>
+							<td><%=125.58%></td>
+							<td><%=88.46%></td>	
+							<td><%=121245%></td>	
+						<%}%>
+						
+				
+						
+						</tr
+		   </td>
+		</tr>
+    <%}
+	%>
+
+
+
+
+
+<!-- Backup Old Header Zone **************************************************
+					
+						<td>Wk</td>
+						<td>Year</td>
+						<td>ProcessID</td>
+						<td>MTYPE</td>
+						<td>QTY</td>
+						<td>Enddate Begin</td>
+						<td>Enddate End</td>
+						<td>95%_Unit</td>
+						<td>99%_Unit</td>
+						<td>Mean_Unit</td>
+						<td>Min_Unit</td>
+						<td>Max_Unit</td>
+						<td>SDev_Unit</td>
+						<td>Mean_Passer</td>
+						<td>Min_Passer</td>
+						<td>Max_Passer</td>
+						<td>SDev_Passer</td>
+						<td>Mean_Tester</td>
+						<td>Min_Tester</td>
+						<td>Max_Tester</td>
+						<td>Sdev_Tester</td>
+						<td>UpdateDate</td>
+
+***************************************************************************-->

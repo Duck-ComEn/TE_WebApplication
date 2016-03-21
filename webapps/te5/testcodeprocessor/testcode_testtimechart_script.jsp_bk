@@ -1,0 +1,665 @@
+function generateChart(chartName,chartData , chartTitle){	
+			
+            var chart;
+			var colorIndex = new Array("#FF0000","#00FF00","#0000FF","#FAB800","#00B3FF","#EF00FF","#337F00","#A804C5");
+			var i = 0;
+			
+            AmCharts.ready(
+			function testTimeChart() {
+                // SERIAL CHART
+                chart = new AmCharts.AmSerialChart();
+                chart.dataProvider = chartData;
+                chart.categoryField = "ww";
+                chart.marginTop = 0;
+				chart.addTitle(chartTitle, 15);
+				
+
+                // AXES
+                // category axis
+                var categoryAxis = chart.categoryAxis;
+                //categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
+
+				//categoryAxis.gridPosition = "middle";  // Possible values are: "start" and "middle"
+				categoryAxis.inside = false;              
+                categoryAxis.autoGridCount = true;
+				categoryAxis.startOnAxis = true;
+                categoryAxis.gridCount = 50;
+                categoryAxis.gridAlpha = 0.1;
+                categoryAxis.gridColor = "#333333";
+                categoryAxis.axisColor = "#555555";
+				categoryAxis.title = "Week No."
+				categoryAxis.addValueAxis = "50";
+                // we want custom date formatting, so we change it in next line
+                categoryAxis.dateFormats = [{
+                    period: 'DD',
+                    format: 'DD'
+                }, {
+                    period: 'WW',
+                    format: 'MMM DD'
+                }, {
+                    period: 'MM',
+                    format: 'MMM'
+                }, {
+                    period: 'YYYY',
+                    format: 'YYYY'
+                }];
+			   
+                // as we have data of different units, we create two different value axes
+                // test time value axis            
+                var testTimeAxis = new AmCharts.ValueAxis();
+                testTimeAxis.title = "Test Time (hrs)"; // Y left axis title
+                testTimeAxis.gridAlpha = 0.1;
+                testTimeAxis.axisAlpha = 50;
+				testTimeAxis.gridColor = "#333333";
+                testTimeAxis.axisColor = "#555555";
+                testTimeAxis.inside = false;              
+                chart.addValueAxis(testTimeAxis);
+				
+
+		        <%if (yaxisYield.equals("checked")){%>
+					// Unit count value axis 
+					var unitCount = new AmCharts.ValueAxis();
+					unitCount.title = "Yield First Pass"; // Y right axis title
+					unitCount.gridAlpha = 0;
+					unitCount.position = "right";
+					unitCount.inside = false;
+					unitCount.unit = "%";
+					unitCount.axisAlpha = 0;
+					chart.addValueAxis(unitCount);
+					
+				<%}else if (yaxisQty.equals("checked")){%>				
+				
+					// Unit count value axis 
+					var unitCount = new AmCharts.ValueAxis();
+					unitCount.title = "QTY"; // Y right axis title
+					unitCount.gridAlpha = 0;
+					unitCount.position = "right";
+					unitCount.inside = false;
+					unitCount.unit = "unit";
+					unitCount.axisAlpha = 0;
+					chart.addValueAxis(unitCount);
+								
+				<%}else if (yaxisLatestYield.equals ("checked")){%>
+					//Unit count value axis
+					var unitCount = new AmCharts.ValueAxis();
+					unitCount.title = "Latest Yield"; // Y right axis title
+					unitCount.gridAlpha = 0;
+					unitCount.position = "right";
+					unitCount.inside = false;
+					unitCount.unit = "%";
+					unitCount.axisAlpha = 0 ;
+					chart.addValueAxis(unitCount);
+				<%}%>
+				
+				<%if (reportByAllDrives.equals("checked")){%>
+					// GRAPHS
+					// 95% test time graph
+					var tt95UnitGraph = new AmCharts.AmGraph();
+					tt95UnitGraph.title = "95% ByUnit";
+					tt95UnitGraph.valueField = "tt95_unit";
+					tt95UnitGraph.type = "line";
+					tt95UnitGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					tt95UnitGraph.lineColor = colorIndex[i++] //#20B2AA;
+					tt95UnitGraph.balloonText = "[[value]]";
+					tt95UnitGraph.lineThickness = 1;
+					tt95UnitGraph.legendValueText = "[[value]]";
+					tt95UnitGraph.bullet = "square";
+					tt95UnitGraph.hidden = false;
+					chart.addGraph(tt95UnitGraph);
+					
+					
+					// 99% test time graph
+					var tt99UnitGraph = new AmCharts.AmGraph();
+					tt99UnitGraph.title = "99% ByUnit";
+					tt99UnitGraph.valueField = "tt99_unit";
+					tt99UnitGraph.type = "line";
+					tt99UnitGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					tt99UnitGraph.lineColor =   colorIndex[i++]; //"#20B2AA";
+					tt99UnitGraph.balloonText = "[[value]]";
+					tt99UnitGraph.lineThickness = 1;
+					tt99UnitGraph.legendValueText = "[[value]]";
+					tt99UnitGraph.bullet = "square";
+					tt99UnitGraph.hidden = true;
+					chart.addGraph(tt99UnitGraph);
+					
+					
+					// Mean_Unit test time graph
+					var ttMeanUnitGraph = new AmCharts.AmGraph();
+					ttMeanUnitGraph.title = "Mean ByUnit";
+					ttMeanUnitGraph.valueField = "mean_unit";
+					ttMeanUnitGraph.type = "line";
+					ttMeanUnitGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttMeanUnitGraph.lineColor = colorIndex[i++]; //"#20B2AA";
+					ttMeanUnitGraph.balloonText = "[[value]]";
+					ttMeanUnitGraph.lineThickness = 1;
+					ttMeanUnitGraph.legendValueText = "[[value]]";
+					ttMeanUnitGraph.bullet = "square";
+					ttMeanUnitGraph.hidden = false;
+					chart.addGraph(ttMeanUnitGraph);
+
+
+					// Min_Unit test time graph
+					var ttMinUnitGraph = new AmCharts.AmGraph();
+					ttMinUnitGraph.title = "Min ByUnit";
+					ttMinUnitGraph.valueField = "min_unit";
+					ttMinUnitGraph.type = "line";
+					ttMinUnitGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttMinUnitGraph.lineColor = colorIndex[i++]; //"#20B2AA";
+					ttMinUnitGraph.balloonText = "[[value]]";
+					ttMinUnitGraph.lineThickness = 1;
+					ttMinUnitGraph.legendValueText = "[[value]]";
+					ttMinUnitGraph.bullet = "square";
+					ttMinUnitGraph.hidden = true;
+					chart.addGraph(ttMinUnitGraph);
+					
+					// Max_Unit test time graph
+					var ttMaxUnitGraph = new AmCharts.AmGraph();
+					ttMaxUnitGraph.title = "Max ByUnit";
+					ttMaxUnitGraph.valueField = "max_unit";
+					ttMaxUnitGraph.type = "line";
+					ttMaxUnitGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttMaxUnitGraph.lineColor = colorIndex[i++]; //"#20B2AA";
+					ttMaxUnitGraph.balloonText = "[[value]]";
+					ttMaxUnitGraph.lineThickness = 1;
+					ttMaxUnitGraph.legendValueText = "[[value]]";
+					ttMaxUnitGraph.bullet = "square";
+					ttMaxUnitGraph.hidden = true;
+					chart.addGraph(ttMaxUnitGraph);
+					
+					// Sdev_Unit test time graph
+					var ttSdevUnitGraph = new AmCharts.AmGraph();
+					ttSdevUnitGraph.title = "Sdev ByUnit";
+					ttSdevUnitGraph.valueField = "sdev_unit";
+					ttSdevUnitGraph.type = "line";
+					ttSdevUnitGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttSdevUnitGraph.lineColor = colorIndex[i++]; //"#20B2AA";
+					ttSdevUnitGraph.balloonText = "[[value]]";
+					ttSdevUnitGraph.lineThickness = 1;
+					ttSdevUnitGraph.legendValueText = "[[value]]";
+					ttSdevUnitGraph.bullet = "square";
+					ttSdevUnitGraph.hidden = true;
+					chart.addGraph(ttSdevUnitGraph);
+					
+				<%}else if (reportByPasserDrives.equals("checked")){%>
+				
+					// 95%_pass test time graph
+					var tt95PasserGraph = new AmCharts.AmGraph();
+					tt95PasserGraph.title = "95% ByPasser";
+					tt95PasserGraph.valueField = "_95_passer";
+					tt95PasserGraph.type = "line";
+					tt95PasserGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					tt95PasserGraph.lineColor = colorIndex[i++];
+					tt95PasserGraph.balloonText = "[[value]]";
+					tt95PasserGraph.lineThickness = 1;
+					tt95PasserGraph.legendValueText = "[[value]]";
+					tt95PasserGraph.bullet = "square";
+					tt95PasserGraph.hidden = false;
+					chart.addGraph(tt95PasserGraph);
+					
+					// 99%_pass test time graph
+					var tt99PasserGraph = new AmCharts.AmGraph();
+					tt99PasserGraph.title = "99% ByPasser";
+					tt99PasserGraph.valueField = "_99_passer";
+					tt99PasserGraph.type = "line";
+					tt99PasserGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					tt99PasserGraph.lineColor = colorIndex[i++];
+					tt99PasserGraph.balloonText = "[[value]]";
+					tt99PasserGraph.lineThickness = 1;
+					tt99PasserGraph.legendValueText = "[[value]]";
+					tt99PasserGraph.bullet = "square";
+					tt99PasserGraph.hidden = true;
+					chart.addGraph(tt99PasserGraph);
+					
+					// Mean_passer test time graph
+					var ttMeanPasserGraph = new AmCharts.AmGraph();
+					ttMeanPasserGraph.title = "Mean ByPasser";
+					ttMeanPasserGraph.valueField = "mean_passer";
+					ttMeanPasserGraph.type = "line";
+					ttMeanPasserGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttMeanPasserGraph.lineColor = colorIndex[i++];
+					ttMeanPasserGraph.balloonText = "[[value]]";
+					ttMeanPasserGraph.lineThickness = 1;
+					ttMeanPasserGraph.legendValueText = "[[value]]";
+					ttMeanPasserGraph.bullet = "square";
+					ttMeanPasserGraph.hidden = false;
+					chart.addGraph(ttMeanPasserGraph);
+					
+					// Min_passer test time graph
+					var ttMinPasserGraph = new AmCharts.AmGraph();
+					ttMinPasserGraph.title = "Min ByPasser";
+					ttMinPasserGraph.valueField = "min_passer";
+					ttMinPasserGraph.type = "line";
+					ttMinPasserGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttMinPasserGraph.lineColor = colorIndex[i++];//"#006400";
+					ttMinPasserGraph.balloonText = "[[value]]";
+					ttMinPasserGraph.lineThickness = 1;
+					ttMinPasserGraph.legendValueText = "[[value]]";
+					ttMinPasserGraph.bullet = "triangle";
+					ttMinPasserGraph.hidden = true;
+					chart.addGraph(ttMinPasserGraph);
+					
+					// Max_passer test time graph
+					var ttMaxPasserGraph = new AmCharts.AmGraph();
+					ttMaxPasserGraph.title = "Max ByPasser";
+					ttMaxPasserGraph.valueField = "max_passer";
+					ttMaxPasserGraph.type = "line";
+					ttMaxPasserGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttMaxPasserGraph.lineColor = colorIndex[i++];//"#006400";
+					ttMaxPasserGraph.balloonText = "[[value]]";
+					ttMaxPasserGraph.lineThickness = 1;
+					ttMaxPasserGraph.legendValueText = "[[value]]";
+					ttMaxPasserGraph.bullet = "square";
+					ttMaxPasserGraph.hidden = true;
+					chart.addGraph(ttMaxPasserGraph);
+
+					// Sdev_passer test time graph
+					var ttSdevPasserGraph = new AmCharts.AmGraph();
+					ttSdevPasserGraph.title = "Sdev ByPasser";
+					ttSdevPasserGraph.valueField = "sdev_passer";
+					ttSdevPasserGraph.type = "line";
+					ttSdevPasserGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttSdevPasserGraph.lineColor = colorIndex[i++];//"#006400";
+					ttSdevPasserGraph.balloonText = "[[value]]";
+					ttSdevPasserGraph.lineThickness = 1;
+					ttSdevPasserGraph.legendValueText = "[[value]]";
+					ttSdevPasserGraph.bullet = "square";
+					ttSdevPasserGraph.hidden = true;
+					chart.addGraph(ttSdevPasserGraph);
+
+					
+				<%}else if (reportByTester.equals("checked")){%>
+					
+					// 95_tester test time graph
+					var tt95TesterGraph = new AmCharts.AmGraph();
+					tt95TesterGraph.title = "95% ByTester";
+					tt95TesterGraph.valueField = "t95_tester";
+					tt95TesterGraph.type = "line";
+					tt95TesterGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					tt95TesterGraph.lineColor = colorIndex[i++];//"#0000FF";
+					tt95TesterGraph.balloonText = "[[value]]";
+					tt95TesterGraph.lineThickness = 1;
+					tt95TesterGraph.legendValueText = "[[value]]";
+					tt95TesterGraph.bullet = "square";
+					tt95TesterGraph.hidden = false;
+					chart.addGraph(tt95TesterGraph);
+					
+					// 99_tester test time graph
+					var tt99TesterGraph = new AmCharts.AmGraph();
+					tt99TesterGraph.title = "99% ByTester";
+					tt99TesterGraph.valueField = "t99_tester";
+					tt99TesterGraph.type = "line";
+					tt99TesterGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					tt99TesterGraph.lineColor = colorIndex[i++];//"#0000FF";
+					tt99TesterGraph.balloonText = "[[value]]";
+					tt99TesterGraph.lineThickness = 1;
+					tt99TesterGraph.legendValueText = "[[value]]";
+					tt99TesterGraph.bullet = "square";
+					tt99TesterGraph.hidden = true;
+					chart.addGraph(tt99TesterGraph);
+					
+					// Mean_tester test time graph
+					var ttMeanTesterGraph = new AmCharts.AmGraph();
+					ttMeanTesterGraph.title = "Mean ByTester";
+					ttMeanTesterGraph.valueField = "mean_tester";
+					ttMeanTesterGraph.type = "line";
+					ttMeanTesterGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttMeanTesterGraph.lineColor = colorIndex[i++];//"#0000FF";
+					ttMeanTesterGraph.balloonText = "[[value]]";
+					ttMeanTesterGraph.lineThickness = 1;
+					ttMeanTesterGraph.legendValueText = "[[value]]";
+					ttMeanTesterGraph.bullet = "square";
+					ttMeanTesterGraph.hidden = false;
+					chart.addGraph(ttMeanTesterGraph);
+					
+					// Min_tester test time graph
+					var ttMinTesterGraph = new AmCharts.AmGraph();
+					ttMinTesterGraph.title = "Min ByTester";
+					ttMinTesterGraph.valueField = "min_tester";
+					ttMinTesterGraph.type = "line";
+					ttMinTesterGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttMinTesterGraph.lineColor = colorIndex[i++];//"#0000FF";
+					ttMinTesterGraph.balloonText = "[[value]]";
+					ttMinTesterGraph.lineThickness = 1;
+					ttMinTesterGraph.legendValueText = "[[value]]";
+					ttMinTesterGraph.bullet = "square";
+					ttMinTesterGraph.hidden = true;
+					chart.addGraph(ttMinTesterGraph);
+					
+					// Max_tester test time graph
+					var ttMaxTesterGraph = new AmCharts.AmGraph();
+					ttMaxTesterGraph.title = "Max ByTester";
+					ttMaxTesterGraph.valueField = "max_tester";
+					ttMaxTesterGraph.type = "line";
+					ttMaxTesterGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttMaxTesterGraph.lineColor = colorIndex[i++];//"#0000FF";
+					ttMaxTesterGraph.balloonText = "[[value]]";
+					ttMaxTesterGraph.lineThickness = 1;
+					ttMaxTesterGraph.legendValueText = "[[value]]";
+					ttMaxTesterGraph.bullet = "square";
+					ttMaxTesterGraph.hidden = true;
+					chart.addGraph(ttMaxTesterGraph);				
+
+					// Sdev_tester test time graph
+					var ttSdevTesterGraph = new AmCharts.AmGraph();
+					ttSdevTesterGraph.title = "Sdev ByTester";
+					ttSdevTesterGraph.valueField = "sdev_tester";
+					ttSdevTesterGraph.type = "line";
+					ttSdevTesterGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttSdevTesterGraph.lineColor = colorIndex[i++];//"#0000FF";
+					ttSdevTesterGraph.balloonText = "[[value]]";
+					ttSdevTesterGraph.lineThickness = 1;
+					ttSdevTesterGraph.legendValueText = "[[value]]";
+					ttSdevTesterGraph.bullet = "square";
+					ttSdevTesterGraph.hidden = true;
+					chart.addGraph(ttSdevTesterGraph);
+				
+				<%}else if (reportByDriveTestCode.equals("checked")){%>
+					// 95_BdTestCode test time graph
+					var Bd95TestCodeGraph = new AmCharts.AmGraph();
+					Bd95TestCodeGraph.title = "95% BdTestCode";
+					Bd95TestCodeGraph.valueField = "bd_95_testCode";
+					Bd95TestCodeGraph.type = "line";
+					Bd95TestCodeGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					Bd95TestCodeGraph.lineColor = colorIndex[i++];//"#0000FF";
+					Bd95TestCodeGraph.balloonText = "[[value]]";
+					Bd95TestCodeGraph.lineThickness = 1;
+					Bd95TestCodeGraph.legendValueText = "[[value]]";
+					Bd95TestCodeGraph.bullet = "square";
+					Bd95TestCodeGraph.hidden = false;
+					chart.addGraph(Bd95TestCodeGraph);
+					
+					// 99_BdTestCode test time graph
+					var Bd99TestCodeGraph = new AmCharts.AmGraph();
+					Bd99TestCodeGraph.title = "99% BdTestCode";
+					Bd99TestCodeGraph.valueField = "bd_99_testCode";
+					Bd99TestCodeGraph.type = "line";
+					Bd99TestCodeGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					Bd99TestCodeGraph.lineColor = colorIndex[i++];//"#0000FF";
+					Bd99TestCodeGraph.balloonText = "[[value]]";
+					Bd99TestCodeGraph.lineThickness = 1;
+					Bd99TestCodeGraph.legendValueText = "[[value]]";
+					Bd99TestCodeGraph.bullet = "square";
+					Bd99TestCodeGraph.hidden = true;
+					chart.addGraph(Bd99TestCodeGraph);
+					
+					// Mean_BdTestCode test time graph
+					var BdMeanTestCodeGraph = new AmCharts.AmGraph();
+					BdMeanTestCodeGraph.title = "Mean BdTestCode";
+					BdMeanTestCodeGraph.valueField = "bd_mean_testCode";
+					BdMeanTestCodeGraph.type = "line";
+					BdMeanTestCodeGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					BdMeanTestCodeGraph.lineColor = colorIndex[i++];//"#0000FF";
+					BdMeanTestCodeGraph.balloonText = "[[value]]";
+					BdMeanTestCodeGraph.lineThickness = 1;
+					BdMeanTestCodeGraph.legendValueText = "[[value]]";
+					BdMeanTestCodeGraph.bullet = "square";
+					BdMeanTestCodeGraph.hidden = false;
+					chart.addGraph(BdMeanTestCodeGraph);
+					
+					// Min_BdTestCode test time graph
+					var BdMinTestCodeGraph = new AmCharts.AmGraph();
+					BdMinTestCodeGraph.title = "Min BdTestCode";
+					BdMinTestCodeGraph.valueField = "bd_min_testCode";
+					BdMinTestCodeGraph.type = "line";
+					BdMinTestCodeGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					BdMinTestCodeGraph.lineColor = colorIndex[i++];//"#0000FF";
+					BdMinTestCodeGraph.balloonText = "[[value]]";
+					BdMinTestCodeGraph.lineThickness = 1;
+					BdMinTestCodeGraph.legendValueText = "[[value]]";
+					BdMinTestCodeGraph.bullet = "square";
+					BdMinTestCodeGraph.hidden = true;
+					chart.addGraph(BdMinTestCodeGraph);
+					
+					// Max_BdTestCode test time graph
+					var BdMaxTestCodeGraph = new AmCharts.AmGraph();
+					BdMaxTestCodeGraph.title = "Max BdTestCode";
+					BdMaxTestCodeGraph.valueField = "bd_max_testCode";
+					BdMaxTestCodeGraph.type = "line";
+					BdMaxTestCodeGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					BdMaxTestCodeGraph.lineColor = colorIndex[i++];//"#0000FF";
+					BdMaxTestCodeGraph.balloonText = "[[value]]";
+					BdMaxTestCodeGraph.lineThickness = 1;
+					BdMaxTestCodeGraph.legendValueText = "[[value]]";
+					BdMaxTestCodeGraph.bullet = "square";
+					BdMaxTestCodeGraph.hidden = true;
+					chart.addGraph(BdMaxTestCodeGraph);
+					
+					// Sdev_BdTestCode test time graph
+					var BdSdevTestCodeGraph = new AmCharts.AmGraph();
+					BdSdevTestCodeGraph.title = "Sdev BdTestCode";
+					BdSdevTestCodeGraph.valueField = "bd_sdev_testCode";
+					BdSdevTestCodeGraph.type = "line";
+					BdSdevTestCodeGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					BdSdevTestCodeGraph.lineColor = colorIndex[i++];//"#0000FF";
+					BdSdevTestCodeGraph.balloonText = "[[value]]";
+					BdSdevTestCodeGraph.lineThickness = 1;
+					BdSdevTestCodeGraph.legendValueText = "[[value]]";
+					BdSdevTestCodeGraph.bullet = "square";
+					BdSdevTestCodeGraph.hidden = true;
+					chart.addGraph(BdSdevTestCodeGraph);
+									
+				<%}else if (reportByTestTimeTestCode.equals("checked")){%>
+					
+					// 95_ttTestCode test time graph
+					var tt95TestCodeGraph = new AmCharts.AmGraph();
+					tt95TestCodeGraph.title = "95% ByBatch";
+					tt95TestCodeGraph.valueField = "bt_95_testCode";
+					tt95TestCodeGraph.type = "line";
+					tt95TestCodeGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					tt95TestCodeGraph.lineColor = colorIndex[i++];//"#0000FF";
+					tt95TestCodeGraph.balloonText = "[[value]]";
+					tt95TestCodeGraph.lineThickness = 1;
+					tt95TestCodeGraph.legendValueText = "[[value]]";
+					tt95TestCodeGraph.bullet = "square";
+					tt95TestCodeGraph.hidden = false;
+					chart.addGraph(tt95TestCodeGraph);
+					
+					// 99_testCode test time graph
+					var tt99TestCodeGraph = new AmCharts.AmGraph();
+					tt99TestCodeGraph.title = "99% ByBatch";
+					tt99TestCodeGraph.valueField = "bt_99_testCode";
+					tt99TestCodeGraph.type = "line";
+					tt99TestCodeGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					tt99TestCodeGraph.lineColor = colorIndex[i++];//"#0000FF";
+					tt99TestCodeGraph.balloonText = "[[value]]";
+					tt99TestCodeGraph.lineThickness = 1;
+					tt99TestCodeGraph.legendValueText = "[[value]]";
+					tt99TestCodeGraph.bullet = "square";
+					tt99TestCodeGraph.hidden = true;
+					chart.addGraph(tt99TestCodeGraph);	
+					
+					// Mean_testCode test time graph
+					var ttMeanTestCodeGraph = new AmCharts.AmGraph();
+					ttMeanTestCodeGraph.title = "Mean ByBatch";
+					ttMeanTestCodeGraph.valueField = "bt_mean_testCode";
+					ttMeanTestCodeGraph.type = "line";
+					ttMeanTestCodeGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttMeanTestCodeGraph.lineColor = colorIndex[i++];//"#0000FF";
+					ttMeanTestCodeGraph.balloonText = "[[value]]";
+					ttMeanTestCodeGraph.lineThickness = 1;
+					ttMeanTestCodeGraph.legendValueText = "[[value]]";
+					ttMeanTestCodeGraph.bullet = "square";
+					ttMeanTestCodeGraph.hidden = false;
+					chart.addGraph(ttMeanTestCodeGraph);
+					
+					// Min_testCode test time graph
+					var ttMinTestCodeGraph = new AmCharts.AmGraph();
+					ttMinTestCodeGraph.title = "Min ByBatch";
+					ttMinTestCodeGraph.valueField = "bt_min_testCode";
+					ttMinTestCodeGraph.type = "line";
+					ttMinTestCodeGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttMinTestCodeGraph.lineColor = colorIndex[i++];//"#0000FF";
+					ttMinTestCodeGraph.balloonText = "[[value]]";
+					ttMinTestCodeGraph.lineThickness = 1;
+					ttMinTestCodeGraph.legendValueText = "[[value]]";
+					ttMinTestCodeGraph.bullet = "square";
+					ttMinTestCodeGraph.hidden = true;
+					chart.addGraph(ttMinTestCodeGraph);
+					
+					// Max_testCode test time graph
+					var ttMaxTestCodeGraph = new AmCharts.AmGraph();
+					ttMaxTestCodeGraph.title = "Max ByBatch";
+					ttMaxTestCodeGraph.valueField = "bt_max_testCode";
+					ttMaxTestCodeGraph.type = "line";
+					ttMaxTestCodeGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttMaxTestCodeGraph.lineColor = colorIndex[i++];//"#0000FF";
+					ttMaxTestCodeGraph.balloonText = "[[value]]";
+					ttMaxTestCodeGraph.lineThickness = 1;
+					ttMaxTestCodeGraph.legendValueText = "[[value]]";
+					ttMaxTestCodeGraph.bullet = "square";
+					ttMaxTestCodeGraph.hidden = true;
+					chart.addGraph(ttMaxTestCodeGraph);
+
+					// sdev_testCode test time graph
+					var ttSdevTestCodeGraph = new AmCharts.AmGraph();
+					ttSdevTestCodeGraph.title = "Sdev ByBatch";
+					ttSdevTestCodeGraph.valueField = "bt_sdev_testCode";
+					ttSdevTestCodeGraph.type = "line";
+					ttSdevTestCodeGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+					ttSdevTestCodeGraph.lineColor = colorIndex[i++];//"#0000FF";
+					ttSdevTestCodeGraph.balloonText = "[[value]]";
+					ttSdevTestCodeGraph.lineThickness = 1;
+					ttSdevTestCodeGraph.legendValueText = "[[value]]";
+					ttSdevTestCodeGraph.bullet = "square";
+					ttSdevTestCodeGraph.hidden = true;
+					chart.addGraph(ttSdevTestCodeGraph);
+						
+				<%}%>
+
+				// MSS test time graph
+                var mssTestTimeGraph = new AmCharts.AmGraph();
+                mssTestTimeGraph.title = "MSS TestTime";
+                mssTestTimeGraph.valueField = "msstesttime";
+                mssTestTimeGraph.type = "line";
+                mssTestTimeGraph.valueAxis = testTimeAxis; // indicate which axis should be used
+                mssTestTimeGraph.lineColor = colorIndex[i++];
+                mssTestTimeGraph.balloonText = "[[value]]";
+                mssTestTimeGraph.lineThickness = 1;
+                mssTestTimeGraph.legendValueText = "[[value]]";
+                mssTestTimeGraph.bullet = "square";
+				mssTestTimeGraph.hidden = false;
+                chart.addGraph(mssTestTimeGraph);
+
+		        <%if (yaxisYield.equals("checked")){%>
+					// Yield ratio graph
+					var unitCountGraph = new AmCharts.AmGraph();
+					unitCountGraph.valueField = "yieldFirstPass";
+					unitCountGraph.title = "Yield";
+					unitCountGraph.type = "line";
+					unitCountGraph.fillAlphas = 0.5;
+					unitCountGraph.valueAxis = unitCount; // indicate which axis should be used
+					unitCountGraph.balloonText = "[[value]]%";
+					unitCountGraph.legendValueText = "[[value]]%";
+					unitCountGraph.lineColor = "#000000";
+					unitCountGraph.lineAlpha = 0;
+					chart.addGraph(unitCountGraph);
+
+				<%}else if (yaxisQty.equals("checked")){%>
+					<%if (reportByAllDrives.equals("checked")){%>
+					// unit Count graph
+					var unitCountGraph = new AmCharts.AmGraph();
+					unitCountGraph.valueField = "count_unit";
+					unitCountGraph.title = "QTY";
+					unitCountGraph.type = "column";
+					unitCountGraph.fillAlphas = 0.5;
+					unitCountGraph.valueAxis = unitCount; // indicate which axis should be used
+					unitCountGraph.balloonText = "[[value]] unit";
+					unitCountGraph.legendValueText = "[[value]] unit";
+					unitCountGraph.lineColor = "#000000";
+					unitCountGraph.lineAlpha = 0;
+					chart.addGraph(unitCountGraph);
+					
+					<%}else if (reportByPasserDrives.equals("checked")){%>
+					// unit Count graph
+					var unitCountGraph = new AmCharts.AmGraph();
+					unitCountGraph.valueField = "count_passer";
+					unitCountGraph.title = "QTY";
+					unitCountGraph.type = "line";
+					unitCountGraph.fillAlphas = 0.5;
+					unitCountGraph.valueAxis = unitCount; // indicate which axis should be used
+					unitCountGraph.balloonText = "[[value]] unit";
+					unitCountGraph.legendValueText = "[[value]] unit";
+					unitCountGraph.lineColor = "#000000";
+					unitCountGraph.lineAlpha = 0;
+					chart.addGraph(unitCountGraph);
+					
+					<%}else if (reportByTester.equals("checked")){%>
+					// unit Count graph
+					var unitCountGraph = new AmCharts.AmGraph();
+					unitCountGraph.valueField = "count_tester";
+					unitCountGraph.title = "QTY";
+					unitCountGraph.type = "line";
+					unitCountGraph.fillAlphas = 0.5;
+					unitCountGraph.valueAxis = unitCount; // indicate which axis should be used
+					unitCountGraph.balloonText = "[[value]] unit";
+					unitCountGraph.legendValueText = "[[value]] unit";
+					unitCountGraph.lineColor = "#000000";
+					unitCountGraph.lineAlpha = 0;
+					chart.addGraph(unitCountGraph);
+					
+					<%}else if (reportByDriveTestCode.equals("checked")){%>
+					// unit Count graph
+					var unitCountGraph = new AmCharts.AmGraph();
+					unitCountGraph.valueField = "bd_count_testCode";
+					unitCountGraph.title = "QTY";
+					unitCountGraph.type = "line";
+					unitCountGraph.fillAlphas = 0.5;
+					unitCountGraph.valueAxis = unitCount; // indicate which axis should be used
+					unitCountGraph.balloonText = "[[value]] unit";
+					unitCountGraph.legendValueText = "[[value]] unit";
+					unitCountGraph.lineColor = "#000000";
+					unitCountGraph.lineAlpha = 0;
+					chart.addGraph(unitCountGraph);
+					
+					<%}else if (reportByTestTimeTestCode.equals("checked")){%>
+					// unit Count graph
+					var unitCountGraph = new AmCharts.AmGraph();
+					unitCountGraph.valueField = "bt_count_testCode";
+					unitCountGraph.title = "QTY";
+					unitCountGraph.type = "line";
+					unitCountGraph.fillAlphas = 0.5;
+					unitCountGraph.valueAxis = unitCount; // indicate which axis should be used
+					unitCountGraph.balloonText = "[[value]] unit";
+					unitCountGraph.legendValueText = "[[value]] unit";
+					unitCountGraph.lineColor = "#000000";
+					unitCountGraph.lineAlpha = 0;
+					chart.addGraph(unitCountGraph);
+					<%}%>
+					
+					
+				<%}else if (yaxisLatestYield.equals("checked")){%>
+					// Yield ratio graph
+					var unitCountGraph = new AmCharts.AmGraph();
+					unitCountGraph.valueField = "latestYield";
+					unitCountGraph.title = "LatestYield";
+					unitCountGraph.type = "line";
+					unitCountGraph.fillAlphas = 0.5;
+					unitCountGraph.valueAxis = unitCount; // indicate which axis should be used
+					unitCountGraph.balloonText = "[[value]]%";
+					unitCountGraph.legendValueText = "[[value]]%";
+					unitCountGraph.lineColor = "#000000";
+					unitCountGraph.lineAlpha = 0;
+					chart.addGraph(unitCountGraph);	
+
+				<%}%>
+                // CURSOR                
+                var chartCursor = new AmCharts.ChartCursor();
+                chartCursor.zoomable = false;
+                chartCursor.categoryBalloonDateFormat = "DD";
+                chartCursor.cursorAlpha = 0;
+                chart.addChartCursor(chartCursor);
+
+                // LEGEND
+                var legend = new AmCharts.AmLegend();
+                legend.bulletType = "square";
+                legend.equalWidths = true;
+				legend.valueWidth = 50;
+				legend.textClickEnabled = true;
+                legend.color = "#000000";
+                chart.addLegend(legend);
+
+                // WRITE                                
+                chart.write(chartName);
+
+            });            
+}	

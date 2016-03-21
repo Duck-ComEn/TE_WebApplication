@@ -1,0 +1,25 @@
+boolean pf_flag1 = false ;
+boolean pf_flag2 = false ;
+
+if ( (DELTA_SER_OD_ZONE > 0.45 && DELTA_SER_SRST > 0.00)  || (DELTA_SER_OD_ZONE <= 0.45 && DELTA_SER_SRST > 0.30 )) {
+
+pf_flag1 = true;
+
+}
+
+if (( FUN_OW > -31.0  && FIN_WORST_SER > -5.0)  || (FUN_OW > -26.0 && FIN_WORST_SER > -5.50) ) {
+
+pf_flag2 = true;
+
+}
+
+
+if(pf_flag1 == true && pf_flag2 == true){ 
+
+sysoutput0 = "Fail!!!!";
+
+}else{
+
+sysoutput0 = "Pass";
+
+}

@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Create XML for Data Maintainance by Web.-->
+<DataMaintain>
+
+<Supplier_Info>
+<Description>Maintain supplier for inventory reduction.</Description>
+<DatabaseInfo>
+<Name>MST_TBL.SUPPLIER_DETAIL</Name>
+</DatabaseInfo>
+
+<FieldDetail>
+
+<SubField id="0">
+<Name>Supplier_ID</Name>
+<ValueType>String</ValueType>
+<Lenght>3</Lenght>
+<PrimaryKey>Y</PrimaryKey>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="1">
+<Name>Supplier_Name</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>128</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="2">
+<Name>Lot_Size</Name>
+<ValueType>Integer</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>4</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="4">
+<Name>Update_By</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>150</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+</FieldDetail>
+</Supplier_Info>
+
+<!-- ########################################################################################## -->
+<Shift_Info>
+<Description>Maintain Shift information for inventory reduction.</Description>
+<DatabaseInfo>
+<Name>MST_TBL.Shift_DETAIL</Name>
+</DatabaseInfo>
+
+<FieldDetail>
+
+<SubField id="0">
+<Name>Shift_ID</Name>
+<ValueType>String</ValueType>
+<Lenght>2</Lenght>
+<PrimaryKey>Y</PrimaryKey>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="1">
+<Name>Shift_description</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>150</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="2">
+<Name>Start_Time</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>8</Lenght>
+<Nallable>N</Nallable>
+<InputType>dropdown</InputType>
+<InputInitailType>default</InputInitailType>
+<InputInitail>12:00 AM,01:00 AM,02:00 AM,03:00 AM,04:00 AM,05:00 AM,05:30 AM,06:00 AM,07:00 AM,08:00 AM,09:00 AM,10:00 AM,11:00 AM,12:00 PM ,01:00 PM,02:00 PM,03:00 PM,04:00 PM,05:00 PM,06:00 PM,07:00 PM,08:00 PM,09:00 PM,10:00 PM,11:00 PM</InputInitail>
+</SubField>
+
+<SubField id="3">
+<Name>End_Time</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>8</Lenght>
+<Nallable>N</Nallable>
+<InputType>dropdown</InputType>
+<InputInitailType>default</InputInitailType>
+<InputInitail>12:59 AM,01:59 AM,02:59 AM,03:59 AM,04:59 AM,05:29 AM,05:59 AM,06:59 AM,07:59 AM,08:59 AM,09:59 AM,10:59 AM,11:59 AM,12:59 PM,01:59 PM,02:59 PM,03:59 PM,04:59 PM,05:59 PM,06:59 PM,07:59 PM,08:59 PM,09:59 PM,10:59 PM,11:59 PM</InputInitail>
+</SubField>
+
+<SubField id="4">
+<Name>Begin_Flag</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>1</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="4">
+<Name>Update_By</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>150</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+</FieldDetail>
+</Shift_Info>
+
+
+<!-- ########################################################################################## -->
+<Line_Info>
+<Description>Maintain Line information for inventory reduction.</Description>
+<DatabaseInfo>
+<Name>MST_TBL.LINE_DETAIL</Name>
+</DatabaseInfo>
+
+<FieldDetail>
+
+<SubField id="0">
+<Name>Line_ID</Name>
+<ValueType>String</ValueType>
+<Lenght>4</Lenght>
+<PrimaryKey>Y</PrimaryKey>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="1">
+<Name>Line_description</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>150</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="4">
+<Name>Update_By</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>150</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+</FieldDetail>
+</Line_Info>
+
+<!-- ########################################################################################## -->
+<Segment_Info>
+<Description>Maintain Segment information for inventory reduction.</Description>
+<DatabaseInfo>
+<Name>MST_TBL.SEGMENT_DETAIL</Name>
+</DatabaseInfo>
+
+<FieldDetail>
+
+<SubField id="0">
+<Name>Segment_ID</Name>
+<ValueType>String</ValueType>
+<Lenght>2</Lenght>
+<PrimaryKey>Y</PrimaryKey>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="1">
+<Name>Segment_description</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>150</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="1">
+<Name>Segment_size</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>10</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="1">
+<Name>Segment_Type</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>4</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="4">
+<Name>Update_By</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>150</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+</FieldDetail>
+</Segment_Info>
+
+<!-- ########################################################################################## -->
+<Product_Info>
+<Description>Maintain Product information for inventory reduction.</Description>
+<DatabaseInfo>
+<Name>MST_TBL.PRODUCT_DETAIL</Name>
+</DatabaseInfo>
+
+<FieldDetail>
+
+<SubField id="0">
+<Name>Product_ID</Name>
+<ValueType>String</ValueType>
+<Lenght>7</Lenght>
+<PrimaryKey>Y</PrimaryKey>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="1">
+<Name>Product_Name</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>50</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="4">
+<Name>Update_By</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>150</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+</FieldDetail>
+</Product_Info>
+
+<!-- ########################################################################################## -->
+<Part_Level_Info>
+<Description>Maintain Part Level information for inventory reduction.</Description>
+<DatabaseInfo>
+<Name>MST_TBL.PART_LEVEL</Name>
+</DatabaseInfo>
+
+<FieldDetail>
+
+<SubField id="0">
+<Name>PP_CODE</Name>
+<ValueType>String</ValueType>
+<Lenght>20</Lenght>
+<PrimaryKey>Y</PrimaryKey>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="1">
+<Name>PART_LEVEL</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>10</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+<SubField id="4">
+<Name>Update_By</Name>
+<ValueType>String</ValueType>
+<PrimaryKey>N</PrimaryKey>
+<Lenght>150</Lenght>
+<Nallable>N</Nallable>
+<InputType>typing</InputType>
+<InputInitailType>empty</InputInitailType>
+<InputInitail>---</InputInitail>
+</SubField>
+
+</FieldDetail>
+</Part_Level_Info>
+
+</DataMaintain>
+
+
+

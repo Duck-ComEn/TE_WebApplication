@@ -1,0 +1,119 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Keywords" content="Basic TCL Syntax - Lab">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<center>
+<h1>
+Basic TCL Syntax - Lab</h1></center>
+For this lab, we will use the TCL front end known as "wish".
+<br>&nbsp;
+<center>
+<h3>
+Variable Substitution</h3></center>
+
+<p><br>From the [Start] menu, open [Program Files] -> [TCL] -> [wish].&nbsp;
+A Command window will appear.&nbsp; Next type:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">puts hello</font></tt></blockquote>
+You should see a response.&nbsp; Next we will look at the <tt><font color="#3333FF">set</font></tt>
+command.&nbsp; Set takes 2 arguments:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">set &lt;variable name> &lt;value></font></tt></blockquote>
+The value can be any string.&nbsp; Here is an example:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">set PI 3.14159</font></tt>
+<br><tt><font color="#3333FF">puts $PI</font></tt></blockquote>
+Note that we don't include the <font color="#3333FF">$</font> in the <tt>set</tt>
+statement.&nbsp; Why is that?&nbsp; Here is a clue:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">set name Bill</font></tt>
+<br><tt><font color="#3333FF">set $name Frank</font></tt>
+<br><tt><font color="#3333FF">puts $name</font></tt></blockquote>
+Where is "Frank" stored?&nbsp; Remembering the way TCL parses commands,
+we look at the command above:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">set $name Frank</font></tt></blockquote>
+The first thing TCL does here is break the line into 3 tokens, next string
+substitution occurs, leaving:
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <tt><font color="#3333FF">set
+</font><font color="#FF0000">$name</font><font color="#3333FF">
+Frank </font></tt><font color="#000000">(before substitution)</font>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set </font><font color="#FF0000">Bill</font><font color="#3333FF">
+Frank&nbsp; </font></tt><font color="#000000">(after substitution)</font>
+<p>Finally, after substitution, the results are actually passed to the
+<tt><font color="#3333FF">set</font></tt>command.&nbsp;
+Now we see where "Frank" is being stored...&nbsp; Could we use string substitution
+to do an entire command?&nbsp; No problem:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">set a set</font></tt>
+<br><tt><font color="#3333FF">set b name</font></tt>
+<br><tt><font color="#3333FF">set c Bill</font></tt>
+<br><tt><font color="#3333FF">$a $b $c</font></tt></blockquote>
+
+<center>
+<h3>
+Tokenization</h3></center>
+Above we showed how to call an entire command through variable substitution.&nbsp;
+What if instead we said?
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">set cmd "set name Bill"</font></tt>
+<br><tt><font color="#3333FF">$cmd</font></tt></blockquote>
+This doesn't work.&nbsp; Why is that?&nbsp; The reason is because, in TCL,
+the first token is <b>always</b> the command name.&nbsp; Here we were passing
+TCL a single token called "<tt><font color="#3333FF">set name Bill</font></tt>".&nbsp;
+TCL does not have a command named "<tt><font color="#3333FF">set name Bill</font></tt>"
+so an error is returned.&nbsp; We need to find a way to split the line
+above into 3 tokens so that TCL can do proper processing (Hint: try <tt><font color="#3333FF">eval
+$cmd</font></tt>).&nbsp; Having the number of tokens a command expects
+is important, this is why you can say:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">puts hello</font></tt>
+<br><tt><font color="#3333FF">puts "hello"</font></tt>
+<br><tt><font color="#3333FF">puts {hello}</font></tt></blockquote>
+In TCL all three versions work fine.&nbsp; But if you say:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">puts hello world</font></tt>
+<br><tt><font color="#3333FF">puts "hello world"</font></tt>
+<br><tt><font color="#3333FF">puts {hello world}</font></tt></blockquote>
+The first way is not going to work (too many tokens).&nbsp; Now lets do
+some math:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">5 + 4</font></tt>
+<br><tt><font color="#3333FF">expr 5 + 4</font></tt>
+<br><tt><font color="#3333FF">expr 5+4</font></tt>
+<br><tt><font color="#3333FF">expr rand()</font></tt></blockquote>
+Which one of the above work?&nbsp; Why?&nbsp; (Hint: <tt>expr</tt> is pretty
+smart about grouping tokens...)
+<br>&nbsp;
+<center>
+<h3>
+[], {}, and ""</h3></center>
+What results do you expect from the following?
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">set PI 3.14159</font></tt>
+<br><tt><font color="#3333FF">set r 5</font></tt>
+<br><tt><font color="#3333FF">set cir "expr 2 * $PI * $r"</font></tt>
+<br><tt><font color="#3333FF">set cir {expr 2 * $PI * $r}</font></tt>
+<br><tt><font color="#3333FF">set cir [expr 2 * $PI * $r]</font></tt></blockquote>
+Now for some more challenging ones (try to predict the results before executing
+these):
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">set cir "[expr 2 * $PI * $r]"</font></tt>
+<br><tt><font color="#3333FF">set cir [expr 2 * "$PI" * "$r"]</font></tt>
+<br><tt><font color="#3333FF">set cir "expr 2 * {$PI} * {$r}"</font></tt>
+<br><tt><font color="#3333FF">set cir [expr 2 * {$PI} * {$r}]</font></tt>
+<br><tt><font color="#3333FF">set cir {[expr 2 * $PI * $r]}</font></tt>
+<br><tt><font color="#3333FF">set cir [{expr 2 * $PI * $r}]</font></tt></blockquote>
+END OF LAB 1
+<br>&nbsp;
+<br>&nbsp;
+<blockquote>&nbsp;</blockquote>
+
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10smp i686) [Netscape]">
+   <title>Niagara: CDB Commands</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#59188E" alink="#FF0000">
+
+<center>
+<h1>
+Niagara CDB Commands</h1></center>
+Niagara has built in support for over 50 CDB's.&nbsp; CDB commands are
+added through a parameter file.&nbsp; This makes the commands easy to edit
+and new commands easy to add.&nbsp; To see a lit of CDB commands, use the
+function:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">get_cdb_list</font></tt></blockquote>
+This outputs a list of all defined CDB commands.&nbsp; To see a sorted
+list, type:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">lsort [get_cdb_list]</font></tt></blockquote>
+To look at the options available to to a CDB command, we will look at the
+inquiry command at depth.&nbsp; We'll start with:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">inquiry -help</font></tt></blockquote>
+This produces the following output:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">****************************************</font></tt>
+<p><tt><font color="#3333FF">Command Name(s): inquiry,inq</font></tt>
+<p><tt><font color="#3333FF">Description: Performs a device inquiry.</font></tt>
+<p><tt><font color="#3333FF">Default Parm Order: pagecode, alloc</font></tt>
+<p><tt><font color="#3333FF">Buffer Data Sent: &lt;None></font></tt>
+<br><tt><font color="#3333FF">Buffer Data Received: &lt;alloc> Bytes</font></tt>
+<p><tt><font color="#3333FF">Parameters:</font></tt>
+<p><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Range&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Default&nbsp;&nbsp;&nbsp;
+| Description</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; -----------------------------------------+----------------------------------</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; -evpd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(0 or 1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| Enable Vendor Product Data</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; -pagecode&nbsp;&nbsp;&nbsp;&nbsp;
+(0-0xFF)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| Page Code</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; -alloc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(0-0xFF)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0xFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| Allocation Length in Bytes</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; -control_byte (0-0xFF)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0x0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | NACA | FLAG | LINK</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; -uil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(0-?)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;current>&nbsp;
+| Temporary UIL override</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; -dev&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(0-?)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;current>&nbsp;
+| Temporary device index override</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; -ri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(0-?)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;current>&nbsp;
+| Temporary receive buffer override</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; -si&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(0-?)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;current>&nbsp;
+| Temporary send buffer override</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; -dummy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(0-1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| Don't actually send the CDB</font></tt>
+<br>&nbsp;</blockquote>
+A lot of information is contained in this output:
+<br>&nbsp;
+<ul>
+<li>
+Command Name(s):&nbsp; This outputs the name of the command (i<tt><font color="#3333FF">nquiry</font></tt>)
+and any shorthand aliases (<tt><font color="#3333FF">inq</font></tt>)</li>
+
+<li>
+Description: Gives a brief description of the CDB's function</li>
+
+<li>
+Default Parm Order:&nbsp; This is the order that Niagara accepts parameters</li>
+
+<li>
+Buffer Data Sent:&nbsp; The amount of data this commands transfers to the
+target</li>
+
+<li>
+Buffer Data Received:&nbsp; The amount of data this command expects from
+the target</li>
+
+<li>
+Parameters:&nbsp; These flags can be used to set options for the command.&nbsp;
+Default operation is also indicated</li>
+</ul>
+
+<center>
+<h3>
+Different Forms Of Inquiry</h3></center>
+
+<blockquote><tt><font color="#3333FF">inquiry</font></tt>
+<br><tt><font color="#3333FF">inq</font></tt></blockquote>
+With no parameters, <tt><font color="#3333FF">inquiry</font></tt> is called
+with default parameters.&nbsp; To see what these parameters are, check
+"Parameters" in the help.
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">inquiry 0 10</font></tt>
+<br><tt><font color="#3333FF">inquiry 0 0xff -evpd 1</font></tt></blockquote>
+The first command calls <tt><font color="#3333FF">inquiry</font></tt> on
+page zero asking for 10 bytes (see the Default Parm Order).&nbsp; The second
+command calls <tt><font color="#3333FF">inquiry</font></tt> on page zero
+with the EVPD bit set.
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">inquiry -pagecode 0 -alloc 10</font></tt>
+<br><tt><font color="#3333FF">inquiry -alloc 10 -pagecode 0</font></tt>
+<br><tt><font color="#3333FF">inq -pagecode 0 -alloc 10 -evpd 1</font></tt></blockquote>
+The first command is exactly like the first command of the previous example
+set.&nbsp; The only difference is that this form is more clear and involves
+more typing.&nbsp; The second command is the same as the first and shows
+how parameter order is not important when the fields are "flagged".
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">&nbsp;inquiry -pagecode 0 -alloc
+10 -evpd 1 -dummy 1</font></tt></blockquote>
+When the "dummy" flag is set, the CDB is not actually called.&nbsp; Instead
+the resulting CDB is returned.
+<br>&nbsp;
+<center>
+<h3>
+Command Response Format</h3></center>
+Below we see the response of a typical command:
+<br><img SRC="inq_example.jpg" NOSAVE height=414 width=592>
+<p>This response contains several pieces of information:
+<br>&nbsp;
+<ul>
+<li>
+CDB: This is the CDB that was actually sent to the device</li>
+
+<li>
+Success: The command executed without error</li>
+
+<li>
+Info: This line informs us that, although we were expecting 255 bytes of
+response, the target actually only returned 164 (buffer underrun)</li>
+
+<li>
+Hex Dump: This shows the information returned by the command, the information
+is also stored in our receive buffer (in the next section we look at buffers
+in detail)</li>
+</ul>
+Here is the result of another command:
+<p><img SRC="read_example.jpg" NOSAVE height=511 width=578>
+<p>Here we see that the CDB and Success parameters are the same.&nbsp;
+There is no buffer underrun message because we asked for 100 blocks and
+the target transferred all 100.&nbsp; If we transferred 100 blocks, why
+did only 256 bytes show up?
+<p>The reason is because Niagara truncated our result to the first 255
+bytes.&nbsp; Note the "..." after the dump.&nbsp; Niagara prints these
+three characters when it has truncated a result.&nbsp; The amount of information
+printed by Niagara is controlled by the following command:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">feedback maxlen &lt;bytes></font></tt>
+<br>&nbsp;</blockquote>
+where &lt;maxlen> is the maximum number of bytes you want displayed.&nbsp;
+Niagara will print either how many bytes the target returned or this number,
+whichever is less.&nbsp; Note that setting this number to a low value (such
+as zero), can result in improved performance because Niagara doesn't have
+to generate as large of a table after each command.
+<br>&nbsp;
+<br>&nbsp;
+<center>
+<h3>
+The $sns variable</h3></center>
+The sns variable is a convenient way for a program to determine sense information.&nbsp;
+To illustrate use of the variable, we will stop the drive and try to read
+from it:
+<p><img SRC="sns_example.gif" NOSAVE height=442 width=579>
+<p>After stopping the drive with the <tt><font color="#3333FF">unit stop
+</font></tt>CDB command, we try to do a read.&nbsp; This fails and the
+check condition and sense information is outputted*.&nbsp; In addition
+to this, the variable <tt><font color="#3333FF">$sns</font></tt> is set
+to our sense data.&nbsp; This information is a TCL list that can be parse
+with list processing commands (<tt><font color="#3333FF">lindex</font></tt>
+is one of these commands).&nbsp; Note that sense information is returned
+and <tt><font color="#3333FF">$sns </font></tt>is updated only if Niagara
+is set to autosense mode (by default, Niagara is set to autosense mode).
+<p>Another way to update <tt><font color="#3333FF">$sns</font></tt> is
+to call <tt><font color="#3333FF">request_sense</font></tt> (alias is <tt><font color="#3333FF">sns</font></tt>)
+yourself.&nbsp; Note that <tt><font color="#3333FF">$sns</font></tt> is
+not updated unless there is an error or you call <tt><font color="#3333FF">sns</font></tt>.
+<br>&nbsp;
+<center>
+<h3>
+Aliases</h3></center>
+The following aliases can be used in place of "0" and "1"
+<br>&nbsp;
+<ul>
+<li>
+Zero: <tt><font color="#3333FF">0</font>, <font color="#3333FF">false</font>,
+<font color="#3333FF">no</font>, <font color="#3333FF">stop</font></tt></li>
+
+<li>
+One: <tt><font color="#3333FF">1</font>, <font color="#3333FF">true</font>,
+<font color="#3333FF">yes</font>, <font color="#3333FF">start</font></tt></li>
+</ul>
+
+<center>
+<h3>
+Error Handling</h3></center>
+The default behavior of Niagara when a CHECK_CONDITION or other error occurs
+is to throw an error.&nbsp; This action will cause a running test to halt.&nbsp;
+Because this is not always the desired operations, Niagara provides the
+following mechanisms for handling errors:
+<br>&nbsp;
+<ol>
+<li>
+TCL's <tt><font color="#3333FF">catch</font></tt> statement can be used
+to trap an error condition and handle it within the code</li>
+
+<li>
+Niagara's error handling behavior can be altered with the <tt><font color="#3333FF">$cdberr</font></tt>
+variable</li>
+</ol>
+To use catch, simple place the command inside of a catch statement:
+<br><font color="#3333FF"></font>&nbsp;
+<blockquote><tt><font color="#3333FF">catch { r10 [randlba] }</font></tt></blockquote>
+The <tt><font color="#3333FF">catch </font></tt>command executes the command
+and returns "<tt><font color="#3333FF">0</font></tt>" if the command executed
+successfully and "<tt><font color="#3333FF">1</font></tt>" otherwise.&nbsp;
+You can also capture the commands output into a variable like this:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">catch { r10 [randlba] } out_var</font></tt>
+<br>&nbsp;</blockquote>
+Where <tt><font color="#3333FF">out_var </font></tt>is the name of any
+variable you wish to capture output data to.&nbsp; Note that <tt><font color="#3333FF">catch</font></tt>
+captures <i>any TCL error</i>, including syntax errors.&nbsp; For example:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">catch { putss "hello" }</font></tt>
+<br>&nbsp;</blockquote>
+Will return "1" every time...
+<p>A different approach is to define <tt><font color="#3333FF">$cdberr</font></tt>.&nbsp;
+Whenever <tt><font color="#3333FF">$cdberr </font></tt>is defined, Niagara
+will execute the code within <tt><font color="#3333FF">$cdberr</font></tt>
+instead of throwing an error.&nbsp; Creative use of <tt><font color="#3333FF">$cdberr</font></tt>
+can be used to automatically save errors to a log file or other purposes.&nbsp;
+Note that <tt><font color="#3333FF">$cdberr </font></tt> is checked in local
+scope...&nbsp; Also, <font color="#3333FF">$cdberr</font> only applies to
+cdb errors.
+<p>It is beyond the scope of this lesson to go into <font color="#3333FF">$cdberr</font>
+in great&nbsp; detail.&nbsp; Here is an example of its use, however.&nbsp;
+Note that certain variables (such as <font color="#3333FF">$err</font>
+and <font color="#3333FF">$ec</font>) are defined by the error system to
+make error extraction more convenient:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">proc rand_read {iter} {</font></tt><tt><font color="#3333FF"></font></tt>
+<p><tt><font color="#3333FF">&nbsp; global err</font></tt><tt><font color="#3333FF"></font></tt>
+<p><tt><font color="#3333FF">&nbsp; set cdberr {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; puts "At:&nbsp; [clock
+format [clock seconds]]"</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; puts $err</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; puts "----------------"</font></tt>
+<br><tt><font color="#3333FF">&nbsp; }&nbsp;&nbsp;&nbsp;&nbsp;</font></tt><tt><font color="#3333FF"></font></tt>
+<p><tt><font color="#3333FF">&nbsp; do $iter {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; r10 [randlba]</font></tt>
+<br><tt><font color="#3333FF">&nbsp; }</font></tt>
+<br><tt><font color="#3333FF">}</font></tt></blockquote>
+
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

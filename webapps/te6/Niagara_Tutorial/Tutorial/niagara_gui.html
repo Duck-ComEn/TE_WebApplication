@@ -1,0 +1,314 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10smp i686) [Netscape]">
+   <title>Using Niagara's GUI</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<center>
+<h1>
+Introduction To The Niagara GUI</h1></center>
+The Niagara GUI is a highly customizable system that allows new features
+to be added and removed simply by adding and removing files from folders.&nbsp;
+This allow users to customize the GUI to suit their specific needs.&nbsp;
+Included in the GUI is a set of general purpose utilities, some standard
+CSO tests, and functional equivalents of the features found in Serial Debugger.
+<br>&nbsp;
+<center>
+<h3>
+Basic GUI Navigation</h3></center>
+Below we see the main GUI dialog:
+<center>
+<p><img SRC="main_gui.gif" NOSAVE height=352 width=665></center>
+
+<p>Note the "buttons" above labeled <tt><font color="#3333FF">0: spti</font></tt> 
+  and <tt><font color="#3333FF">Serial_Interface</font></tt>.&nbsp; These buttons 
+  are actually drop down menus, allowing other options.&nbsp; The GUI is organized 
+  into three panels.&nbsp; The left panel is the device selection window.&nbsp; 
+  The center panel is the multipurpose list (which is currently showing available 
+  serial commands).&nbsp; The right panel shows quick buttons where commonly used 
+  features can be placed.&nbsp; To choose a center panel option <b>double click</b> 
+  the option. <br>
+  &nbsp;
+<center>
+<h3>
+Device Selection</h3></center>
+<p>On the left we have our device selection panel:<br>
+</p>
+<center>
+<p><img SRC="drive_selection.gif" NOSAVE height=353 width=225></center>
+
+<p>Here we have a list of all of the devices that the current UIL has access
+to, organized by host adapter.&nbsp; Clicking on the drop down menu allows
+other UIL drivers to be selected.&nbsp; Clicking on the "Rescan Bus" button
+causes the shown UIL to rescan its interface for devices.&nbsp; To select
+a device, click on it's checkbox.
+<p>Note the checkbox labeled "Synchronize Console/GUI".&nbsp; When this
+checkbox is <b>checked</b>, clicking on a new device in the GUI will change
+the current device in the console window.&nbsp; Furthermore, changing the
+current device in the console window (with <tt><font color="#3333FF">device
+set index </font></tt>or <tt><font color="#3333FF">uil set index</font></tt><font color="#000000">)</font>
+will change the device in the GUI.
+<p>When this checkbox is <b>unchecked</b>, changes to the GUI will not effect 
+  the current device in the console, and vice versa.&nbsp; Furthermore, you can 
+  select multiple devices in the GUI when this option is off. The ability to select 
+  multiple devices is useful when formatting, downloading code, or performing 
+  other operations to an array of devices.&nbsp; There are two other potential 
+  benefits to having this option unchecked: <br>
+  &nbsp;
+<ul>
+<li>
+Tests that change operate on multiple devices will not be slowed down by
+the GUI synchronization</li>
+
+<li>
+If you are running a console test in the background, changing your current
+device in the GUI will not "disrupt" this test</li>
+</ul>
+One or more devices in the device list may be locked.&nbsp; These drive are displayed 
+"dimmed out" and are not selectable from the gui (They are selectable from the 
+command line, but any commands sent to them return a <tt><font color="#FF0000">Device 
+Locked</font></tt> error message). <br>
+&nbsp;
+<center>
+<h3>
+CDB Execution</h3></center>
+When the "CDB" field is highlighted in the pull down, a list of CDB's are
+displayed.&nbsp; Each CDB has a similar format (the gui's are auto generated
+from the command descriptions).&nbsp;&nbsp; Here are a couple of example
+windows:
+<center>
+<p><img SRC="inquiry.gif" NOSAVE height=348 width=334><img SRC="read10.gif" NOSAVE height=412 width=334></center>
+
+<p>One thing to note is the CDB listed at the bottom.&nbsp; As you update
+the fields in the GUI, the CDB is updated to show the effect of your changes.&nbsp;
+The "Execute" button sends the command to the drive(s) (multiple drives
+will receive the command if multiple drives are selected).&nbsp; The "Help"
+button prints the equivalent of the -help option in the console window.
+<br>&nbsp;
+<br>&nbsp;
+<center>
+<h2>
+Basic GUI Buttons</h2></center>
+
+<center>
+<h3>
+Buffer Fill</h3></center>
+
+<center><img SRC="buffer_fill.gif" NOSAVE height=433 width=396></center>
+
+<p>Buffer fill is an interactive version of the <tt><font color="#3333FF">buff
+fill</font></tt> family of commands and the <tt><font color="#3333FF">buff
+load</font></tt> command.&nbsp; All of the same functions are provided.&nbsp;
+Furthermore, the actual <tt><font color="#3333FF">buff fill </font></tt>command
+sequence is printed after each command execution (useful for copy-paste).&nbsp;
+A <tt><font color="#3333FF">buff dump</font></tt> of the buffer is also
+outputted to confirm proper data format.
+<center>
+<h3>
+Buffer Dump</h3></center>
+
+<center><img SRC="buffer_dump.gif" NOSAVE height=347 width=408></center>
+
+<p>The "Buffer Dump" Dialog is a GUI front end for the <tt><font color="#3333FF">buff
+dump</font></tt> and <tt><font color="#3333FF">buff save</font></tt> commands.&nbsp;
+This dialog provides a point and click method for viewing buffer contents.
+<center>
+<h3>
+Buffer Set</h3></center>
+
+<center><img SRC="buffer_set.gif" NOSAVE height=174 width=300></center>
+
+<p>The "Buffer Set" Dialog is a GUI front end for <tt><font color="#3333FF">buff
+set ri</font></tt> (<tt><font color="#3333FF">bri</font></tt>), <tt><font color="#3333FF">buff
+set si</font></tt> (<tt><font color="#3333FF">bsi</font></tt>), <tt><font color="#3333FF">buff
+get ri</font></tt>, and <tt><font color="#3333FF">buff get si</font></tt>.&nbsp;
+The sliders are used to change the buffer indexes of the send and receive
+buffers.&nbsp; Commands that transfer data from the drive to the host copy
+this data into the Receive buffer.&nbsp; Commands that transfer data from
+the host to the drive get this information from the send buffer.
+<center>
+<h3>
+Download And Save</h3></center>
+
+<center><img SRC="download_save.gif" NOSAVE height=143 width=295></center>
+
+<p>This dialog allows you to download microcode to one or more drives (all
+selected drives will be targeted).&nbsp; The command line equivalent of
+this command is:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">dwnldsv &lt;filename></font></tt></blockquote>
+This command operates by sending <tt><font color="#3333FF">write_buffer</font></tt>
+commands in 32k increments to the drive(s).
+<center>
+<h3>
+Drive Scan</h3></center>
+The "Drive Scan" script scans the current p-list and g-list entries on
+the drive and then generates a graphical representation of defects on the
+platter.&nbsp; Zoom is supported.
+<center>
+<h3>
+Format</h3></center>
+
+<center><img SRC="format.gif" height=225 width=566></center>
+
+<p>The format dialog allows one or more drives to be simultaneously formatted.&nbsp;
+A status bar for each drive being formatted is displayed.&nbsp; The command
+line equivalent to the format gui is:
+<br>&nbsp;
+<blockquote><tt>****************************************</tt>
+<p><tt>Command Name(s): <font color="#3333FF">fmt_unit</font></tt>
+<p><tt>Description: Performs a device performs a return immediate format</tt>
+<p><tt>Parameters:</tt>
+<br><tt>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Range&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Default&nbsp;&nbsp;&nbsp; | Description</tt>
+<br><tt>-----------------------------------------+----------------------------------</tt>
+<br><tt>-blocksize&nbsp;&nbsp;&nbsp; (1-MAX LBA)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+512&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Determines the new blocksize</tt>
+<br><tt>-plist or -glist&nbsp;&nbsp; NA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-glist&nbsp;&nbsp;&nbsp; | Set or unsets the CMPLst bit</tt>
+<br><tt>-crt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (0 or 1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Disables or enables certification</tt>
+<br><tt>-fastformat (0 or 1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Set to do a fast format</tt>
+<br><tt>-merge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (0 or 1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Set to merge GList with PList</tt></blockquote>
+
+<center>
+<h4>
+Lock Drives</h4></center>
+
+<center><img SRC="drive_lock.gif" NOSAVE height=241 width=527></center>
+
+<p>The "Lock Drives" Dialog provide a GUI alternative to the <tt><font color="#3333FF">device
+lock</font></tt>, <tt><font color="#3333FF">device unlock</font></tt>,
+and <tt><font color="#3333FF">device islocked</font></tt> commands.&nbsp;
+To lock/unlock a device, highlight the device and click on the appropriate
+arrow button.&nbsp; The results will immediately be shown in the device
+list (locked devices are dimmed in the device list).&nbsp; Another useful
+option is the "Apply on start-up" checkbutton.&nbsp; When checked, your
+settings will automatically be applied the next time Niagara is started.
+<center>
+<h3>
+Logbin</h3></center>
+
+<center><img SRC="logbin.gif" NOSAVE height=106 width=327></center>
+
+<p>The "LogBin" GUI allows you to dump logs on one or more drives in the Discovery 
+  and Piranha families.&nbsp; These file can then be parsed by Code Update's "logdump" 
+  tool.&nbsp; The "suffix pattern" is used to identify multiple drives.&nbsp; 
+  By default, the files are named "test0.bin", "test1.bin", ..., one file for 
+  each drive.&nbsp; The command line equivalent for this GUI is: <br>
+  &nbsp;
+<blockquote><tt><font color="#3333FF">logbin &lt;filename></font></tt></blockquote>
+
+<br>&nbsp;
+<center>
+<h3>
+Mode Sense / Select</h3></center>
+
+<center><img SRC="mode_sense_select.gif" NOSAVE height=476 width=470></center>
+
+<p>The Mode Sense / Select interface provides a "hex based" interface to
+the mode sense and select commands.&nbsp; Using the GUI is recommend over
+the command line in most cases because the mode_select command is somewhat
+involved to set up correctly (it can be done, but requires a couple of
+steps) at the command line.&nbsp; This dialog makes viewing and changing
+values easy.
+<center>
+<h3>
+ModeMaker</h3></center>
+
+<p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<center>
+<h3>
+Reserved Memory Access</h3></center>
+
+<center><img SRC="reserved_area.gif" NOSAVE height=222 width=196></center>
+
+<p>The reserved memory access dialog is a front end to special mode cdbs
+that access the reserved area.&nbsp; Note that the drive must be in special
+mode to use this dialog.
+<center>
+<h3>
+Special Mode</h3></center>
+
+<center><img SRC="special_mode.gif" NOSAVE height=128 width=372></center>
+
+<p>This dialog allow you to easily change the drive to special mode and
+back again.
+<center>
+<h3>
+Source History</h3></center>
+
+<center><img SRC="source_history.gif" NOSAVE height=317 width=435></center>
+
+<p>This simple but useful utility allows you to source files without using
+the <tt><font color="#3333FF">source</font></tt> command.&nbsp; Even more
+conveniently, it remembers the last 50 files you sourced, making a "re-source"
+operation as easy as a button click.
+<br>&nbsp;
+<center>
+<h2>
+Standard Test Functions</h2></center>
+
+<center><img SRC="standard_tests.gif" NOSAVE height=344 width=297></center>
+
+<p>These functions provide a variety of standard CSO tests.&nbsp; <b>Double
+click</b> a test to bring up the testing dialog. Here is an example of
+one of the test dialogs:
+<center>
+<p><img SRC="random_read.gif" NOSAVE height=294 width=325></center>
+
+<p><br>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<center>
+<h2>
+GUI Customization</h2></center>
+Customizing the GUI is as easy as copying and deleting files.&nbsp; Here
+is a look at Niagara's Directory structure, starting at the TkGUI folder:
+<p>Here is a look at the buttons folder:
+<br>&nbsp;
+<blockquote><img SRC="dir_structure.gif" NOSAVE height=477 width=630></blockquote>
+
+<ul>
+<li>
+To add a button, simply drag a TCL script into the buttons folder.</li>
+
+<li>
+To add an entry to the center panel, drag it to the appropriate folder
+under Actions</li>
+
+<li>
+To add a new actions category, create a new folder under Actions</li>
+</ul>
+Niagara takes care of the rest!
+<p>One more thing to note here.&nbsp; In the files you drag into this folder,
+you will want to define a procedure named:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">&lt;filename>_Init</font></tt></blockquote>
+For example, if you had a TCL script called <tt><font color="#3333FF">Party_Time.tcl</font></tt>,
+you should define a procedure called
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">Party_Time_Init</font></tt></blockquote>
+The <tt><font color="#3333FF">&lt;filename>_Init</font></tt> procedure is called 
+when you click on the button or activate the action. <br>
+&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

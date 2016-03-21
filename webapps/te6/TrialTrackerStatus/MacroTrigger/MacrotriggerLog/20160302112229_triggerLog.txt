@@ -1,0 +1,8 @@
+Start Macro Trigger
+Running ID : 20160302112229
+-------------------------------------------------------------
+
+Process Name : Trigger Macro :: C:\Tomcat_5.5\webapps\TrialTrackerStatus\TrialTracker_V.1.3.xlsm at 3/2/2016 11:22:29 AM
+Status : not Completed
+Error : Sorry, we couldn't find C:\Tomcat_5.5\webapps\TrialTrackerStatus\TrialTracker_V.1.3.xlsm. Is it possible it was moved, renamed or deleted?
+-------------------------------------------------------------

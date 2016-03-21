@@ -1,0 +1,222 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Fundamental TCL Commands</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<center>
+<h1>
+Fundamental TCL Commands</h1></center>
+
+<center>
+<h3>
+Introduction TCL vs C And Syntax</h3></center>
+From the first module / lab, I am now assuming you have understanding of
+<tt><font color="#3333FF">puts</font></tt>,
+<tt><font color="#3333FF">set</font></tt>,
+<tt><font color="#3333FF">eval</font></tt>,
+and <tt><font color="#3333FF">expr</font></tt>.&nbsp;&nbsp; Next we will
+look at more of the basic TCL commands.&nbsp; If you are familiar with
+C, you have both an advantage and disadvantage to learning TCL.&nbsp; The
+advantage is that TCL shares many command names with C (if, for, while).&nbsp;
+The disadvantage is that TCL parse syntax is close enough to C to convince
+those starting with TCL that it is the same.&nbsp; The syntax has fundamental
+differences...
+<p>The syntax of C is difficult to sum up.&nbsp; The syntax of TCL is easy.&nbsp;
+ALL commands follow this format:
+<br>&nbsp;
+<blockquote><tt>&lt;command name> &lt;arg1> &lt;arg2> &lt;...></tt></blockquote>
+This includes defining procedures, <tt><font color="#3333FF">if,while</font></tt>,
+everything.&nbsp; As long as you have the correct number of tokens, TCL
+will accept your input whether you use <tt><font color="#3333FF">"",{}</font></tt>,
+or none of the above.
+<br>&nbsp;
+<br>&nbsp;
+<center>
+<h3>
+The<tt> <font color="#3333FF">if</font> </tt>Command</h3></center>
+The format of the <tt><font color="#3333FF">if</font></tt> command is:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">if &lt;condition> &lt;code></font></tt></blockquote>
+or:
+<blockquote><tt><font color="#3366FF">if &lt;condition> &lt;code> elseif
+&lt;condition> &lt;code> ... else &lt;code></font></tt></blockquote>
+In the code above <tt><font color="#3333FF">&lt;condition></font></tt>
+is evaluated using <tt><font color="#3333FF">expr &lt;condition></font></tt>.&nbsp;
+If the result is anything but zero, then <tt><font color="#3333FF">eval
+&lt;code></font></tt> is executed. Here are some examples:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">if {$friendly == "yes"} { puts "hello"
+}</font></tt>
+<br><tt><font color="#3333FF">if {$friendly == "yes"} " puts hello "</font></tt>
+<br><tt><font color="#3333FF">if 0 { puts "this will NEVER happen" }</font></tt>
+<br><tt><font color="#3333FF">if 32 {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; puts "this will ALWAYS happen"</font></tt>
+<br><tt><font color="#3333FF">}</font></tt></blockquote>
+The statements above are intended to illustrate different possibilities
+for calling <tt><font color="#3333FF">if</font></tt>.&nbsp; Now to mix
+in some other possibilities:
+<blockquote>&nbsp;
+<br><tt><font color="#3333FF">if {$location == "San Jose"} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; set cold 65</font></tt>
+<br><tt><font color="#3333FF">&nbsp; set freezing 50</font></tt>
+<br><tt><font color="#3333FF">} elseif {$location == "Rochester"} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; set cold 32</font></tt>
+<br><tt><font color="#3333FF">&nbsp; set freezing -5</font></tt>
+<br><tt><font color="#3333FF">} else {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; set cold 60</font></tt>
+<br><tt><font color="#3333FF">&nbsp; set freezing 32</font></tt>
+<br><tt><font color="#3333FF">}</font></tt>
+<p><tt><font color="#3333FF">if {$temp > $cold} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; puts "It's Warm"</font></tt>
+<br><tt><font color="#3333FF">} elseif {$temp > $freezing} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; puts "It's Cold!"</font></tt>
+<br><tt><font color="#3333FF">} else {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; puts "Its $#%&amp;@* Freezing out!!"</font></tt>
+<br><tt><font color="#3333FF">}</font></tt>
+<br>&nbsp;</blockquote>
+Note the use of <tt><font color="#3333FF">else</font></tt> and <tt><font color="#3333FF">elseif</font></tt>
+on the same line as the <tt><font color="#3333FF">}.</font></tt>&nbsp;
+Is this necessary?
+<center>
+<h3>
+The <tt><font color="#3333FF">while</font></tt> Command (and <tt><font color="#3333FF">incr</font></tt>)</h3></center>
+The <tt><font color="#3333FF">while</font></tt> command has the following
+syntax:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">while &lt;condition> &lt;code></font></tt></blockquote>
+Just like the <tt><font color="#000099">if</font></tt> command, the <tt><font color="#000099">while</font></tt>
+command evaluates <tt><font color="#3333FF">expr &lt;condition></font></tt>
+and as long as <tt><font color="#3333FF">expr &lt;condition></font></tt>
+is a non zero value, <tt><font color="#3333FF">eval &lt;code></font></tt>
+is executed.&nbsp; Here is some example code:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">set i 0</font></tt>
+<br><tt><font color="#3333FF">while {$i &lt; 10} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; puts $i</font></tt>
+<br><tt><font color="#3333FF">&nbsp; incr i</font></tt>
+<br><tt><font color="#3333FF">}</font></tt></blockquote>
+Can you guess what <tt><font color="#3333FF">incr</font></tt> does?&nbsp;
+What would have happened if we said:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">set i 0</font></tt>
+<br><tt><font color="#3333FF">while {$i &lt; 10} "</font></tt>
+<br><tt><font color="#3333FF">&nbsp; puts $i</font></tt>
+<br><tt><font color="#3333FF">&nbsp; incr i</font></tt>
+<br><tt><font color="#3333FF">"</font></tt></blockquote>
+
+<p><br>???
+<center>
+<h3>
+The <tt><font color="#3333FF">for</font></tt> Command</h3></center>
+Like C, the <tt><font color="#3333FF">for</font></tt> command in TCL is
+a version of <tt><font color="#3333FF">while</font></tt> that has the loop
+related stuff at the top.&nbsp; The syntax is:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">for &lt;run_me_once> &lt;condition>
+&lt;loop_end_code> &lt;code></font></tt></blockquote>
+This command functions exactly like <tt><font color="#3333FF">while</font></tt>
+except that <tt><font color="#3333FF">&lt;run_me_once></font></tt> is executed
+before running <tt><font color="#3333FF">&lt;code></font></tt>.&nbsp; During
+the loop(s); <tt><font color="#3333FF">&lt;loop_end_code></font></tt> is
+executed after <tt><font color="#3333FF">&lt;code></font></tt> and before
+checking <tt><font color="#3333FF">&lt;condition></font></tt>. Make sense?&nbsp;
+Here is an example that is functionally identical to the one above:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">for {set i 0} {$i &lt; 10} {incr
+i} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; puts $i</font></tt>
+<br><tt><font color="#3333FF">}</font></tt></blockquote>
+
+<center>
+<h3>
+Defining A Procedure: <tt><font color="#3333FF">proc</font></tt></h3></center>
+The <tt><font color="#3333FF">proc</font></tt> command allow us to define
+"functions" in TCL (called procedures).&nbsp; The syntax is:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">proc {argument_list} {code}</font></tt></blockquote>
+Here is a simple example:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">proc add {a b} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; return [expr $a + $b]</font></tt>
+<br><tt><font color="#3333FF">}</font></tt>
+<p><tt><font color="#3333FF">add 1 5</font></tt>
+<br><tt><font color="#3333FF">add 6 3</font></tt></blockquote>
+As you can see, the functions are called just like any other TCL function.&nbsp;
+Here are some important things to know:
+<br>&nbsp;
+<ul>
+<li>
+If you do not use a <tt><font color="#000099">return</font></tt> statement,
+whatever the <i>last command executed</i> returned will be what your procedure
+returns.</li>
+
+<li>
+There are ways of defining procedures that have a non-fixed number of arguments
+(that is all I'll say here)...</li>
+
+<li>
+You can redefine <i>any</i> TCL command with <tt><font color="#3333FF">proc</font></tt>
+(even <tt><font color="#3333FF">proc</font></tt> itself!).&nbsp; Be <i>aware</i>
+of this.</li>
+</ul>
+
+<center>
+<h3>
+Global And Local Variables</h3></center>
+Here is a simple script that demonstrates global variables:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">set PI 3.14159</font></tt>
+<br><tt><font color="#3333FF">proc cir {r} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; return [expr 2 * $PI * $r]</font></tt>
+<br><tt><font color="#3333FF">}</font></tt>
+<p><tt><font color="#3333FF">cir 5</font></tt></blockquote>
+This procedure fails because PI is not a global variable.&nbsp; Here is
+the rule:
+<br>&nbsp;
+<blockquote><font color="#006600">Any variable inside a procedure is local
+to that procedure unless the </font><tt><font color="#3333FF">global</font></tt><font color="#006600">
+keyword is used.</font></blockquote>
+Lets fix our procedure above:
+<br>&nbsp;
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">set PI 3.14159</font></tt>
+<br><tt><font color="#3333FF">proc cir {r} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; global PI</font></tt>
+<br><tt><font color="#3333FF">&nbsp; return [expr 2 * $PI * $r]</font></tt>
+<br><tt><font color="#3333FF">}</font></tt>
+<p><tt><font color="#3333FF">cir 5</font></tt></blockquote>
+
+<p><br>Locality works in both directions:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">set a 5</font></tt>
+<br><tt><font color="#3333FF">proc bla {} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; set a 3</font></tt>
+<br><tt><font color="#3333FF">&nbsp; puts $a</font></tt>
+<br><tt><font color="#3333FF">}</font></tt>
+<p><tt><font color="#3333FF">bla</font></tt>
+<br><tt><font color="#3333FF">puts $a</font></tt></blockquote>
+
+<p><br>What is the output here?
+<center>
+<h3>
+The <tt><font color="#3333FF">source</font></tt> Command</h3></center>
+
+<p><br>The source command allows you to execute code stored in a file.&nbsp;
+The syntax is simple:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">source &lt;filename></font></tt></blockquote>
+The best way to think of <tt><font color="#3333FF">source</font></tt> is
+to think of what would happen if you typed in the contents of the file
+yourself, line by line.&nbsp; This is what <tt><font color="#3333FF">source</font></tt>
+does (but much faster).&nbsp; This means that you can define procedures,
+set global variables, even run a few lines of code straight out.&nbsp;
+It's a fairly flexible command.
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

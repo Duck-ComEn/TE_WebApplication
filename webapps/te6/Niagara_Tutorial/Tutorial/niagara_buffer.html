@@ -1,0 +1,454 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Author" content="Matt Wachowski">
+   <title>Niagara Buffer Commands</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<center>
+<h1>
+Niagara Buffer Commands</h1></center>
+Whenever you execute a CDB that sends or receives data from the drive,
+buffers are involved.&nbsp; All data read from a drive is stored in a buffer.&nbsp;
+All data sent to the drive is taken from a buffer.&nbsp; There are a variety
+of commands that allow you to copy, compare, manipulate and extract data
+from buffers.&nbsp; All buffer commands start with the prefix command<tt><font color="#3333FF">
+buff</font></tt>.&nbsp; The following chart illustrates the sub-commands
+available to <tt><font color="#3333FF">buff</font></tt>:
+<blockquote>&nbsp;
+<br>&nbsp;
+<table BORDER WIDTH="15%" NOSAVE >
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td NOSAVE><tt>buff</tt></td>
+
+<td NOSAVE><tt>compare</tt></td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>copy</tt></td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>dump</tt></td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>fill</tt></td>
+
+<td><tt>byte</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>fill</tt></td>
+
+<td><tt>int</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>fill</tt></td>
+
+<td><tt>one</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>fill</tt></td>
+
+<td><tt>patt</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>fill</tt></td>
+
+<td><tt>rand</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>fill</tt></td>
+
+<td NOSAVE><tt>seq</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>fill</tt></td>
+
+<td><tt>string</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>fill</tt></td>
+
+<td><tt>zero</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td><tt>format</tt></td>
+
+<td NOSAVE></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>get</tt></td>
+
+<td><tt>count</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>get</tt></td>
+
+<td><tt>dsize</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>get</tt></td>
+
+<td><tt>ri</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>get</tt></td>
+
+<td><tt>si</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>load</tt></td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>reset</tt></td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>save</tt></td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>set</tt></td>
+
+<td><tt>count</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>set</tt></td>
+
+<td NOSAVE><tt>dsize</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td NOSAVE><tt>set</tt></td>
+
+<td NOSAVE><tt>ri</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>buff</tt></td>
+
+<td><tt>set</tt></td>
+
+<td NOSAVE><tt>si</tt></td>
+</tr>
+</table>
+</blockquote>
+
+<center>
+<h3>
+Buffers: The Basic Layout</h3></center>
+
+<ul>
+<li>
+In the default setup of Niagara you have 10 buffers.</li>
+
+<li>
+These buffers are all known as <i>general purpose</i> buffers.&nbsp; This
+means that any of these buffers can be used as either a send or receive
+buffer (or both).</li>
+
+<li>
+Allocating space for these buffers is not necessary, the buffers automatically
+expand when reading in a large piece of data.</li>
+
+<li>
+By default, buffer 0 is the send buffer.&nbsp; This mean that during commands
+such as write10, the information contained in buffer 0 is sent to the drive.</li>
+
+<li>
+By default, buffer 1 is the receive buffer.&nbsp; This means that during
+commands such as read10, and inquiry, the information returned by the drive
+is stored in buffer 1.</li>
+
+<li>
+There are commands available for changing the current send and receive
+buffer indexes (from 0 and 1).</li>
+</ul>
+Here is a diagram of the basic layout:
+<center>
+<p><img SRC="buffer_diagram.gif" NOSAVE height=200 width=402></center>
+
+<p>When referring to a buffer, you have a choice:
+<ol>
+<li>
+You can refer to a buffer by its index (<tt><font color="#3333FF">0</font></tt>,<tt><font color="#3333FF">1</font></tt>,<tt><font color="#3333FF">2</font></tt>,...)</li>
+
+<li>
+You can refer to a buffer as <tt><font color="#3333FF">send</font></tt>
+or <tt><font color="#3333FF">recv</font></tt>.&nbsp; These options choose
+the current send and receive buffer, regardless of their current index
+setting.</li>
+</ol>
+
+<center>
+<h3>
+Viewing Buffers</h3></center>
+The command for viewing the contents of a buffer is <tt><font color="#3333FF">buff
+dump</font></tt> (you also can use <tt><font color="#3333FF">bd</font></tt>
+as a short name alias).&nbsp; The most basic form is:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">bd</font></tt></blockquote>
+This form prints the first 255 bytes of the receive buffer.&nbsp; Here
+are some other forms:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">buff dump recv</font></tt>
+<br><tt><font color="#3333FF">bd recv</font></tt>
+<br><tt><font color="#3333FF">bd send</font></tt>
+<br><tt><font color="#3333FF">buff dump 4</font></tt>
+<br><tt><font color="#3333FF">bd 6</font></tt></blockquote>
+In addition to the buffer index, you also have the option of selecting
+an offset and length.&nbsp; The format is:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">buff dump ?index? ?offset? ?length?
+?-dw? ?-dd?</font></tt></blockquote>
+Here are some examples of using <tt><font color="#3333FF">buff dump</font></tt>
+to view different areas of a large buffer:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">bd recv 0x2000 0x200</font></tt>
+<br><tt><font color="#3333FF">bd 4 0 5000</font></tt>
+<br><tt><font color="#3333FF">bd send 0x1000 255</font></tt></blockquote>
+The first instance outputs 512 bytes starting at location 0x2000 in the
+receive buffer.&nbsp; The second instance outputs 5000 bytes starting at
+offset 0 from buffer 5.&nbsp; The third instance outputs 255 bytes from
+the send buffer starting at offset 0x1000.&nbsp; The <font color="#3333FF">-dw</font>
+and <font color="#3333FF">-dd</font> flags cause buff dump to group the
+hex dump into 16 and 32 bit words (respectively).&nbsp; The words are returned
+in little endian format ("backwards").&nbsp; These flags are handy when
+using the serial debugger.
+<br>&nbsp;
+<br>&nbsp;
+<center>
+<h3>
+Extracting Information From Buffers</h3></center>
+There are many cases where a CDB command (such as mode select) will return
+data in a tabular format.&nbsp; In these cases, the <tt><font color="#3333FF">buff
+format</font></tt> command is useful for extracting and interpreting the
+contents of these fields with less hassle than other methods.&nbsp; The
+format of <tt><font color="#3333FF">buff format</font></tt> is as follows:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">buff format &lt;buffer> &lt;format
+string> {&lt;offset1> &lt;length1>} ?{&lt;offset2> &lt;length2>}? ?...?</font></tt></blockquote>
+The buff format command works very similar to the <tt><font color="#3333FF">printf()</font></tt>
+and <tt><font color="#3333FF">scanf()</font></tt> functions in C.&nbsp;
+Here are some examples:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">#show the vendor id of the current
+drive</font></tt>
+<br><tt><font color="#3333FF">inquiry</font></tt>
+<br><tt><font color="#3333FF">buff format recv "%s" {4 28}</font></tt>
+<p><tt><font color="#3333FF">#find out the # of heads and rotation rate
+of the drive</font></tt>
+<br><tt><font color="#3333FF">mode_sense10 -page_code 4 -alloc 38</font></tt>
+<br><tt><font color="#3333FF">buff format recv "# Heads: %u&nbsp;&nbsp;
+Rotation Rate: %u" {21 1} {36 2}</font></tt>
+<br>&nbsp;</blockquote>
+Note that buff format <i>does not evaluate its index parameters</i>.&nbsp;
+This means that, if you intend to use variables in the offset and length
+parameters, you need to use <tt><font color="#3333FF">""</font></tt> in
+place of <tt><font color="#3333FF">{}</font></tt>:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">proc my_hex_dump {buff_id length}
+{</font></tt>
+<br><tt><font color="#3333FF">&nbsp; for {set i 0} {$i &lt; $length} {incr
+i} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; buff format $buff_id "%X"
+"$i 1"</font></tt>
+<br><tt><font color="#3333FF">&nbsp; }</font></tt>
+<br><tt><font color="#3333FF">}</font></tt></blockquote>
+
+<center>
+<h3>
+Loading And Saving Buffers</h3></center>
+To load and save buffers to/from a file, use the <tt><font color="#3333FF">buff
+load</font></tt> and <tt><font color="#3333FF">buff save</font></tt> commands.&nbsp;
+The format for these commands is:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">buff load &lt;filename> ?index? ?offset?
+?file offset? ?file length?</font></tt>
+<br><tt><font color="#3333FF">buff save &lt;filename> &lt;index> &lt;offset>
+&lt;length> ?-append?</font></tt></blockquote>
+Here are a couple of examples:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">buff load data.bin send</font></tt>
+<br><tt><font color="#3333FF">buff load dump.bin 4</font></tt>
+<br><tt><font color="#3333FF">buff save inqdata.bin recv 0 164</font></tt></blockquote>
+Note that all data loaded and saved is in <i>raw binary format</i>.&nbsp;
+If you want to save a dump in ASCII format, TCL makes this simple enough:
+<blockquote>&nbsp;
+<br><tt><font color="#3333FF">set file [open "out_hex.txt" "w"]</font></tt>
+<br><tt><font color="#3333FF">puts $file [buff dump recv]</font></tt>
+<br><tt><font color="#3333FF">close $file</font></tt></blockquote>
+
+<center>
+<h3>
+Generating Buffer Data</h3></center>
+
+<p><br>The buff fill family of commands are used to generate buffer data.&nbsp;
+The types of data that can be put in a buffer currently include:
+<br>&nbsp;
+<blockquote>
+<ul>
+<li>
+One or more copies of a single byte: <tt><font color="#3333FF">buff fill
+byte</font></tt> or <tt><font color="#3333FF">bfb</font></tt></li>
+
+<li>
+A 4 byte integer value: <tt><font color="#3333FF">buff fill int</font></tt>
+or <tt><font color="#3333FF">bfi</font></tt></li>
+
+<li>
+0xFF bytes: <tt><font color="#3333FF">buff fill one</font></tt> or<tt><font color="#3333FF">
+bfo</font></tt></li>
+
+<li>
+A pattern of bytes that repeats one or more times: <tt><font color="#3333FF">buff
+fill patt</font></tt> or <tt><font color="#3333FF">bfp</font></tt></li>
+
+<li>
+Random data: <tt><font color="#3333FF">buff fill rand</font></tt> or <tt><font color="#3333FF">bfr</font></tt></li>
+
+<li>
+Sequential Data: <tt><font color="#3333FF">buff fill seq</font></tt> or
+<tt><font color="#3333FF">bfs</font></tt></li>
+
+<li>
+A Character String: <tt><font color="#3333FF">buff fill str</font></tt>
+or <tt><font color="#3333FF">bfstr</font></tt></li>
+
+<li>
+"Zero" bytes: <tt><font color="#3333FF">buff fill zero</font></tt> or <tt><font color="#3333FF">bfz</font></tt></li>
+</ul>
+</blockquote>
+Each command has its own format although these formats follow a basic pattern.&nbsp;
+Here is the pattern for <tt><font color="#3333FF">buff fill byte</font></tt>:
+<blockquote>&nbsp;
+<br><tt><font color="#3333FF">buff fill byte &lt;index> &lt;offset> &lt;length>
+&lt;byte></font></tt>
+<blockquote>&nbsp;</blockquote>
+</blockquote>
+Here are some examples of the command in use:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">buff fill byte send 0 512 0x01</font></tt>
+<br><tt><font color="#3333FF">bfb send 8 1 0x77</font></tt>
+<br><tt><font color="#3333FF">bfb 4 0x2005 1 0x22</font></tt></blockquote>
+The other commands follow a very similar format.&nbsp; <tt><font color="#3333FF">buff
+fill int</font></tt> is a useful command for lba tagging.&nbsp; <tt><font color="#3333FF">buff
+fill str</font></tt> is useful for time/date tagging.&nbsp; <tt><font color="#3333FF">buff
+fill byte</font></tt> is useful for setting/changing parameters for the
+<tt><font color="#3333FF">mode_select</font></tt>
+command.
+<center>
+<h3>
+Other Buffer Capabilities (brief)</h3></center>
+
+<p><br>Other buffer abilities include:
+<br>&nbsp;
+<ul>
+<li>
+The ability to change the current send and receive buffer indexes to indexes
+other than zero or one (useful for complex data manipulation, comparing
+queued data, performance improvements).&nbsp; The associated commands are
+<tt><font color="#3333FF">buff
+set ri</font></tt> (<tt><font color="#3333FF">bri</font></tt>),
+<tt><font color="#3333FF">buff
+set si</font></tt> (<tt><font color="#3333FF">bsi</font></tt>),
+<tt><font color="#3333FF">buff
+get ri</font></tt>, and <tt><font color="#3333FF">buff get si</font></tt></li>
+
+<li>
+The ability to temporarily change the send and receive buffer indexes temporarily
+for a CDB command: the <font color="#3333FF"><tt>-ri</tt> </font>and <tt><font color="#3333FF">-si</font></tt>
+flags that every CDB command supports</li>
+
+<li>
+The ability to change the number of buffers and free allocated memory after
+large transfer operations: <tt><font color="#3333FF">buff set count</font></tt>,
+<tt><font color="#3333FF">buff
+get count</font></tt>, <tt><font color="#3333FF">buff reset</font></tt></li>
+
+<li>
+The ability to copy parts of a buffer another buffer: <tt><font color="#3333FF">buff
+copy</font></tt></li>
+
+<li>
+The ability to compare parts of two buffers: <tt><font color="#3333FF">buff
+compare</font></tt></li>
+</ul>
+
+<br>&nbsp;
+</body>
+</html>

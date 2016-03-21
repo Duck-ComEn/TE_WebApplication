@@ -1,0 +1,110 @@
+<xml xmlns:v="urn:schemas-microsoft-com:vml"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:p="urn:schemas-microsoft-com:office:powerpoint"
+ xmlns:oa="urn:schemas-microsoft-com:office:activation">
+ <p:presentation sizeof="screen" notessizex="4243" notessizey="6215"
+  gridspacingx="49152" gridspacingy="49152" omittitleplace="t">
+  <p:master id="23" slidesn="1C3EB59,DFB25950" type="main" href="master23.htm"
+   xmlhref="master23.xml" template="HGST_LightGray_A_Conf_v1.0" preserved="t"
+   layout="title_body" slots="title,body,dateTime,footer,slideNumber">
+   <p:schemes>
+    <p:colorscheme
+     colors="#FFFFFF,#000000,#333333,#000000,#DDDDDD,#808080,#4D4D4D,#EAEAEA"/>
+    <p:colorscheme
+     colors="#FFFFFF,#000000,#808080,#000000,#C0C0C0,#0066FF,#FF0000,#009900"/>
+    <p:colorscheme
+     colors="#FFFFFF,#000000,#808080,#FFFFFF,#FF0000,#5B5B5B,#C0C0C0,#E1E1E1"/>
+    <p:colorscheme
+     colors="#FFFFFF,#000000,#808080,#FFFFFF,#FF0000,#3530A2,#FFCC00,#49A23A"/>
+    <p:colorscheme
+     colors="#FFFFFF,#000000,#808080,#8B0013,#FF0000,#3530A2,#FFCC00,#49A23A"/>
+    <p:colorscheme
+     colors="#FFFFFF,#000000,#808080,#000000,#B10E23,#91AF13,#026BA6,#7965C1"/>
+    <p:colorscheme
+     colors="#FFFFFF,#000000,#808080,#000000,#BA4E56,#7C6430,#026BA6,#7965C1"/>
+    <p:colorscheme
+     colors="#FFFFFF,#000000,#808080,#000000,#BA4E56,#647C30,#8682B4,#B49446"/>
+    <p:colorscheme
+     colors="#FFFFFF,#000000,#808080,#000000,#BA4E56,#99AC3C,#8682B4,#B49446"/>
+   </p:schemes>
+  </p:master>
+  <p:master id="24" slidesn="1C3EB59,DFB25950" type="title" href="master24.htm"
+   xmlhref="master24.xml" preserved="t" layout="title_subtitle"
+   slots="centerTitle,subTitle,dateTime,footer,slideNumber"/>
+  <p:master id="1" slidesn="1C303E7,EBF86880" type="notes" href="master01.htm"
+   layout="notes" slots="header,dateTime,slideImage,body,footer,slideNumber"/>
+  <p:master id="2" slidesn="1C303E7,EBFCFC60" type="handout" href="master02.htm"
+   layout="handout" slots="header,dateTime,footer,slideNumber"/>
+  <p:slide id="221" slidesn="0,0" href="slide0221.htm" masterhref="master24.htm"
+   layout="title_subtitle" slots="centerTitle,subTitle"/>
+  <p:slide id="277" slidesn="1CA0C3A,D69A66C0" href="slide0277.htm"
+   xmlhref="slide0277.xml" layout="4_objects"
+   slots="title,object,object,object,object"/>
+  <p:slide id="278" slidesn="1CA0E61,D3480710" href="slide0278.htm"
+   layout="column_2_rows" slots="title,object,object,object"/>
+  <p:slide id="279" slidesn="1C99607,F93C35E0" href="slide0279.htm"
+   layout="4_objects" slots="title,object,object,object,object"/>
+  <p:slide id="280" slidesn="1CA0E70,37C9F9B0" href="slide0280.htm"
+   layout="2_columns" slots="title,body,object"/>
+  <p:slide id="281" slidesn="1CA0E70,BCB2A230" href="slide0281.htm"
+   layout="title_body" slots="title,object"/>
+  <p:slide id="282" slidesn="1CA0E87,B01D3B40" href="slide0282.htm"
+   layout="4_objects" slots="title,object,object,object,object"/>
+  <p:slide id="283" slidesn="1CA0E8F,79B6B650" href="slide0283.htm"
+   layout="title_body" slots="title,object"/>
+  <p:slide id="284" slidesn="1CA0E96,1FDF94B0" href="slide0284.htm"
+   layout="title_body" slots="title,object"/>
+  <p:slide id="285" slidesn="1CA0E70,37C9F9B0" href="slide0285.htm"
+   layout="2_columns" slots="title,body,object"/>
+  <p:slide id="286" slidesn="1CA0E99,53E3AF0" href="slide0286.htm"
+   layout="title_body" slots="title,object"/>
+  <p:slide id="287" slidesn="1CA0E9E,23830090" href="slide0287.htm"
+   layout="title_body" slots="title,object"/>
+  <p:slide id="288" slidesn="1CA0EA0,4F368610" href="slide0288.htm"
+   layout="4_objects" slots="title,object,object,object,object"/>
+  <p:slide id="291" slidesn="1CA0F34,B5763760" href="slide0291.htm"
+   layout="column_2_rows" slots="title,object,object,object"/>
+  <p:slide id="289" slidesn="1CA0F2A,33456770" href="slide0289.htm"
+   layout="4_objects" slots="title,object,object,object,object"/>
+  <p:slide id="290" slidesn="1CA0F30,86D037C0" href="slide0290.htm"
+   layout="column_2_rows" slots="title,object,object,object"/>
+  <p:slide id="292" slidesn="1CA0F37,EACDE360" href="slide0292.htm"
+   layout="title_body" slots="title,body"/>
+  <p:slide id="269" slidesn="1C99607,F93C35E0" href="slide0269.htm"
+   xmlhref="slide0269.xml" layout="4_objects"
+   slots="title,object,object,object,object"/>
+  <p:slide id="271" slidesn="1C9F94A,19CA1520" href="slide0271.htm"
+   layout="2_columns" slots="title,object,object"/>
+  <p:slide id="273" slidesn="1C9F9B3,18F82E70" href="slide0273.htm"
+   layout="title_body" slots="title,object"/>
+  <p:slide id="274" slidesn="1C9F9B6,5BF4BE20" href="slide0274.htm"
+   layout="title_body" slots="title,object"/>
+  <p:slide id="275" slidesn="1C9FA04,F6796B0" href="slide0275.htm"
+   layout="title_body" slots="title,object"/>
+  <p:slide id="239" slidesn="0,0" href="slide0239.htm"/>
+  <p:viewstate type="slideView" slidehref="slide0277.htm" scale="130"
+   restoredleft="164" restoredtop="946" horizbarstate="2" manualadjustleft="t"
+   manualadjusttop="t" hideoutlineicons="t"/>
+  <p:font name="Times New Roman" charset="0" type="4" family="18"/>
+  <p:font name="MS PGothic" charset="128" type="4" family="34"/>
+  <p:font name="Arial" charset="0" type="4" family="34"/>
+  <p:font name="Times" charset="0" type="2" family="18"/>
+  <p:font name="Wingdings" charset="2" type="4" family="2"/>
+  <p:font name="MS PMincho" charset="128" type="4" family="18"/>
+  <p:font name="Angsana New" charset="222" type="4" family="18"/>
+  <p:headersfooters slidenumber="t" userdatestr="4/4/2006"
+   footerstr="Filename, optional: &quot;View&quot;, &quot;Header &amp;  Footer&quot;"
+   formatid="0" nouserdate="t" nofooter="t" noheader="t" todaydate="t"/>
+  <p:headersfooters notes="t" slidenumber="t" formatid="0"/>
+  <p:pptdocumentsettings framecolors="WhiteTextOnBlack" hideslideanimation="t"
+   browsersupport="v4"/>
+ </p:presentation>
+ <o:shapedefaults v:ext="edit" spidmax="2092036" style='v-text-anchor:middle'
+  fill="f" fillcolor="#3cc" strokecolor="yellow">
+  <v:fill color="#3cc" on="f"/>
+  <v:stroke color="yellow" weight="3pt"/>
+  <v:shadow opacity=".5" offset="6pt,-6pt"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+  <o:colormru v:ext="edit" colors="#ddd,#eaeaea,#6f6,#039,#8475e1,#8b59db,#7e47d7,#7965c1"/>
+  <o:colormenu v:ext="edit" fillcolor="red" strokecolor="#039" shadowcolor="none"/>
+ </o:shapedefaults></xml>
