@@ -1,0 +1,332 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10smp i686) [Netscape]">
+   <title>Niagara Device Commands</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#59188E" alink="#FF0000">
+
+<center>
+<h1>
+Niagara Device Commands</h1></center>
+In Niagara, each UIL driver can access multiple devices.&nbsp; The set
+of commands used to work with these devices all begin with the keyword
+<font color="#3333FF">device</font>.&nbsp; Below is a table of the available
+device commands:
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER WIDTH="25%" NOSAVE >
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td NOSAVE><tt>device</tt></td>
+
+<td><tt>count</tt></td>
+
+<td><tt></tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td><tt>create</tt></td>
+
+<td NOSAVE><tt></tt></td>
+</tr>
+
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td><tt>get</tt></td>
+
+<td NOSAVE><tt>callback</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td><tt>get</tt></td>
+
+<td NOSAVE><tt>index</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td NOSAVE><tt>get</tt></td>
+
+<td><tt>last_cdb</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td NOSAVE><tt>get</tt></td>
+
+<td><tt>receive_count</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td NOSAVE><tt>get</tt></td>
+
+<td><tt>timeout</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td NOSAVE><tt>get</tt></td>
+
+<td><tt>read_xfer</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td NOSAVE><tt>get</tt></td>
+
+<td><tt>xfer_mode</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td NOSAVE><tt>info</tt></td>
+
+<td><tt></tt></td>
+</tr>
+
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td NOSAVE><tt>islocked</tt></td>
+
+<td><tt></tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td NOSAVE><tt>list</tt></td>
+
+<td><tt></tt></td>
+</tr>
+
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td NOSAVE><tt>device</tt></td>
+
+<td NOSAVE><tt>lock</tt></td>
+
+<td><tt></tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td NOSAVE><tt>remove</tt></td>
+
+<td><tt></tt></td>
+</tr>
+
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td NOSAVE><tt>rescan</tt></td>
+
+<td><tt></tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td NOSAVE><tt>set</tt></td>
+
+<td><tt>callback</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td NOSAVE><tt>set</tt></td>
+
+<td><tt>index</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td NOSAVE><tt>set</tt></td>
+
+<td><tt>timeout</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td NOSAVE><tt>set</tt></td>
+
+<td><tt>read_xfer</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFCC00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td NOSAVE><tt>set</tt></td>
+
+<td><tt>xfer_mode</tt></td>
+</tr>
+
+<tr BGCOLOR="#FFFF00" NOSAVE>
+<td><tt>device</tt></td>
+
+<td><tt>unlock</tt></td>
+
+<td NOSAVE><tt></tt></td>
+</tr>
+</table>
+
+<center>
+<h3>
+Selecting A Device</h3></center>
+Niagara maintains an indexed list of available devices.&nbsp; When Niagara
+is first started a bus scan, loop initialization, TCP/IP connection, or
+whatever else is required is performed.&nbsp; All of the devices that are
+found are then added to the device list.&nbsp; To see a list of currently
+connected devices, use the <tt><font color="#3333FF">device list</font></tt>
+command:
+<center>
+<p><img SRC="device_list.gif" NOSAVE height=240 width=595></center>
+
+<p>This command gives a table of currently connected devices and reports
+on vendor id, block, size and other information.&nbsp; Especially important
+is the index (first column).&nbsp; This is the number that Niagara needs
+to target a device.&nbsp; To target a device use the command:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">device set index &lt;index></font></tt>
+<br>&nbsp;</blockquote>
+Where <tt><font color="#3333FF">index </font></tt>is one of the indexes
+in the enumerated list above.&nbsp; The command <tt><font color="#3333FF">dsi</font></tt>
+can be used as a short hand alias to <tt><font color="#3333FF">device set
+index</font></tt> (to save typing).&nbsp; After a device index is set,
+all CDB commands that follow will be targeted at the newly selected device.&nbsp;
+Another useful command is:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">device count</font></tt></blockquote>
+<font color="#000000">This command returns the total number of devices
+connected (in the above case, </font><tt><font color="#3333FF">2</font></tt><font color="#000000">
+would be returned).</font><font color="#000000"></font>
+<p><font color="#000000">It is also possible to temporarily use a different
+device index for a CDB command without using the </font><tt><font color="#3333FF">device
+set index</font></tt><font color="#000000"> command.&nbsp; To do this,
+use the </font><tt><font color="#3333FF">-dev</font></tt><font color="#000000">
+command option (available to every CDB command).&nbsp; Here are some examples:</font>
+<br><font color="#000000"></font>&nbsp;
+<blockquote><tt><font color="#3333FF">inquiry -dev 1</font></tt>
+<br><tt><font color="#3333FF">read10 500 20 -dev 5</font></tt></blockquote>
+
+<center>
+<h3>
+Device Information</h3></center>
+The primary command for retrieving device information is the <tt><font color="#3333FF">device
+info</font></tt> command:
+<center>
+<p><img SRC="device_info.gif" height=312 width=530></center>
+
+<p>It is also possible to extract these fields individually:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">device info blocksize</font></tt>
+<br><tt><font color="#3333FF">device info channel</font></tt>
+<br><tt><font color="#3333FF">device info codelevel</font></tt>
+<br><tt><font color="#3333FF">device info host</font></tt>
+<br><tt><font color="#3333FF">device info lun</font></tt>
+<br><tt><font color="#3333FF">device info maxlba</font></tt>
+<br><tt><font color="#3333FF">device info serial</font></tt>
+<br><tt><font color="#3333FF">device info target</font></tt>
+<br><tt><font color="#3333FF">device info vendor</font></tt>
+<br>&nbsp;</blockquote>
+Especially useful are <tt><font color="#3333FF">device info maxlba</font></tt>
+and <tt><font color="#3333FF">device info blocksize</font></tt>.&nbsp;
+Note that in some cases (such as starting Niagara with the drive spun down),
+the maxlb and blocksize are not accessible by Niagara.&nbsp; In these cases
+the maxlba nd blocksize will be set to zero and you will not be able to
+execute any CDB's that send/receive data in blocks.&nbsp; Performing a
+successful <tt><font color="#3333FF">read_capacity</font></tt> will automatically
+update these fields for you.
+<p>It is also possible to retrieve information about the last command execution
+using:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">device get receive_count</font></tt>
+<br><tt><font color="#3333FF">device get last_lba</font></tt></blockquote>
+These two commands return the number of bytes returned by the drive during
+the last command and the last CDB sent to a device.
+<center>
+<h3>
+Locking Devices</h3></center>
+When testing using certain UIL translators (ASPI, SPTI), your internal
+drive may show up in the device list.&nbsp; This is not a good thing because
+a careless or naive mistake could easily corrupt your internal drive.&nbsp;
+To help guard against this problem, Niagara supplies the <tt><font color="#3333FF">device
+lock</font></tt> command.&nbsp; This command will lock a device, preventing
+any CDB's from being sent to it.&nbsp; The Niagara GUI has built in provisions
+for locking a device automatically on startup.&nbsp; Locked drives appear
+dimmed in the GUI's drive list.&nbsp; The commands for controlling the
+lock status of a drive are:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">device lock &lt;index></font></tt>
+<br><tt><font color="#3333FF">device unlock &lt;index></font></tt>
+<br><tt><font color="#3333FF">device islocked &lt;index></font></tt>
+<br>&nbsp;</blockquote>
+
+<center>
+<h3>
+Special Transfer Modes</h3></center>
+Niagara offers special transfer modes for cards that support them (such
+as the iTech card).&nbsp; These modes increase the performance of write
+operations by having the card automatically generate data patterns.&nbsp;
+The command used to activate special transfer modes is:
+<br><tt><font color="#3333FF"></font></tt>&nbsp;
+<blockquote><tt><font color="#3333FF">device set xfer_mode &lt;mode></font></tt>
+<br>&nbsp;</blockquote>
+Available modes are: <tt><font color="#3333FF">normal</font></tt>, <tt><font color="#3333FF">hc</font></tt>,
+<tt><font color="#3333FF">copy</font></tt>, <tt><font color="#3333FF">random</font></tt>,
+<tt><font color="#3333FF">random_hc</font></tt>, <tt><font color="#3333FF">random_seed</font></tt>,
+<tt><font color="#3333FF">random_seed_keyed</font></tt>, <tt><font color="#3333FF">keyed</font></tt>,
+<tt><font color="#3333FF">keyed_hc</font></tt>, <tt><font color="#3333FF">inc</font></tt>,
+and <tt><font color="#3333FF">inc_hc</font></tt>.&nbsp; The default mode
+is <tt><font color="#3333FF">normal</font></tt>.
+<p>Another transfer option available is:
+<blockquote><tt><font color="#3333FF">device set read_xfer &lt;bool></font></tt></blockquote>
+This option tells the driver that performance on drive->host transfers
+is more important than seeing the data.&nbsp; When <tt><font color="#3333FF">read_xfer</font></tt>
+is off, performance will increase with certain translators (iTech) at the
+expense of having the receive buffer filled with data.&nbsp; Other translators
+(ASPI, SPTI) do direct DMA xfer to Niagara's buffers and do not support
+this feature.
+<p>The last useful command related to transfer modes is the <tt><font color="#3333FF">init</font></tt>
+command.&nbsp; The init command restores Niagara to its default transfer
+state (and also disables queuing and sets <tt><font color="#3333FF">feedback</font></tt>
+levels to a default level).
+<center>
+<h3>
+Creating, Removing, And Rescanning for Devices</h3></center>
+On many translators,&nbsp; Niagara support the ability to "hot swap" devices.&nbsp;
+The ability to manually add and remove devices is also supported.&nbsp;
+These features are useful for swapping devices while Niagara is running,
+for multi host emulation, and to manually target a drive that is not responding
+to the "Test Unit Ready" CDB.&nbsp; Not all translators support these features
+(The iTech driver supports all of these features).
+<p>To rescan the bus/loop for devices, use the following command:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">device rescan</font></tt></blockquote>
+To manually add a device, the command is:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">device create &lt;channel> &lt;host
+id> &lt;target id> &lt;lun></font></tt></blockquote>
+To remove a device, the command is:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">device remove &lt;index></font></tt></blockquote>
+
+</body>
+</html>

@@ -79,7 +79,7 @@ showDataTable = " " ;
 
 
 TestTimeTool ttMonitor = new TestTimeTool();
-Vector mtype = ttMonitor.getMtype(product);
+
 %>
 
 <title>

@@ -1,0 +1,39 @@
+open stream "<DMSTREAMFILESTART>"
+
+var masternode
+set masternode = get node 'Master File':variablefilenode
+set ^masternode {
+   full_filename = "<MASTERFILE>"
+}
+
+var datainputnode
+set datainputnode = get node 'Data input':variablefilenode
+set ^datainputnode {
+   full_filename = "<ALLRAWDATAFILE>" 
+}
+
+var percentconmpletenode
+set percentconmpletenode = get node '%Completion':derivenode 
+set ^percentconmpletenode {
+   new_name = "IndexAt xx%"
+   formula_expr = "to_integer(CompIndex * (<PERCENTCOMP>/100))"
+}
+
+var htmlsummaryoutputfile
+set htmlsummaryoutputfile = get node 'Summary HTML format':tablenode 
+set ^htmlsummaryoutputfile {
+   full_filename = "<HTMOUTPUTFILE>"
+   output_format="HTML"
+   lines_per_page = 100
+}
+
+var csvsummaryoutputfile
+set csvsummaryoutputfile = get node 'Summary CSV format':tablenode 
+set ^csvsummaryoutputfile {
+   full_filename = "<CSVOUTPUTFILE>"
+   output_format = "Delimited"   
+}
+
+save stream as "<DMSTREAMFILEEND>"
+execute 'Summary HTML format'
+execute 'Summary CSV format'

@@ -1,0 +1,117 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Using The Serial Interface</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#59188E" alink="#FF0000">
+
+<center>
+<h1>
+Using The Serial Translator</h1></center>
+The serial translator allow Niagara to talk to the drive through the serial
+interface.&nbsp; Niagara currently supports all of the features of Serial
+Debugger.&nbsp; Niagara will also support sending CDB commands to the drive
+through the serial port, once the feature becomes available.&nbsp; In the
+interest of user convenience, the serial interface translator is accessed
+in a slightly different way than other translators.&nbsp; This allow the
+serial translator to be used without explicitly switching to it.
+<br>&nbsp;
+<center>
+<h3>
+The Basic Approach</h3></center>
+When Niagara starts, it is ready to talk to the drive through the serial
+port.&nbsp; To begin communication, connect a drive and type:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">secho</font></tt></blockquote>
+This command attempts to connect to the drive through the serial interface.&nbsp;
+Upon success, the drive will respond and you will see a message like the
+following:
+<p><img SRC="secho.gif" NOSAVE height=260 width=566>
+<p>Note: The first serial command you run takes about 2 seconds to execute,
+this is because the Serial Translator is calibrating the serial connection
+based on the speed of your machine.
+<p>The other useful commands besides secho are:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">sread &lt;address> &lt;length> ?-dw?
+?-dd?</font></tt>
+<br><tt><font color="#3333FF">swrite &lt;address> &lt;length> ?-dw? ?-dd?
+?hex data...?</font></tt>
+<br><tt><font color="#3333FF">sreadsp</font></tt></blockquote>
+The sread command is used to read memory regions from the drive.&nbsp;
+The swrite command writes them.&nbsp; The sreadsp command returns the current
+location of the drive's stack pointer.&nbsp; All hexadecimal numbers must
+be preceded with <tt><font color="#3333FF">0x</font></tt>.&nbsp; Here are
+some examples of the commands in action:
+<br>&nbsp;
+<blockquote><tt>sread 0 100</tt>
+<br><tt>swrite 0x4000 0x10</tt>
+<br><tt>swrite 0x4000 0x1 -dw 0x1234</tt></blockquote>
+Note that, unlike Serial Debugger, Niagara uses the read and write buffers
+in its operations.&nbsp; This means that all of the <tt><font color="#000099">buff</font></tt>
+commands can be used to manipulate, load and save the buffer contents.&nbsp;
+If the <tt><font color="#000099">swrite</font></tt> command is not given
+any data on it's command line, buffer data is used (otherwise, the command
+line data is put in the send buffer and then used).&nbsp; These two commands
+groups, for example, are equivalent:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">swrite 0x4000 0x4 0x11 0x22 0x33
+0x44</font></tt>
+<p><tt><font color="#3333FF">bfs send 0 4 0x11 0x22 0x33 0x44</font></tt>
+<br><tt><font color="#3333FF">swrite 0x4000 0x4</font></tt></blockquote>
+
+<center>
+<h3>
+suil - Trading Clarity For Convenience</h3></center>
+
+<p><br>If you went through the last module on UIL translators you may be
+confused as to why we do not need to switch our uil to the serial translator
+to talk through the serial port.&nbsp; The reason is because the following
+commands:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">sread</font></tt>
+<br><tt><font color="#3333FF">swrite</font></tt>
+<br><tt><font color="#3333FF">secho</font></tt>
+<br><tt><font color="#3333FF">sreadsp</font></tt></blockquote>
+point to a UIL that is set independently of the CDB commands.&nbsp; The
+UIL pointed to is controlled by the <tt><font color="#3333FF">suil</font></tt>
+command.&nbsp; A screenshot may clarify this:
+<p><img SRC="suil.gif" height=272 width=511>
+<p>This screenshot shows the uil list.&nbsp; It also shows that the current
+uil for <i>CDB commands</i> (<tt><font color="#3333FF">read10</font></tt>,
+<tt><font color="#3333FF">inquiry</font></tt>,
+...) is set to zero.&nbsp; The current UIL for <i>serial commands</i> (<tt><font color="#3333FF">sread</font></tt>,
+<tt><font color="#3333FF">swrite</font></tt>,
+...) is set to 2.&nbsp; The separate categories allows us to use the serial
+port at the same time we execute CDB's without having to type <tt><font color="#3333FF">uil
+set index </font></tt>each time.
+<p>This begs the question: can you call <tt><font color="#3333FF">uil set
+index 2</font></tt>?&nbsp; can you call <tt><font color="#3333FF">suil
+0</font></tt>?&nbsp; Yes, and yes.&nbsp; In the first case the result will
+currently be "<font color="#FF0000">unsupported feature</font>" whenever
+you execute a CDB (in our next generation of product the result will actually
+be a CDB transfer over the serial line!)&nbsp; In the second case, the
+driver will simply return "<font color="#FF0000">unsupported feature</font>"
+every time you execute a serial command (because the spti driver does not
+know or care how to handle serial packets).&nbsp; Here is an example:
+<p><img SRC="suil_error.gif" NOSAVE height=410 width=540>
+<br>&nbsp;
+<center>
+<h1>
+GUI Utilities</h1></center>
+All of the utilities supported by Serial Debugger are also supported under
+Niagara.&nbsp; Here is how to reach them:
+<p><img SRC="serial_gui1.gif" NOSAVE height=323 width=645>
+<br>&nbsp;
+<p><img SRC="serial_gui2.gif" height=324 width=645>
+<br>&nbsp;
+<p>Here is a shot of Niagara's Address Lookup Dialog:
+<p><img SRC="address_lookup.gif" NOSAVE height=361 width=305>
+<p>See the Niagara documentation if you use dump files.&nbsp; Niagara has
+full support for dump files but handles them in a slightly different way
+than Serial Debugger does (Niagara takes advantages of its buffers, a feature
+that Serial Debugger does not have).
+</body>
+</html>

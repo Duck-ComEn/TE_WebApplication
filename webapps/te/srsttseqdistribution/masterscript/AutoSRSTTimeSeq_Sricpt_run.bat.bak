@@ -1,0 +1,15 @@
+echo off
+var port
+set port=28046
+
+echo on	
+
+rem ------------log is the generated log path
+set log=<DMLOG>
+set script=<DMSCRIPT>
+rem excute the stream/script===========
+echo on
+
+
+clemb  -hostname localhost -port %port%  -script %script% -execute  -log %log%
+@echo off

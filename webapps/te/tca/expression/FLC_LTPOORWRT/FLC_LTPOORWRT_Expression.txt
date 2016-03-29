@@ -1,0 +1,8 @@
+if (  (SERBPIM4 < 4.3 && OW_FUN > -26.0 && MCW < 0.103 && DELTAGMR3 > 5.0 && KG_DELTA > 1000) || (SERBPIM4 < 4.3 && OW_FUN > -26.0 && MCW < 0.103 && ERPD_AVE > 7.0 && ERPD_STDEV > 30.0 ) ) {
+
+sysoutput0 = "Fail";
+}
+
+else {
+sysoutput0 = "Pass";
+}

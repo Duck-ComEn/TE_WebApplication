@@ -1,0 +1,213 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (X11; U; Linux 2.4.7 i686) [Netscape]">
+   <title>Niagara / CIL Training - Motivation</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<center>
+<h1>
+Niagara / CIL Training - Motivation</h1></center>
+
+<center>
+<h3>
+What Is The CIL?</h3></center>
+CIL is an acronym for "Common Interface Layer".&nbsp; The CIL is a drive
+testing system based on fundamental software engineering concepts of layering
+and abstraction.&nbsp; These ideas allow tools and test scripts that are
+written for the CIL to adapt to a changing testing environment without
+having to be rewritten.
+<center>
+<h3>
+How Does The CIL Work?</h3></center>
+The CIL breaks the concept of a testing support system into 2 distinct
+layers: the interface layer and the translation layer.&nbsp; The interface
+layer represents an <b>unchanging method</b> for access underlying devices.&nbsp;
+The translation layer <b>translates</b> this method into the proper method
+for the specific device.
+<p>
+<center><img SRC="cil_image.gif" NOSAVE height=327 width=607></center>
+
+<br>&nbsp;
+<center>
+<h3>
+How Does The CIL Support New Features?</h3></center>
+The CIL has been carefully designed, not only to support new features,
+but to do so:
+<br>&nbsp;
+<ul>
+<li>
+Without requiring existing CIL applications to be recompiled</li>
+
+<li>
+Without requiring the CIL interface to be recompiled</li>
+
+<li>
+Without requiring any existing drivers to be recompiled*</li>
+</ul>
+How is this accomplished?&nbsp; Through the use of a UNIX concept known
+as "ioctls".&nbsp; The use of ioctls allow new features to be added without
+changing the functional specification of the interface.&nbsp; Translators
+are designed to return "unsupported feature" at any unrecognized ioctl.&nbsp;
+Therefore, the addition of new features does not break the existing system.&nbsp;
+Now for the * part:
+<ul>
+<li>
+Existing drivers to have to be modified / recompiled to actually support
+new features, but not to remain functional at their existing level.&nbsp;
+This allows for targeted improvement to the system.</li>
+</ul>
+
+<center>
+<h3>
+What Are The Benefits?</h3></center>
+
+<center>Historical Challenges</center>
+
+<ul>
+<li>
+In our history, we have moved from one established system to another (comet,
+FCL, iTech).</li>
+
+<li>
+In each of these cases the switch initially caused a lot of pain and rewriting
+of the same scripts.</li>
+
+<li>
+In most of these cases, the original system eventually degraded to an unsupported
+state, forcing us to leave behind excellent scripts / ideas.</li>
+
+<li>
+In most of these cases, we are forced to adapt ourselves to the limitations
+of the platforms features.&nbsp; Lack of portability, lack of interface
+support, missing features, and expensive hardware were all problems we
+were required to endure.</li>
+</ul>
+
+<center>The Layered Approach</center>
+
+<ul>
+<li>
+Once a script is written to the CIL, events such as vendors exiting the
+tester business or not supporting the latest interfaces turns from a large
+problem to a small one.&nbsp; Instead of being forced to rewrite all of
+our established test cases / utilities to a new proprietary system, we
+simply need to create a translator for whatever solution we find.</li>
+
+<li>
+The scripts that are created with CIL also offer a lot more in terms of
+flexibility:</li>
+
+<ul>
+<li>
+ITech cards too slow for a particular test?&nbsp; Run the exact same test
+on a fast HBA...</li>
+
+<li>
+Want to test preproduction microcode with a simulator?&nbsp; Use the same scripts that are
+used on real drives.</li>
+</ul>
+
+<li>
+The CIL contains no platform specific code (i.e. Microsoft COM, or windowing
+code)</li>
+
+<ul>
+<li>
+Both a Windows and Linux version are kept at identical functional levels</li>
+
+<li>
+Ports to other architectures (SUN, RS), are highly feasible</li>
+</ul>
+</ul>
+
+<center>
+<h3>
+What Is Niagara?</h3></center>
+The CIL is a drive testing interface written in C++.&nbsp; To talk to the CIL
+layer directly, C++ programming is required.&nbsp; Niagara encapsulates the CIL
+into a TCL based testing environment.&nbsp; This environment is Xyratex like in
+that it allows interactive sessions with the drives and contains a complete infrastructure
+that is specifically designed for drive testing.&nbsp; In certain cases it makes
+the most sense to program to CIL directly in C++, but for most cases, results
+can be achieved faster and with fewer lines of code using Niagara. <br>
+&nbsp;
+<center>
+<h3>
+What Is TCL?</h3></center>
+TCL stands for "Tool Command Language".&nbsp; This language was chosen
+for the following reasons:
+<br>&nbsp;
+<ul>
+<li>
+<b>Support:</b>&nbsp; There is a variety of support for TCL in the form
+of web sites, published books, newsgroups, and language extensions</li>
+
+<li>
+<b>Maturity:</b> TCL is now at version 8.3 and has been completely rewritten
+since its first reincarnation with a modern "byte code" architecture</li>
+
+<li>
+<b>Other Vendors:</b>&nbsp; Expensive, professional products such as Einstimer,
+ModelSim and Seamless contain a TCL engine which they have used with good
+success</li>
+</ul>
+
+<center>
+<h3>
+Is The CIL Ready For Serious Use?</h3></center>
+
+<center>(2/15/2002)</center>
+
+<p>For most applications, CIL is ready for prime time:
+<br>&nbsp;
+<ul>
+<li>
+The basic interface has not changed for over 6 months</li>
+
+<li>
+Many of the existing drivers (Linux, ASPI) have been stable for over 6
+months</li>
+
+<li>
+A good portion of FCL - ITech native code has been successfully ported
+to the CIL</li>
+
+<li>
+Niagara is beginning to become a staple tool for an expanding population
+of individuals, and this training is intended to increase that even more!</li>
+</ul>
+
+<p><br>&nbsp;In certain areas, however, the CIL is still in beta:
+<br>&nbsp;
+<ul>
+<li>
+The iTech translator, although stable in most areas, is still being refined
+in the area of command queuing.&nbsp; Command queuing is functional but
+not yet fully supported</li>
+
+<li>
+The simscsi translator is still in early Beta.&nbsp; In many areas the
+driver has good functionality (and is being actively used to test code)
+but more work needs to be done.</li>
+
+<li>
+The Niagara GUI requires a few minor cleanups</li>
+</ul>
+
+<p><br>The first two areas are high priority for the tools team as both
+represent important testing capability.&nbsp; The third is a statement
+of the quirkiness of user interaction with GUI systems, and is improving
+weekly.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Niagara CDB Commands - Lab</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#59188E" alink="#FF0000">
+
+<center>
+<h1>
+Niagara CDB Commands - Lab</h1></center>
+
+<h3>
+A Note On Drive Locking</h3>
+As a safety feature, Niagara may have your primary drive locked.&nbsp;
+If you are working on the simscsi driver, it is probably safe to unlock
+the drive from the GUI or by typing <tt><font color="#000099">device unlock
+0</font></tt>.&nbsp; If you are using the SPTI driver, be extra sure you
+are not pointed to your internal HDD!&nbsp; In any case, perform an <tt><font color="#000099">inquiry</font></tt>
+as your first step and confirm the drive you are talking to (before sending
+a potentially destructive command, such as <tt><font color="#000099">write10</font></tt>).&nbsp;
+Note that the GUI allows you to "remember" you current lock settings the
+next time you start Niagara.
+<h3>
+</h3>
+
+<h3>
+Part 1: CDB Equivalents</h3>
+Which of the following are equivalent to: <tt><font color="#3333FF">read10
+100 50 </font></tt><font color="#000000">(remember the </font><tt><font color="#3333FF">-dummy
+1</font></tt><font color="#000000">, option for confirmation)?</font>
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">read10 -lba 100 -translen 50</font></tt>
+<br><tt><font color="#3333FF">read10 -translen 50 -lba 100</font></tt>
+<br><tt><font color="#3333FF">r10 -lba 100 -dpo 0 -fua 0 -translen 50</font></tt>
+<br><tt><font color="#3333FF">r10 100 50 -reladr 1</font></tt></blockquote>
+Which of the following are equivalent to: <tt><font color="#3333FF">io6
+0x00 0x20 0x12 0x00 0x00 0x00 0x20 0x00</font></tt> (see the help for io6!)?
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">rd6 0 0x20</font></tt>
+<br><tt><font color="#3333FF">rd6 0x20 0</font></tt>
+<br><tt><font color="#3333FF">rd6 0x20 0x0</font></tt>
+<br><tt><font color="#3333FF">rd6</font></tt>
+<br><tt><font color="#3333FF">inq</font></tt>
+<br><tt><font color="#3333FF">inq 20</font></tt>
+<br><tt><font color="#3333FF">inq 0x20</font></tt>
+<br><tt><font color="#3333FF">inq 0 0x20</font></tt></blockquote>
+What are the differences between the following scripts?
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">proc s1 {} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; do 100 {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; r10 [randlba]</font></tt>
+<br><tt><font color="#3333FF">&nbsp; }</font></tt>
+<br><tt><font color="#3333FF">}</font></tt>
+<p><tt><font color="#3333FF">proc s2 {} {</font></tt>
+<br><tt><font color="#3333FF">&nbsp; do 100 {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; puts [r10 [randlba]]</font></tt>
+<br><tt><font color="#3333FF">&nbsp; }</font></tt>
+<br><tt><font color="#3333FF">}</font></tt>
+<p><tt><font color="#3333FF">proc s3 {} {</font></tt>
+<p><tt><font color="#3333FF">&nbsp; feedback maxlen 0</font></tt>
+<p><tt><font color="#3333FF">&nbsp; do 100 {</font></tt>
+<br><tt><font color="#3333FF">&nbsp;&nbsp;&nbsp; r10 [randlba]</font></tt>
+<br><tt><font color="#3333FF">&nbsp; }</font></tt>
+<p><tt><font color="#3333FF">&nbsp; feedback default</font></tt>
+<p><tt><font color="#3333FF">}</font></tt>
+<br>&nbsp;</blockquote>
+
+<br>&nbsp;
+<br>&nbsp;
+<blockquote>&nbsp;</blockquote>
+
+</body>
+</html>

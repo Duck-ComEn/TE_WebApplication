@@ -1,0 +1,7 @@
+if (  ALTIMAXSUBMIN>=400 && I_DEF1OW_O>=-31.000 ) {
+
+sysoutput0="FAIL";
+}else{
+sysoutput0="PASS";
+
+}

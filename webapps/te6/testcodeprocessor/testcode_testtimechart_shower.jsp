@@ -19,8 +19,12 @@ String[] passerDriveHeader = {"Passer_FirstYield", "Passer_LatestYield", "Passer
 		
  int colCount = 2; 
  Hashtable hastt2Group = new Hashtable<Integer,Object>(); 
+ Vector mtype2 = new Vector();
  
-for (int processIndex = 0; processIndex < processID.size(); processIndex++){ %>
+for (int processIndex = 0; processIndex < processID.size(); processIndex++){ 
+	int procID2 = (Integer)processID.get(processIndex);
+	mtype2 = ttMonitor.getMtype(product,procID2);
+%>
 <tr>
 	<td width="100%" align="left">
 		<div id = "content-Process-header">Process ID <%=(Integer)processID.get(processIndex)%></div>
@@ -28,8 +32,9 @@ for (int processIndex = 0; processIndex < processID.size(); processIndex++){ %>
 </tr>	
 
 <%
-for (int entryCount = 0 ; entryCount < mtype.size(); entryCount++){
-	  hashTesterType.put(processID.get(processIndex), ttMonitor.getTesterType(product, (Integer)processID.get(processIndex)));
+for (int entryCount = 0 ; entryCount < mtype2.size(); entryCount++){
+	String mtypeName2 = (String)mtype2.get(entryCount);
+	  hashTesterType.put(processID.get(processIndex), ttMonitor.getTesterType(mtypeName2, (Integer)processID.get(processIndex)));
 	  Vector vtTesterType = (Vector)hashTesterType.get((Integer)processID.get(processIndex));
 	  for ( int ttCount = 0 ; ttCount < vtTesterType.size(); ttCount+=colCount){
 		String tester2TypeName = (String)vtTesterType.get(ttCount);
@@ -38,30 +43,37 @@ for (int entryCount = 0 ; entryCount < mtype.size(); entryCount++){
 			<td width="100%" align="center" >
 				<table width="100%" border="0">
 				  <tr>
-				  <td width="50%"> <div id="<%=(Integer)processID.get(processIndex)%>_<%=(String)mtype.get(entryCount)%>_<%=(String)vtTesterType.get(ttCount)%>" style="width:100%; height:500px;"></div></td>
+			
+				  <td width="50%"> <div id="<%=(Integer)processID.get(processIndex)%>_<%=(String)mtype2.get(entryCount)%>_<%=(String)vtTesterType.get(ttCount)%>" style="width:100%; height:500px;"></div></td>
                     <% if (((ttCount+1) < vtTesterType.size())){%>
-					    <td width="50%"> <div id="<%=(Integer)processID.get(processIndex)%>_<%=(String)mtype.get(entryCount)%>_<%=(String)vtTesterType.get(ttCount+1)%>" style="width:100%; height:500px;"></div></td>
-				    <%}else{%>
-					    <td width="50%"> </td>
+					    <td width="50%"> <div id="<%=(Integer)processID.get(processIndex)%>_<%=(String)mtype2.get(entryCount)%>_<%=(String)vtTesterType.get(ttCount+1)%>" style="width:100%; height:500px;"></div></td>
+				    <%}else {%>
+					    <td width="50%" align="CENTER"></td>
 					<%}%>
 				  </tr>
 				</table>
 			</td>
 		   </tr>
+
+<%
+	  }
+	}
+	%>
 <!--**************************************************
 ********************* Show Table *********************
 ************ Show Table If box is ticked. ************
 ***************************************************-->
-<%	if(showDataTable.equals("checked")){%>
-	
-<table width = "100%" border="1" cellspacing="0" border color ="#AEAEAE" align = "center">
-	<% Vector vt = ttMonitor.getTestTimeTrend(product,(Integer)processID.get(processIndex),tester2TypeName,"ALL_PROD");
-		if (vt.size()>0){%>
+
+<%	if(showDataTable.equals("checked")){
+	%>
+	<table width = "100%" border="1" cellspacing="0" border color ="#AEAEAE" align = "center">
+
+
 		<div id ="content-table-header">Detail Table</div>
 		
 		<!-- Header Zone -->
 		<tr align = "center" >
-		<%for (int loop = 0 ; loop < commonHeader.length; loop++){%>
+		 <%for (int loop = 0 ; loop < commonHeader.length; loop++){%>
 			
 			<td><U><B><%=commonHeader[loop]%></B></U></td>
 		<%} if (reportByAllDrives.equals("checked")){%>
@@ -72,11 +84,21 @@ for (int entryCount = 0 ; entryCount < mtype.size(); entryCount++){
 			<%for (int loop = 0 ; loop < passerDriveHeader.length; loop++){%>
 			<td><U><B><%=passerDriveHeader[loop]%></B></U></td>
 		<%}
-		}		
+		}	
 		%>
 		</tr>
-		
-		<!--END OF HEADER ZONE-->
+	<%
+for (int entryCount = 0 ; entryCount < mtype2.size(); entryCount++){
+	String mtypeName2 = (String)mtype2.get(entryCount);
+	  hashTesterType.put(processID.get(processIndex), ttMonitor.getTesterType(mtypeName2, (Integer)processID.get(processIndex)));
+	  Vector vtTesterType = (Vector)hashTesterType.get((Integer)processID.get(processIndex));
+	  for ( int ttCount = 0 ; ttCount < vtTesterType.size(); ttCount+=colCount){
+		String tester2TypeName = (String)vtTesterType.get(ttCount);	
+	%>
+
+	<% Vector vt = ttMonitor.getTestTimeTrend(mtypeName2,(Integer)processID.get(processIndex),tester2TypeName,"ALL_PROD");
+		if (vt.size()>0){%>
+
 		
 		<!-- DATA ZONE -->
 		<% for (int vDataLoop = 0; vDataLoop < vt.size(); vDataLoop++){%>
@@ -88,7 +110,6 @@ for (int entryCount = 0 ; entryCount < mtype.size(); entryCount++){
 			<td><%=((TestTimeMonitor) vt.get(vDataLoop)).getTesterType()%></td>
 			<td><%=((TestTimeMonitor) vt.get(vDataLoop)).getExecuteDate()%></td>
 			<td><%=((TestTimeMonitor) vt.get(vDataLoop)).getMss()%></td>
-			
 			
 			<%if (reportByAllDrives.equals("checked")){%>
 			<td><%=((TestTimeMonitor) vt.get(vDataLoop)).getAll_firstYield()%></td>
@@ -119,14 +140,20 @@ for (int entryCount = 0 ; entryCount < mtype.size(); entryCount++){
 		<%}
 		}%>
 		</tr>
-</table>
-<p style="border-bottom:5px double black;"</p>
 
-<%
-		}
-		}
+
+	
+	<%
 	  }
-	}
+	  }
+}
+	  %>
+	  
+</table>
+<p style="border-bottom:5px double black;"</p>	
+<%
+	  
+}
 }
 %>
 

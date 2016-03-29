@@ -1,0 +1,85 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Niagara Buffer Commands - Lab</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<center>
+<h1>
+Niagara Buffer Commands - Lab</h1></center>
+
+<h3>
+Exercise 1</h3>
+
+<p><br>Dump the hex contents of the third lba using the buff dump command
+(assume 512 byte block size):
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">r10 -lba 0 -translen 10</font></tt></blockquote>
+
+<h3>
+Exercise 2</h3>
+
+<p><br>Calling <font color="#3333FF">read_capacity</font> with a 8 byte
+return size causes the drive to return the following table:
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER=3 CELLPADDING=10 WIDTH="50%" NOSAVE >
+<tr NOSAVE>
+<td NOSAVE>4 Bytes</td>
+
+<td>Maximum LBA</td>
+</tr>
+
+<tr>
+<td>4 Bytes</td>
+
+<td>Blocksize</td>
+</tr>
+</table>
+Use the <tt><font color="#3333FF">buff format</font></tt> command to print
+the following string:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">Maximum LBA = </font></tt><font color="#FF0000">&lt;a>&nbsp;
+</font><tt><font color="#000099">Blocksize =</font></tt><font color="#FF0000">
+&lt;b></font></blockquote>
+Where <font color="#FF0000">&lt;a></font> and <font color="#CC0000">&lt;b></font>&nbsp;
+will be encoded in the binary table returned by:
+<br>&nbsp;
+<blockquote><tt><font color="#3333FF">read_capacity</font></tt></blockquote>
+
+<h3>
+Exercise 3</h3>
+Use the <tt><font color="#3333FF">buff fill string</font></tt> command
+to write your name into buffer 0 (remember the -help option).&nbsp; Use
+the<font color="#3333FF"> buff dump</font> command to confirm that your
+name is there...
+<p>If you <i>are sure</i> that you are talking to a <b>test device</b>
+(<tt><font color="#3333FF">inquiry</font></tt> helps here), write your
+name to the drive using the <tt><font color="#3366FF">write10 </font></tt>command.&nbsp;
+If you are at your office PC, make <i>extra sure</i> you are not talking
+to your internal HDD*! (If you're at a co-workers PC, go ahead and try
+it out...).&nbsp; Use the <font color="#3333FF">read10</font><font color="#000000">
+command to read your name back from the drive.&nbsp; Dump the send and
+receive buffers and compare thier contents...</font><font color="#000000"></font>
+<p><font color="#000000">Note:&nbsp; If you are using work.exe, be aware
+that current version can be unstable under certain read / write combinations.</font>
+<p>*Niagara supports the ability to <i>lock</i> a drive, preventing CDB's
+from being sent to the drive.&nbsp; If you don't have your important drive(s)
+locked, however, Niagara will happily write to them...
+<br>&nbsp;
+<h3>
+Exercise 4 (optional extra credit)</h3>
+Write a script that does 1 block random read/write operations with random
+data (the <tt><font color="#3333FF">randlba </font></tt>command is useful
+for these type of operations).&nbsp; Use the <tt><font color="#3333FF">buff
+compare</font></tt> command to confirm data integrity.
+<p>Next add time/date stamping to your code with the <tt><font color="#3333FF">buff
+fill string</font></tt> and <tt><font color="#3333FF">clock format [clock
+seconds]</font></tt> commands.
+<br>&nbsp;
+</body>
+</html>

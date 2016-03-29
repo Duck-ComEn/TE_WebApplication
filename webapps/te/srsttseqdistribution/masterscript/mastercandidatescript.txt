@@ -1,0 +1,62 @@
+open stream "<DMSTREAMFILESTART>"
+
+var EOADB_USERID
+set EOADB_USERID = '2412655'
+var EOADB_ODBCNAME
+set EOADB_ODBCNAME = 'EOADB'
+var EOADB_PASSWORD
+set EOADB_PASSWORD = '83BO9M'
+
+#----------- Set sql for 6400 -------------------------------
+var sql6400
+set sql6400 = "select HDDSN,ENDDATE,PROCID,PFCODE from <PRODUCT>.HDD_6400_PROC where HDDSN in (<HDDSNLIST>)"
+
+var sdb6400
+set sdb6400 = get node '6400':databasenode
+set ^sdb6400 {
+  datasource = EOADB_ODBCNAME
+  username = EOADB_USERID
+  password = EOADB_PASSWORD
+  mode = Query
+  query = sql6400
+}
+
+#----------- Set sql for 6600 Proc -------------------------------
+var sql6600proc
+set sql6600proc = "select HDDSN,ENDDATE,PROCID,PFCODE from <PRODUCT>.HDD_6600_PROC where HDDSN in (<HDDSNLIST>)"
+
+var sdb6600proc
+set sdb6600proc = get node '6600_Proc':databasenode
+set ^sdb6600proc {
+  datasource = EOADB_ODBCNAME
+  username = EOADB_USERID
+  password = EOADB_PASSWORD
+  mode = Query
+  query = sql6600proc
+}
+
+#----------- Set sql for 6600 Unit -------------------------------
+var sql6600unit
+set sql6600unit = "select HDDSN,ENDDATE,SRSTVER from <PRODUCT>.HDD_6600_UNIT where SRSTVER in (<SRSTCODEVERSION>)"
+
+var sdb6600unit
+set sdb6600unit = get node '6600_Unit':databasenode
+set ^sdb6600unit {
+  datasource = EOADB_ODBCNAME
+  username = EOADB_USERID
+  password = EOADB_PASSWORD
+  mode = Query
+  query = sql6600unit
+}
+
+#------------- Set Output file -----------------------------------------------------------------
+var csvoutputfile
+set csvoutputfile = get node 'Summary CSV format':tablenode 
+set ^csvoutputfile {
+   full_filename = "<CSVOUTPUTFILE>"
+   output_format = "Delimited"   
+}
+
+
+save stream as "<DMSTREAMFILEEND>"
+execute 'Summary CSV format'

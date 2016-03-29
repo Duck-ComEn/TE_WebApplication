@@ -1,0 +1,70 @@
+﻿<script type="text/JavaScript">
+			 var chartData = new Array();
+			 
+				 chartData[1] = {
+				 ww					: <%=36%> ,
+				 msstesttime		: <%=70%> ,
+				 
+				<%if (yaxisYield.equals("checked")){%>
+				 yieldFirstPass : <%=90.25%>,
+				<%}else if (yaxisQty.equals("checked")){%>
+						qty: <%=102905%>,
+				<%}else if (yaxisLatestYield.equals("checked")){%>
+						latestYield: <%=89.89%>,
+				<%}%>
+				 
+				 <%if (reportByAllDrives.equals("checked")){%>
+					 tt95_unit: <%=69.82%>,
+					 tt99_unit: <%=69.25%>,
+					 mean_unit: <%=70.10%>,
+					 min_unit:  <%=0.00%>,
+					 max_unit:  <%=103.49%>,
+					 sdev_unit: <%=74.55%>,
+					 count_unit:<%=102905%>,
+					 
+				 <%}else if (reportByPasserDrives .equals("checked")){%>
+					 _95_passer: <%=64.99%>,
+					 _99_passer: <%=62.46%>,
+					mean_passer: <%=68.43%>,
+					 min_passer: <%=1.11%>,
+					 max_passer: <%=102.66%>,
+					 sdev_passer: <%=75.35%>,
+					 count_passer: <%=87936%>,
+					 
+				 <%}else if (reportByTester.equals("checked")){%>
+				     t95_tester: <%=64.33%>,
+					 t99_tester: <%=63.46%>,
+					 mean_tester: <%=67.99%>,
+					 min_tester: <%=1.99%>,
+					 max_tester: <%=116.96%>,
+					 sdev_tester: <%=80.00%>,
+					 count_tester: <%=99%>,
+				
+			
+				<%}else if (reportByDriveTestCode.equals("checked")){%>
+					 bd_95_testCode:	<%=66.66%>,
+					 bd_99_testCode:	<%=65.64%>,
+					 bd_mean_testCode:	<%=68.88%>,
+					 bd_min_testCode: 	<%=0.96%>,
+					 bd_max_testCode: 	<%=118.73%>,
+					 bd_sdev_testCode: 	<%=76.15%>,
+					 bd_count_testCode: <%=118978%>,
+				
+				 			
+				<%}else if (reportByTestTimeTestCode.equals("checked")){%>
+					 bt_95_testCode:	<%=69.73%>,
+					 bt_99_testCode:	<%=69.88%>,
+					 bt_mean_testCode:	<%=68.55%>,
+					 bt_min_testCode: 	<%=0.84%>,
+					 bt_max_testCode: 	<%=113.66%>,
+					 bt_sdev_testCode: 	<%=74.49%>,
+					 bt_count_testCode: <%=102456%>,
+				 <%}%>
+				};
+
+			generateChart("<%=6400%>_<%="CBE6"%>_<%="ABCD"%>",chartData,"<%=(Integer)6400%> <%=(String)"CBE6%"%> <%=(String)"DCBA"%>");
+
+</script>
+
+
+

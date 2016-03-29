@@ -1,0 +1,30 @@
+TrialSubject,condition for test system
+OwnerName,Piyanan
+Email,piyanan.kamlangmark@hgst.com
+Product,AR6
+TrialID,A1JF
+TestCode,ARHS36AM;ARHS36AC
+TesterID,*
+PFCode,9998
+Include,1
+Drive input,240
+Process,6400
+StartDate,1-Oct-15
+EndDate,31-Dec-16
+Yield,0
+TestTime,1
+ChiSquare,0
+ModelType,*
+Sampling,*
+MFGID,*
+TestCode_FA,*
+MFGID_FA,*
+TrialID_FA,*
+StartDate_FA,
+EndDate_FA,
+TestCode_FB,*
+MFGID_FB,*
+TrialID_FB,*
+StartDate_FB,
+EndDate_FB,
+Tracker,1

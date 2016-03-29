@@ -1,0 +1,7 @@
+if (  SER < 4.00 ) {
+
+sysoutput0 = "Fail";
+}else{
+sysoutput0 = "Pass";
+
+}

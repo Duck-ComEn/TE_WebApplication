@@ -11,7 +11,6 @@
 <%@ page import ="com.hitachigst.prb.te.util.ErrException"%>
 
 
-
 <%
 try{
 	String username = request.getParameter("username");
@@ -47,4 +46,5 @@ try{
 	   //response.sendRedirect("logon_screen.jsp");
 }
 %>
+
 

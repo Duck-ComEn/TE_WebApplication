@@ -1,0 +1,1029 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-874">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 10">
+<link rel=File-List href="GraphMacro_files/filelist.xml">
+<link rel=Edit-Time-Data href="GraphMacro_files/editdata.mso">
+<link rel=OLE-Object-Data href="GraphMacro_files/oledata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+x\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:LastAuthor>Songkran Junpet</o:LastAuthor>
+  <o:Created>1996-10-14T23:33:28Z</o:Created>
+  <o:LastSaved>2009-08-16T16:16:44Z</o:LastSaved>
+  <o:Version>10.6845</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:DownloadComponents/>
+  <o:LocationOfComponents HRef="file:///\\"/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+<style>
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+@page
+	{margin:1.0in .75in 1.0in .75in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;}
+tr
+	{mso-height-source:auto;}
+col
+	{mso-width-source:auto;}
+br
+	{mso-data-placement:same-cell;}
+.style0
+	{mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	white-space:nowrap;
+	mso-rotate:0;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	color:windowtext;
+	font-size:10.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Arial;
+	mso-generic-font-family:auto;
+	mso-font-charset:0;
+	border:none;
+	mso-protection:locked visible;
+	mso-style-name:Normal;
+	mso-style-id:0;}
+td
+	{mso-style-parent:style0;
+	padding:0px;
+	mso-ignore:padding;
+	color:windowtext;
+	font-size:10.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Arial;
+	mso-generic-font-family:auto;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	mso-protection:locked visible;
+	white-space:nowrap;
+	mso-rotate:0;}
+.xl24
+	{mso-style-parent:style0;
+	color:white;
+	background:white;
+	mso-pattern:auto none;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <x:ExcelWorkbook>
+  <x:ExcelWorksheets>
+   <x:ExcelWorksheet>
+    <x:Name>rawdata</x:Name>
+    <x:WorksheetOptions>
+     <x:Print>
+      <x:ValidPrinterInfo/>
+      <x:PaperSizeIndex>9</x:PaperSizeIndex>
+      <x:HorizontalResolution>600</x:HorizontalResolution>
+      <x:VerticalResolution>600</x:VerticalResolution>
+     </x:Print>
+     <x:CodeName>Sheet1</x:CodeName>
+     <x:Selected/>
+     <x:Panes>
+      <x:Pane>
+       <x:Number>3</x:Number>
+       <x:ActiveRow>1</x:ActiveRow>
+       <x:ActiveCol>2</x:ActiveCol>
+      </x:Pane>
+     </x:Panes>
+     <x:ProtectContents>False</x:ProtectContents>
+     <x:ProtectObjects>False</x:ProtectObjects>
+     <x:ProtectScenarios>False</x:ProtectScenarios>
+    </x:WorksheetOptions>
+    <x:QueryTable>
+     <x:Name>ptctimedistri_10</x:Name>
+     <x:AutoFormatFont/>
+     <x:AutoFormatPattern/>
+     <x:QuerySource>
+      <x:QueryType>Text</x:QueryType>
+      <x:DoNotPromptForFile/>
+      <x:TextWizardSettings>
+       <x:Name
+        HRef="D:\Tomcat_9.0\webapps\te\srsttseqdistribution\masterscript\macrotrigger\ptctimedistri.csv"/>
+       <x:Source>874</x:Source>
+       <x:Decimal>.</x:Decimal>
+       <x:ThousandSeparator>,</x:ThousandSeparator>
+       <x:TrailingMinusNumbers/>
+       <x:FormatSettings>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+       </x:FormatSettings>
+       <x:Delimiters>
+        <x:Tab/>
+        <x:Comma/>
+       </x:Delimiters>
+      </x:TextWizardSettings>
+      <x:VersionLastRefresh>1</x:VersionLastRefresh>
+     </x:QuerySource>
+    </x:QueryTable>
+    <x:QueryTable>
+     <x:Name>ptctimedistri_7</x:Name>
+     <x:AutoFormatFont/>
+     <x:AutoFormatPattern/>
+     <x:QuerySource>
+      <x:QueryType>Text</x:QueryType>
+      <x:DoNotPromptForFile/>
+      <x:TextWizardSettings>
+       <x:Name
+        HRef="D:\Tomcat_9.0\webapps\te\srsttseqdistribution\result\ptctimedistri.csv"/>
+       <x:Source>874</x:Source>
+       <x:Decimal>.</x:Decimal>
+       <x:ThousandSeparator>,</x:ThousandSeparator>
+       <x:FormatSettings>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+       </x:FormatSettings>
+       <x:Delimiters>
+        <x:Tab/>
+        <x:Comma/>
+       </x:Delimiters>
+      </x:TextWizardSettings>
+      <x:VersionLastRefresh>1</x:VersionLastRefresh>
+     </x:QuerySource>
+    </x:QueryTable>
+    <x:QueryTable>
+     <x:Name>ptctimedistri_8</x:Name>
+     <x:AutoFormatFont/>
+     <x:AutoFormatPattern/>
+     <x:QuerySource>
+      <x:QueryType>Text</x:QueryType>
+      <x:DoNotPromptForFile/>
+      <x:TextWizardSettings>
+       <x:Name
+        HRef="D:\Tomcat_9.0\webapps\te\srsttseqdistribution\result\ptctimedistri.csv"/>
+       <x:Source>874</x:Source>
+       <x:Decimal>.</x:Decimal>
+       <x:ThousandSeparator>,</x:ThousandSeparator>
+       <x:FormatSettings>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+       </x:FormatSettings>
+       <x:Delimiters>
+        <x:Tab/>
+        <x:Comma/>
+       </x:Delimiters>
+      </x:TextWizardSettings>
+      <x:VersionLastRefresh>1</x:VersionLastRefresh>
+     </x:QuerySource>
+    </x:QueryTable>
+    <x:QueryTable>
+     <x:Name>ptctimedistri_9</x:Name>
+     <x:AutoFormatFont/>
+     <x:AutoFormatPattern/>
+     <x:QuerySource>
+      <x:QueryType>Text</x:QueryType>
+      <x:DoNotPromptForFile/>
+      <x:TextWizardSettings>
+       <x:Name
+        HRef="D:\Tomcat_9.0\webapps\te\srsttseqdistribution\result\ptctimedistri.csv"/>
+       <x:Source>874</x:Source>
+       <x:Decimal>.</x:Decimal>
+       <x:ThousandSeparator>,</x:ThousandSeparator>
+       <x:FormatSettings>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+        <x:FieldType>AutoFormat</x:FieldType>
+       </x:FormatSettings>
+       <x:Delimiters>
+        <x:Tab/>
+        <x:Comma/>
+       </x:Delimiters>
+      </x:TextWizardSettings>
+      <x:VersionLastRefresh>1</x:VersionLastRefresh>
+     </x:QuerySource>
+    </x:QueryTable>
+   </x:ExcelWorksheet>
+   <x:ExcelWorksheet>
+    <x:Name>Sheet2</x:Name>
+    <x:WorksheetOptions>
+     <x:CodeName>Sheet2</x:CodeName>
+     <x:ProtectContents>False</x:ProtectContents>
+     <x:ProtectObjects>False</x:ProtectObjects>
+     <x:ProtectScenarios>False</x:ProtectScenarios>
+    </x:WorksheetOptions>
+   </x:ExcelWorksheet>
+   <x:ExcelWorksheet>
+    <x:Name>Sheet3</x:Name>
+    <x:WorksheetOptions>
+     <x:CodeName>Sheet3</x:CodeName>
+     <x:ProtectContents>False</x:ProtectContents>
+     <x:ProtectObjects>False</x:ProtectObjects>
+     <x:ProtectScenarios>False</x:ProtectScenarios>
+    </x:WorksheetOptions>
+   </x:ExcelWorksheet>
+  </x:ExcelWorksheets>
+  <x:WindowHeight>9300</x:WindowHeight>
+  <x:WindowWidth>15135</x:WindowWidth>
+  <x:WindowTopX>120</x:WindowTopX>
+  <x:WindowTopY>120</x:WindowTopY>
+  <x:AcceptLabelsInFormulas/>
+  <x:ProtectStructure>False</x:ProtectStructure>
+  <x:ProtectWindows>False</x:ProtectWindows>
+ </x:ExcelWorkbook>
+ <x:ExcelName>
+  <x:Name>ptctimedistri</x:Name>
+  <x:SheetIndex>1</x:SheetIndex>
+  <x:Formula>=rawdata!$A$1:$A$43</x:Formula>
+ </x:ExcelName>
+ <x:ExcelName>
+  <x:Name>ptctimedistri_1</x:Name>
+  <x:SheetIndex>1</x:SheetIndex>
+  <x:Formula>=rawdata!$A$1:$Q$43</x:Formula>
+ </x:ExcelName>
+ <x:ExcelName>
+  <x:Name>ptctimedistri_10</x:Name>
+  <x:SheetIndex>1</x:SheetIndex>
+  <x:Formula>=rawdata!$A$1:$I$43</x:Formula>
+ </x:ExcelName>
+ <x:ExcelName>
+  <x:Name>ptctimedistri_2</x:Name>
+  <x:SheetIndex>1</x:SheetIndex>
+  <x:Formula>=rawdata!$A$1:$Q$43</x:Formula>
+ </x:ExcelName>
+ <x:ExcelName>
+  <x:Name>ptctimedistri_3</x:Name>
+  <x:SheetIndex>1</x:SheetIndex>
+  <x:Formula>=rawdata!$A$1:$P$43</x:Formula>
+ </x:ExcelName>
+ <x:ExcelName>
+  <x:Name>ptctimedistri_4</x:Name>
+  <x:SheetIndex>1</x:SheetIndex>
+  <x:Formula>=rawdata!$A$1:$O$43</x:Formula>
+ </x:ExcelName>
+ <x:ExcelName>
+  <x:Name>ptctimedistri_5</x:Name>
+  <x:SheetIndex>1</x:SheetIndex>
+  <x:Formula>=rawdata!$A$1:$N$43</x:Formula>
+ </x:ExcelName>
+ <x:ExcelName>
+  <x:Name>ptctimedistri_6</x:Name>
+  <x:SheetIndex>1</x:SheetIndex>
+  <x:Formula>=rawdata!$A$1:$M$43</x:Formula>
+ </x:ExcelName>
+ <x:ExcelName>
+  <x:Name>ptctimedistri_7</x:Name>
+  <x:SheetIndex>1</x:SheetIndex>
+  <x:Formula>=rawdata!$A$1:$L$43</x:Formula>
+ </x:ExcelName>
+ <x:ExcelName>
+  <x:Name>ptctimedistri_8</x:Name>
+  <x:SheetIndex>1</x:SheetIndex>
+  <x:Formula>=rawdata!$A$1:$K$43</x:Formula>
+ </x:ExcelName>
+ <x:ExcelName>
+  <x:Name>ptctimedistri_9</x:Name>
+  <x:SheetIndex>1</x:SheetIndex>
+  <x:Formula>=rawdata!$A$1:$J$43</x:Formula>
+ </x:ExcelName>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2049"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body link=blue vlink=purple class=xl24>
+
+<table x:str border=0 cellpadding=0 cellspacing=0 width=893 style='border-collapse:
+ collapse;table-layout:fixed;width:674pt'>
+ <col class=xl24 width=62 style='mso-width-source:userset;mso-width-alt:2267;
+ width:47pt'>
+ <col class=xl24 width=48 span=2 style='mso-width-source:userset;mso-width-alt:
+ 1755;width:36pt'>
+ <col class=xl24 width=82 style='mso-width-source:userset;mso-width-alt:2998;
+ width:62pt'>
+ <col class=xl24 width=76 style='mso-width-source:userset;mso-width-alt:2779;
+ width:57pt'>
+ <col class=xl24 width=65 style='mso-width-source:userset;mso-width-alt:2377;
+ width:49pt'>
+ <col class=xl24 width=69 style='mso-width-source:userset;mso-width-alt:2523;
+ width:52pt'>
+ <col class=xl24 width=74 style='mso-width-source:userset;mso-width-alt:2706;
+ width:56pt'>
+ <col class=xl24 width=41 span=9 style='mso-width-source:userset;mso-width-alt:
+ 1499;width:31pt'>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 width=62 style='height:12.75pt;width:47pt' align=left
+  valign=top><!--[if gte vml 1]><v:shapetype id="_x0000_t201" coordsize="21600,21600"
+   o:spt="201" path="m,l,21600r21600,l21600,xe">
+   <v:stroke joinstyle="miter"/>
+   <v:path shadowok="f" o:extrusionok="f" strokeok="f" fillok="f"
+    o:connecttype="rect"/>
+   <o:lock v:ext="edit" shapetype="t"/>
+  </v:shapetype><v:shape id="_x0000_s1029" type="#_x0000_t201" style='position:absolute;
+   direction:LTR;text-align:left;margin-left:0;margin-top:0;width:659.25pt;
+   height:379.5pt;z-index:1' fillcolor="window [78]" stroked="f" strokecolor="windowText [77]"
+   strokeweight="3e-5mm" o:insetmode="auto">
+   <v:fill color2="windowText [77]"/>
+   <o:lock v:ext="edit" rotation="t" text="t"/>
+   <x:ClientData ObjectType="Chart">
+    <x:AutoLine>False</x:AutoLine>
+    <x:WebChart>
+     <x:Chart>
+      <x:Name>Chart 5</x:Name>
+      <x:Title>
+       <x:Caption>
+        <x:DataSource>-1</x:DataSource>
+        <x:Data>&quot;<x:B>SRST SEQ Distribution 98%</x:B>&quot;</x:Data>
+       </x:Caption>
+       <x:Font>
+        <x:FontName>Arial</x:FontName>
+        <x:Size>17.5</x:Size>
+        <x:B/>
+        <x:AutoScale/>
+       </x:Font>
+       <x:Border>
+        <x:ColorIndex>None</x:ColorIndex>
+       </x:Border>
+       <x:Interior>
+        <x:ColorIndex>None</x:ColorIndex>
+       </x:Interior>
+       <x:Left>-2547.1856030273439</x:Left>
+       <x:Top>-121.919765625</x:Top>
+       <x:Width>1037.3752001953126</x:Width>
+       <x:Height>74.294857177734372</x:Height>
+      </x:Title>
+      <x:Options>
+       <x:SizeWithWindow/>
+      </x:Options>
+      <x:PageSetup>
+       <x:ChartSize>FullPage</x:ChartSize>
+      </x:PageSetup>
+      <x:Border>
+       <x:ColorIndex>None</x:ColorIndex>
+      </x:Border>
+      <x:Font>
+       <x:FontName>Arial</x:FontName>
+       <x:Size>14.5</x:Size>
+       <x:AutoScale/>
+      </x:Font>
+      <x:Left>-14.9853515625</x:Left>
+      <x:Top>-14.9853515625</x:Top>
+      <x:Width>13214.970703125</x:Width>
+      <x:Height>7619.9853515625</x:Height>
+      <x:ChartGrowth>
+       <x:HorzGrowth>1.799468994140625</x:HorzGrowth>
+       <x:VertGrowth>1.200927734375</x:VertGrowth>
+      </x:ChartGrowth>
+      <x:PlotArea>
+       <x:Left>16.518713378906249</x:Left>
+       <x:Top>632.45878417968754</x:Top>
+       <x:Width>7734.0616040039058</x:Width>
+       <x:Height>6680.8221569824218</x:Height>
+       <x:Border>
+        <x:ColorIndex>None</x:ColorIndex>
+       </x:Border>
+       <x:Interior>
+        <x:ColorIndex>None</x:ColorIndex>
+       </x:Interior>
+       <x:Font>
+        <x:FontName>Arial</x:FontName>
+        <x:Size>21.5</x:Size>
+        <x:AutoScale/>
+       </x:Font>
+       <x:Graph>
+        <x:Type>Pie</x:Type>
+        <x:SubType>Standard</x:SubType>
+        <x:VaryColors/>
+        <x:FirstSliceAngle>0</x:FirstSliceAngle>
+        <x:Series>
+         <x:Index>0</x:Index>
+         <x:Name>Series 1</x:Name>
+         <x:Category>
+          <x:DataSource>0</x:DataSource>
+          <x:Data>rawdata!$C$2:$C$43</x:Data>
+         </x:Category>
+         <x:Value>
+          <x:DataSource>0</x:DataSource>
+          <x:Data>rawdata!$D$2:$D$43</x:Data>
+         </x:Value>
+        </x:Series>
+        <x:PlotVisible/>
+       </x:Graph>
+      </x:PlotArea>
+      <x:Legend>
+       <x:Type>Horizontal</x:Type>
+       <x:Placement>Custom</x:Placement>
+       <x:Left>8150.333181152344</x:Left>
+       <x:Top>7.6199853515624998</x:Top>
+       <x:Width>4240</x:Width>
+       <x:Height>7460</x:Height>
+       <x:Font>
+        <x:FontName>Arial</x:FontName>
+        <x:Size>12</x:Size>
+       </x:Font>
+      </x:Legend>
+     </x:Chart>
+    </x:WebChart>
+   </x:ClientData>
+  </v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout;
+  position:absolute;z-index:1;margin-left:0px;margin-top:0px;width:880px;
+  height:507px'><![endif]><![if !excel]><img width=880 height=507
+  src="GraphMacro_files/image001.gif" v:shapes="_x0000_s1029" class=shape
+  v:dpi="96"><![endif]><![if !vml]></span><![endif]><span style='mso-ignore:
+  vglayout2'>
+  <table cellpadding=0 cellspacing=0>
+   <tr>
+    <td height=17 class=xl24 align=left width=62 style='height:12.75pt;
+    width:47pt'><a name="ptctimedistri_10"></a><a name=ptctimedistri>SEQCHR</a></td>
+   </tr>
+  </table>
+  </span></td>
+  <td class=xl24 align=left width=48 style='width:36pt'>LPCNT</td>
+  <td class=xl24 align=left width=48 style='width:36pt'>SEQLO<span
+  style='display:none'>OP</span></td>
+  <td class=xl24 align=left width=82 style='width:62pt'>TIME at xx%</td>
+  <td class=xl24 align=left width=76 style='width:57pt'>TIME_Mean</td>
+  <td class=xl24 align=left width=65 style='width:49pt'>TIME_Min</td>
+  <td class=xl24 align=left width=69 style='width:52pt'>TIME_Max</td>
+  <td class=xl24 align=left width=74 style='width:56pt'>TIME_SDev</td>
+  <td class=xl24 align=left width=41 style='width:31pt'>Count</td>
+  <td class=xl24 width=41 style='width:31pt'>&nbsp;</td>
+  <td class=xl24 width=41 style='width:31pt'>&nbsp;</td>
+  <td class=xl24 width=41 style='width:31pt'>&nbsp;</td>
+  <td class=xl24 width=41 style='width:31pt'>&nbsp;</td>
+  <td class=xl24 width=41 style='width:31pt'>&nbsp;</td>
+  <td class=xl24 width=41 style='width:31pt'>&nbsp;</td>
+  <td class=xl24 width=41 style='width:31pt'>&nbsp;</td>
+  <td class=xl24 width=41 style='width:31pt'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>?</td>
+  <td class=xl24 align=right x:num>13</td>
+  <td class=xl24 align=left x:fmla="=A2 &amp;B2">?13</td>
+  <td class=xl24 align=right x:num>2702</td>
+  <td class=xl24 align=right x:num>2701.6</td>
+  <td class=xl24 align=right x:num>2700</td>
+  <td class=xl24 align=right x:num>2705</td>
+  <td class=xl24 align=right x:num="2.0739999999999998">2.074</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>a</td>
+  <td class=xl24 align=right x:num>58</td>
+  <td class=xl24 align=left x:fmla="=A3 &amp;B3">a58</td>
+  <td class=xl24 align=right x:num>20</td>
+  <td class=xl24 align=right x:num>23</td>
+  <td class=xl24 align=right x:num>20</td>
+  <td class=xl24 align=right x:num>29</td>
+  <td class=xl24 align=right x:num="5.1959999999999997">5.196</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>a</td>
+  <td class=xl24 align=right x:num>59</td>
+  <td class=xl24 align=left x:fmla="=A4 &amp;B4">a59</td>
+  <td class=xl24 align=right x:num>87</td>
+  <td class=xl24 align=right x:num="89.332999999999998">89.333</td>
+  <td class=xl24 align=right x:num>86</td>
+  <td class=xl24 align=right x:num>95</td>
+  <td class=xl24 align=right x:num="4.9329999999999998">4.933</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>a</td>
+  <td class=xl24 align=right x:num>61</td>
+  <td class=xl24 align=left x:fmla="=A5 &amp;B5">a61</td>
+  <td class=xl24 align=right x:num>504</td>
+  <td class=xl24 align=right x:num>507</td>
+  <td class=xl24 align=right x:num>504</td>
+  <td class=xl24 align=right x:num>513</td>
+  <td class=xl24 align=right x:num="5.1959999999999997">5.196</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>a</td>
+  <td class=xl24 align=right x:num>63</td>
+  <td class=xl24 align=left x:fmla="=A6 &amp;B6">a63</td>
+  <td class=xl24 align=right x:num>252</td>
+  <td class=xl24 align=right x:num="254.667">254.667</td>
+  <td class=xl24 align=right x:num>251</td>
+  <td class=xl24 align=right x:num>261</td>
+  <td class=xl24 align=right x:num="5.508">5.508</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>c</td>
+  <td class=xl24 align=right x:num>39</td>
+  <td class=xl24 align=left x:fmla="=A7 &amp;B7">c39</td>
+  <td class=xl24 align=right x:num>2</td>
+  <td class=xl24 align=right x:num="5.3330000000000002">5.333</td>
+  <td class=xl24 align=right x:num>2</td>
+  <td class=xl24 align=right x:num>12</td>
+  <td class=xl24 align=right x:num="5.774">5.774</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>c</td>
+  <td class=xl24 align=right x:num>41</td>
+  <td class=xl24 align=left x:fmla="=A8 &amp;B8">c41</td>
+  <td class=xl24 align=right x:num>140</td>
+  <td class=xl24 align=right x:num>140</td>
+  <td class=xl24 align=right x:num>125</td>
+  <td class=xl24 align=right x:num>155</td>
+  <td class=xl24 align=right x:num>15</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>c</td>
+  <td class=xl24 align=right x:num>42</td>
+  <td class=xl24 align=left x:fmla="=A9 &amp;B9">c42</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num="4.3330000000000002">4.333</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num>11</td>
+  <td class=xl24 align=right x:num="5.774">5.774</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>c</td>
+  <td class=xl24 align=right x:num>43</td>
+  <td class=xl24 align=left x:fmla="=A10 &amp;B10">c43</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num>4</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num>11</td>
+  <td class=xl24 align=right x:num="6.0830000000000002">6.083</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>c</td>
+  <td class=xl24 align=right x:num>44</td>
+  <td class=xl24 align=left x:fmla="=A11 &amp;B11">c44</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num>4</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num>10</td>
+  <td class=xl24 align=right x:num="5.1959999999999997">5.196</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>d</td>
+  <td class=xl24 align=right x:num>12</td>
+  <td class=xl24 align=left x:fmla="=A12 &amp;B12">d12</td>
+  <td class=xl24 align=right x:num>1702</td>
+  <td class=xl24 align=right x:num>1634</td>
+  <td class=xl24 align=right x:num>1536</td>
+  <td class=xl24 align=right x:num>1728</td>
+  <td class=xl24 align=right x:num="87.954999999999998">87.955</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>d</td>
+  <td class=xl24 align=right x:num>17</td>
+  <td class=xl24 align=left x:fmla="=A13 &amp;B13">d17</td>
+  <td class=xl24 align=right x:num>850</td>
+  <td class=xl24 align=right x:num>817.8</td>
+  <td class=xl24 align=right x:num>792</td>
+  <td class=xl24 align=right x:num>856</td>
+  <td class=xl24 align=right x:num="32.283000000000001">32.283</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>d</td>
+  <td class=xl24 align=right x:num>18</td>
+  <td class=xl24 align=left x:fmla="=A14 &amp;B14">d18</td>
+  <td class=xl24 align=right x:num>854</td>
+  <td class=xl24 align=right x:num>818.2</td>
+  <td class=xl24 align=right x:num>791</td>
+  <td class=xl24 align=right x:num>856</td>
+  <td class=xl24 align=right x:num>33.67</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>d</td>
+  <td class=xl24 align=right x:num>21</td>
+  <td class=xl24 align=left x:fmla="=A15 &amp;B15">d21</td>
+  <td class=xl24 align=right x:num>2710</td>
+  <td class=xl24 align=right x:num>2696.6</td>
+  <td class=xl24 align=right x:num>2671</td>
+  <td class=xl24 align=right x:num>2730</td>
+  <td class=xl24 align=right x:num="24.367999999999999">24.368</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>d</td>
+  <td class=xl24 align=right x:num>22</td>
+  <td class=xl24 align=left x:fmla="=A16 &amp;B16">d22</td>
+  <td class=xl24 align=right x:num>851</td>
+  <td class=xl24 align=right x:num>819</td>
+  <td class=xl24 align=right x:num>794</td>
+  <td class=xl24 align=right x:num>860</td>
+  <td class=xl24 align=right x:num="33.473999999999997">33.474</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>d</td>
+  <td class=xl24 align=right x:num>23</td>
+  <td class=xl24 align=left x:fmla="=A17 &amp;B17">d23</td>
+  <td class=xl24 align=right x:num>2712</td>
+  <td class=xl24 align=right x:num>2696.6</td>
+  <td class=xl24 align=right x:num>2671</td>
+  <td class=xl24 align=right x:num>2729</td>
+  <td class=xl24 align=right x:num="24.337">24.337</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>I</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=left x:fmla="=A18 &amp;B18">I0</td>
+  <td class=xl24 align=right x:num>63</td>
+  <td class=xl24 align=right x:num="9.2650000000000006">9.265</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num>63</td>
+  <td class=xl24 align=right x:num="22.648">22.648</td>
+  <td class=xl24 align=right x:num>34</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>k</td>
+  <td class=xl24 align=right x:num>2</td>
+  <td class=xl24 align=left x:fmla="=A19 &amp;B19">k2</td>
+  <td class=xl24 align=right x:num>2</td>
+  <td class=xl24 align=right x:num>2</td>
+  <td class=xl24 align=right x:num>2</td>
+  <td class=xl24 align=right x:num>2</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>s</td>
+  <td class=xl24 align=right x:num>29</td>
+  <td class=xl24 align=left x:fmla="=A20 &amp;B20">s29</td>
+  <td class=xl24 align=right x:num>2734</td>
+  <td class=xl24 align=right x:num>1984.6</td>
+  <td class=xl24 align=right x:num>1323</td>
+  <td class=xl24 align=right x:num>3117</td>
+  <td class=xl24 align=right x:num="870.404">870.404</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>s</td>
+  <td class=xl24 align=right x:num>32</td>
+  <td class=xl24 align=left x:fmla="=A21 &amp;B21">s32</td>
+  <td class=xl24 align=right x:num>1372</td>
+  <td class=xl24 align=right x:num>1337.2</td>
+  <td class=xl24 align=right x:num>1313</td>
+  <td class=xl24 align=right x:num>1373</td>
+  <td class=xl24 align=right x:num="32.237000000000002">32.237</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>T</td>
+  <td class=xl24 align=right x:num>14</td>
+  <td class=xl24 align=left x:fmla="=A22 &amp;B22">T14</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>u</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=left x:fmla="=A23 &amp;B23">u1</td>
+  <td class=xl24 align=right x:num>2</td>
+  <td class=xl24 align=right x:num>2</td>
+  <td class=xl24 align=right x:num>2</td>
+  <td class=xl24 align=right x:num>2</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>u</td>
+  <td class=xl24 align=right x:num>64</td>
+  <td class=xl24 align=left x:fmla="=A24 &amp;B24">u64</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num="1.333">1.333</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num>2</td>
+  <td class=xl24 align=right x:num="0.57699999999999996">0.577</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>v</td>
+  <td class=xl24 align=right x:num>19</td>
+  <td class=xl24 align=left x:fmla="=A25 &amp;B25">v19</td>
+  <td class=xl24 align=right x:num>219</td>
+  <td class=xl24 align=right x:num>184.8</td>
+  <td class=xl24 align=right x:num>100</td>
+  <td class=xl24 align=right x:num>399</td>
+  <td class=xl24 align=right x:num="130.024">130.024</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>v</td>
+  <td class=xl24 align=right x:num>25</td>
+  <td class=xl24 align=left x:fmla="=A26 &amp;B26">v25</td>
+  <td class=xl24 align=right x:num>18</td>
+  <td class=xl24 align=right x:num>14.8</td>
+  <td class=xl24 align=right x:num>11</td>
+  <td class=xl24 align=right x:num>22</td>
+  <td class=xl24 align=right x:num>4.97</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>v</td>
+  <td class=xl24 align=right x:num>26</td>
+  <td class=xl24 align=left x:fmla="=A27 &amp;B27">v26</td>
+  <td class=xl24 align=right x:num>15</td>
+  <td class=xl24 align=right x:num>13.6</td>
+  <td class=xl24 align=right x:num>11</td>
+  <td class=xl24 align=right x:num>17</td>
+  <td class=xl24 align=right x:num="2.4079999999999999">2.408</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>v</td>
+  <td class=xl24 align=right x:num>35</td>
+  <td class=xl24 align=left x:fmla="=A28 &amp;B28">v35</td>
+  <td class=xl24 align=right x:num>541</td>
+  <td class=xl24 align=right x:num>227.4</td>
+  <td class=xl24 align=right x:num>11</td>
+  <td class=xl24 align=right x:num>561</td>
+  <td class=xl24 align=right x:num>295.49</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>v</td>
+  <td class=xl24 align=right x:num>38</td>
+  <td class=xl24 align=left x:fmla="=A29 &amp;B29">v38</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num="1.667">1.667</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td class=xl24 align=right x:num="2.887">2.887</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>v</td>
+  <td class=xl24 align=right x:num>46</td>
+  <td class=xl24 align=left x:fmla="=A30 &amp;B30">v46</td>
+  <td class=xl24 align=right x:num>56</td>
+  <td class=xl24 align=right x:num>117</td>
+  <td class=xl24 align=right x:num>54</td>
+  <td class=xl24 align=right x:num>241</td>
+  <td class=xl24 align=right x:num="107.392">107.392</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>v</td>
+  <td class=xl24 align=right x:num>47</td>
+  <td class=xl24 align=left x:fmla="=A31 &amp;B31">v47</td>
+  <td class=xl24 align=right x:num>12</td>
+  <td class=xl24 align=right x:num>15</td>
+  <td class=xl24 align=right x:num>11</td>
+  <td class=xl24 align=right x:num>22</td>
+  <td class=xl24 align=right x:num="6.0830000000000002">6.083</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>v</td>
+  <td class=xl24 align=right x:num>48</td>
+  <td class=xl24 align=left x:fmla="=A32 &amp;B32">v48</td>
+  <td class=xl24 align=right x:num>11</td>
+  <td class=xl24 align=right x:num="11.333">11.333</td>
+  <td class=xl24 align=right x:num>11</td>
+  <td class=xl24 align=right x:num>12</td>
+  <td class=xl24 align=right x:num="0.57699999999999996">0.577</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>v</td>
+  <td class=xl24 align=right x:num>49</td>
+  <td class=xl24 align=left x:fmla="=A33 &amp;B33">v49</td>
+  <td class=xl24 align=right x:num>12</td>
+  <td class=xl24 align=right x:num="280.33300000000003">280.333</td>
+  <td class=xl24 align=right x:num>12</td>
+  <td class=xl24 align=right x:num>817</td>
+  <td class=xl24 align=right x:num="464.767">464.767</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>v</td>
+  <td class=xl24 align=right x:num>50</td>
+  <td class=xl24 align=left x:fmla="=A34 &amp;B34">v50</td>
+  <td class=xl24 align=right x:num>11</td>
+  <td class=xl24 align=right x:num="12.667">12.667</td>
+  <td class=xl24 align=right x:num>11</td>
+  <td class=xl24 align=right x:num>16</td>
+  <td class=xl24 align=right x:num="2.887">2.887</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>v</td>
+  <td class=xl24 align=right x:num>51</td>
+  <td class=xl24 align=left x:fmla="=A35 &amp;B35">v51</td>
+  <td class=xl24 align=right x:num>12</td>
+  <td class=xl24 align=right x:num="17.332999999999998">17.333</td>
+  <td class=xl24 align=right x:num>12</td>
+  <td class=xl24 align=right x:num>28</td>
+  <td class=xl24 align=right x:num="9.2379999999999995">9.238</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>v</td>
+  <td class=xl24 align=right x:num>52</td>
+  <td class=xl24 align=left x:fmla="=A36 &amp;B36">v52</td>
+  <td class=xl24 align=right x:num>13</td>
+  <td class=xl24 align=right x:num>60</td>
+  <td class=xl24 align=right x:num>13</td>
+  <td class=xl24 align=right x:num>154</td>
+  <td class=xl24 align=right x:num="81.406000000000006">81.406</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>V</td>
+  <td class=xl24 align=right x:num>20</td>
+  <td class=xl24 align=left x:fmla="=A37 &amp;B37">V20</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td class=xl24 align=right x:num="1.931">1.931</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num>10</td>
+  <td class=xl24 align=right x:num>2.12</td>
+  <td class=xl24 align=right x:num>29</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>w</td>
+  <td class=xl24 align=right x:num>8</td>
+  <td class=xl24 align=left x:fmla="=A38 &amp;B38">w8</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>w</td>
+  <td class=xl24 align=right x:num>9</td>
+  <td class=xl24 align=left x:fmla="=A39 &amp;B39">w9</td>
+  <td class=xl24 align=right x:num>64</td>
+  <td class=xl24 align=right x:num>63.4</td>
+  <td class=xl24 align=right x:num>62</td>
+  <td class=xl24 align=right x:num>66</td>
+  <td class=xl24 align=right x:num="1.673">1.673</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>w</td>
+  <td class=xl24 align=right x:num>15</td>
+  <td class=xl24 align=left x:fmla="=A40 &amp;B40">w15</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>w</td>
+  <td class=xl24 align=right x:num>27</td>
+  <td class=xl24 align=left x:fmla="=A41 &amp;B41">w27</td>
+  <td class=xl24 align=right x:num>22</td>
+  <td class=xl24 align=right x:num>22.6</td>
+  <td class=xl24 align=right x:num>22</td>
+  <td class=xl24 align=right x:num>25</td>
+  <td class=xl24 align=right x:num="1.3420000000000001">1.342</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>w</td>
+  <td class=xl24 align=right x:num>30</td>
+  <td class=xl24 align=left x:fmla="=A42 &amp;B42">w30</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num>0.6</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num="0.54800000000000004">0.548</td>
+  <td class=xl24 align=right x:num>5</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl24 align=left style='height:12.75pt'>w</td>
+  <td class=xl24 align=right x:num>36</td>
+  <td class=xl24 align=left x:fmla="=A43 &amp;B43">w36</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num="0.66700000000000004">0.667</td>
+  <td class=xl24 align=right x:num>0</td>
+  <td class=xl24 align=right x:num>1</td>
+  <td class=xl24 align=right x:num="0.57699999999999996">0.577</td>
+  <td class=xl24 align=right x:num>3</td>
+  <td colspan=8 class=xl24 style='mso-ignore:colspan'>&nbsp;</td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=62 style='width:47pt'></td>
+  <td width=48 style='width:36pt'></td>
+  <td width=48 style='width:36pt'></td>
+  <td width=82 style='width:62pt'></td>
+  <td width=76 style='width:57pt'></td>
+  <td width=65 style='width:49pt'></td>
+  <td width=69 style='width:52pt'></td>
+  <td width=74 style='width:56pt'></td>
+  <td width=41 style='width:31pt'></td>
+  <td width=41 style='width:31pt'></td>
+  <td width=41 style='width:31pt'></td>
+  <td width=41 style='width:31pt'></td>
+  <td width=41 style='width:31pt'></td>
+  <td width=41 style='width:31pt'></td>
+  <td width=41 style='width:31pt'></td>
+  <td width=41 style='width:31pt'></td>
+  <td width=41 style='width:31pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</body>
+
+</html>

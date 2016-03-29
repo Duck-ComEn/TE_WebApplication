@@ -1,8 +1,10 @@
 ﻿<script type="text/JavaScript">
+
 <%
  // ----------------- Create Chart by Process ----------------------------------
 	Hashtable hashTesterType = new Hashtable<Integer,Vector>(); 
 	Vector processID ;
+	Vector mtype = new Vector();
 	
 	//Check process No. by Product.
 		if((product.equals("CBE")) || (product.equals("CBF")) || (product.equals("KCF")) ){
@@ -24,16 +26,15 @@
 	<%
 	for (int procIndex = 0; procIndex < processID.size(); procIndex++){
 		int procID = (Integer)processID.get(procIndex);
-		hashTesterType.put(procID, ttMonitor.getTesterType(product, procID));
-		Vector testerType = (Vector)hashTesterType.get(procID);
-		Vector testPgmVer = (Vector)ttMonitor.getTestPgmVer(product, procID);
+		mtype = ttMonitor.getMtype(product,procID);
+		
 		for ( int mtypeLoop = 0 ; mtypeLoop < mtype.size() ; mtypeLoop++){
 			String mtypeName = (String)mtype.get(mtypeLoop);
+			hashTesterType.put(procID, ttMonitor.getTesterType(mtypeName, procID));
+			Vector testerType = (Vector)hashTesterType.get(procID);
 			for ( int ttCount = 0 ; ttCount < testerType.size(); ttCount++){
 				String testerTypeName = (String)testerType.get(ttCount);
 				Vector vt   = ttMonitor.getTestTimeTrend(mtypeName,procID,testerTypeName,"ALL_PROD");
-				
-
 %>
 		    var checkManualTesterType;
 			var checkAutoTesterType;
@@ -51,7 +52,6 @@
 			<% for (int vDataLoop = 0; vDataLoop < vt.size(); vDataLoop++) {%>
 			
 
-			
 			chartData[<%=vDataLoop%>] = {
 				weekDate				: <%=((TestTimeMonitor) vt.get(vDataLoop)).getWeekDate()%>,
 				proc					: <%=((TestTimeMonitor) vt.get(vDataLoop)).getProc()%>,
@@ -86,17 +86,22 @@
 					passer_meanMaxByTester	: <%=((TestTimeMonitor) vt.get(vDataLoop)).getPasser_meanMaxByTester()%>,
 				//<%}%>
 			};
-				generateChart("<%=procID%>_<%=mtypeName%>_<%=testerTypeName%>",chartData,"<%=(Integer)processID.get(procIndex)%> <%=(String)mtype.get(mtypeLoop)%> <%=(String)testerType.get(ttCount)%>", checkManualTesterTypeHidden, checkAutoTesterTypeHidden);
+				
+				
+<%				
 
+			}
+			%>
+			generateChart("<%=procID%>_<%=mtypeName%>_<%=testerTypeName%>",chartData,"<%=(Integer)processID.get(procIndex)%> <%=(String)mtype.get(mtypeLoop)%> <%=(String)testerType.get(ttCount)%>", checkManualTesterTypeHidden, checkAutoTesterTypeHidden);
+			<%
 			
-<%			
-				}
 			}
 		}
 	}
 	
 	
 %>
-
 </script>
+
+
 

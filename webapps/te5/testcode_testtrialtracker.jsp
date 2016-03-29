@@ -508,13 +508,13 @@ MM_reloadPage(true);
 
                                       }
       //  <!--------------------------------Config path Run Trial Tracker-------------------------------------------------------------------->
-                                  String pathcsv = "C:\\Tomcat_9.0\\webapps\\te5\\TrialTrackerStatus\\MacroTrigger\\MacroTrigger.exe";
+                                  String pathcsv = "C:\\Tomcat_9.0\\webapps\\te5\\TrialTrackerStatus\\MacroTrigger\\runMacro.exe";
                                   File finishfiles = new File("C:\\Tomcat_9.0\\webapps\\te5\\TrialTrackerStatus\\Condition\\OneCondition\\comp.bin");
                                   File finishfile = new File("C:\\Tomcat_9.0\\webapps\\te5\\TrialTrackerStatus\\");
                                   File[] checklistfiles = finishfile.listFiles();
                                   File filecsv = new File(pathcsv);
                                   filecsv.toURI();
-                                  Process p = Runtime.getRuntime().exec("cmd /c start /wait "+filecsv);
+                                  Process p = Runtime.getRuntime().exec("cmd /c start /wait "+filecsv +" 1");
                                   p.waitFor();
 
                     for(int c=0;c< checklistfiles.length;c++) {
