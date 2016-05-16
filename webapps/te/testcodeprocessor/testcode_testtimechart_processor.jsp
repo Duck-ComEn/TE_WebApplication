@@ -4,6 +4,10 @@
  // ----------------- Create Chart by Process ----------------------------------
 	Hashtable hashTesterType = new Hashtable<Integer,Vector>(); 
 	Vector processID ;
+	Vector mtype = new Vector();
+	
+	String[] meanTypeReport = new String[]{"NEPTUNE", "SATURN"};
+	List byMeanTesterType = Arrays.asList(meanTypeReport);
 	
 	//Check process No. by Product.
 		if((product.equals("CBE")) || (product.equals("CBF")) || (product.equals("KCF")) ){
@@ -22,39 +26,54 @@
 			processID.addElement(new Integer(9000));
 		}
 	%>
+	
 	<%
 	for (int procIndex = 0; procIndex < processID.size(); procIndex++){
 		int procID = (Integer)processID.get(procIndex);
-		hashTesterType.put(procID, ttMonitor.getTesterType(product, procID));
-		Vector testerType = (Vector)hashTesterType.get(procID);
-		Vector testPgmVer = (Vector)ttMonitor.getTestPgmVer(product, procID);
+		mtype = ttMonitor.getMtype(product,procID);
 		for ( int mtypeLoop = 0 ; mtypeLoop < mtype.size() ; mtypeLoop++){
 			String mtypeName = (String)mtype.get(mtypeLoop);
+			hashTesterType.put(procID, ttMonitor.getTesterType(mtypeName, procID));
+			Vector testerType = (Vector)hashTesterType.get(procID);
 			for ( int ttCount = 0 ; ttCount < testerType.size(); ttCount++){
 				String testerTypeName = (String)testerType.get(ttCount);
 				Vector vt   = ttMonitor.getTestTimeTrend(mtypeName,procID,testerTypeName,"ALL_PROD");
 %>
-		    var checkManualTesterType;
-			var checkAutoTesterType;
+	
+			var hiddenReportMean;
+			var testTimeAxisMinimum;
+			var testTimeAxisMaximum;
+			var testTimeGridCount;
 			
-			<%if (testerTypeName.equals("XCALIBRE") || testerTypeName.equals("NEPTUNE") || testerTypeName.equals("SATTERN")){%>
-				checkManualTesterTypeHidden = true;
-				checkAutoTesterTypeHidden = false;
-			<%} else {%>
-				checkManualTesterTypeHidden = false;
-				checkAutoTesterTypeHidden = true;
-			<%
-			}
-			%>
+			<%if (procID == 6400) {%>
+				testTimeAxisMinimum = 0;
+				testTimeAxisMaximum = 30;
+				testTimeGridCount = 6;
+			<%}else if(procID == 6600 || procID == 6800) {%>
+				testTimeAxisMinimum = 0;
+				testTimeAxisMaximum = 150;
+				testTimeGridCount = 15;
+			<%}else if(procID == 9000) {%>
+				testTimeAxisMinimum = 0;
+				testTimeAxisMaximum = 25;
+				testTimeGridCount = 5;
+			<%}%>
+			<% if(byMeanTesterType.contains(testerTypeName)){%>
+			
+				hiddenReportMean = false;
+			<%} else{%>
+				hiddenReportMean = true;
+			<%}%>
+			//window.confirm("mtypeNAME: <%=testerTypeName%>" + ", hiddenReportMean: " + hiddenReportMean);
 			var chartData = new Array();
-			<% for (int vDataLoop = 0; vDataLoop < vt.size(); vDataLoop++) {%>
+			<%for (int vDataLoop = 0; vDataLoop < vt.size(); vDataLoop++) {%>
+			
 			
 
 			chartData[<%=vDataLoop%>] = {
 				weekDate				: <%=((TestTimeMonitor) vt.get(vDataLoop)).getWeekDate()%>,
 				proc					: <%=((TestTimeMonitor) vt.get(vDataLoop)).getProc()%>,
 				mss						: <%=((TestTimeMonitor) vt.get(vDataLoop)).getMss()%>,
-				
 				//<%if (reportByAllDrives.equals("checked")){%>
 					all_firstYield			: <%=((TestTimeMonitor) vt.get(vDataLoop)).getAll_firstYield()%>,
 					all_latestYield			: <%=((TestTimeMonitor) vt.get(vDataLoop)).getAll_lastYield()%>,
@@ -80,16 +99,14 @@
 					passer_100comp			: <%=((TestTimeMonitor) vt.get(vDataLoop)).getPasser_100comp()%>,
 					passer_meanMaxByTester	: <%=((TestTimeMonitor) vt.get(vDataLoop)).getPasser_meanMaxByTester()%>,
 					passer_count			: <%=((TestTimeMonitor) vt.get(vDataLoop)).getPasser_count()%>,
-					passer_executeDate		: <%=((TestTimeMonitor) vt.get(vDataLoop)).getExecuteDate()%>,
-					passer_meanMaxByTester	: <%=((TestTimeMonitor) vt.get(vDataLoop)).getPasser_meanMaxByTester()%>,
+					passer_executeDate		: <%=((TestTimeMonitor) vt.get(vDataLoop)).getExecuteDate()%>
 				//<%}%>
-			};
-				generateChart("<%=procID%>_<%=mtypeName%>_<%=testerTypeName%>",chartData,"<%=(Integer)processID.get(procIndex)%> <%=(String)mtype.get(mtypeLoop)%> <%=(String)testerType.get(ttCount)%>", checkManualTesterTypeHidden, checkAutoTesterTypeHidden);
-
-				
+			};	
 <%				
-
 			}
+			%>
+			generateChart("<%=procID%>_<%=mtypeName%>_<%=testerTypeName%>",chartData,"<%=(Integer)processID.get(procIndex)%> <%=(String)mtype.get(mtypeLoop)%> <%=(String)testerType.get(ttCount)%>", hiddenReportMean, testTimeAxisMinimum, testTimeAxisMaximum, testTimeGridCount);
+			<%
 			
 			}
 		}

@@ -1,4 +1,4 @@
-function generateChart(chartName, chartData , chartTitle, checkManualTesterType, checkAutoTesterType){
+function generateChart(chartName, chartData , chartTitle, hiddenReportMean, testTimeAxisMinimum, testTimeAxisMaximum, testTimeGridCount){
             var chart;
 			var defaultHidden;
 			var colorIndex = new Array("#FF0000","#00FF00","#0000FF","#FAB800","#00B3FF","#EF00FF","#337F00","#A804C5");
@@ -18,8 +18,8 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
 
 				//categoryAxis.gridPosition = "middle";  // Possible values are: "start" and "middle"
 				categoryAxis.inside = false;              
-                categoryAxis.autoGridCount = true;
-				categoryAxis.startOnAxis = true;
+                categoryAxis.autoGridCount = false;
+				categoryAxis.startOnAxis = false;
                 categoryAxis.gridCount = 50;
                 categoryAxis.gridAlpha = 0.1;
                 categoryAxis.gridColor = "#333333";
@@ -47,7 +47,12 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
                 var testTimeAxis = new AmCharts.ValueAxis();
                 testTimeAxis.title = "Test Time (hrs)"; // Y left axis title
                 testTimeAxis.gridAlpha = 0.1;
-                testTimeAxis.axisAlpha = 50;
+                testTimeAxis.axisAlpha = 1;
+				testTimeAxis.labelFrequency = 2;
+				testTimeAxis.autoGridCount = false;
+				testTimeAxis.gridCount = testTimeGridCount;
+				testTimeAxis.minimum = testTimeAxisMinimum;
+				testTimeAxis.maximum = testTimeAxisMaximum;
 				testTimeAxis.gridColor = "#333333";
                 testTimeAxis.axisColor = "#555555";
                 testTimeAxis.inside = false;              
@@ -143,8 +148,12 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
 					ttMeanUnitGraph.lineThickness = 1;
 					ttMeanUnitGraph.legendValueText = "[[value]]";
 					ttMeanUnitGraph.bullet = "square";
-					ttMeanUnitGraph.hidden = checkAutoTesterType;
+					ttMeanUnitGraph.hidden = hiddenReportMean;
 					chart.addGraph(ttMeanUnitGraph);
+					
+
+					
+
 
 
 					// Min_Unit test time graph
@@ -200,7 +209,7 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
 					ttMeanMaxUnitGraph.lineThickness = 1;
 					ttMeanMaxUnitGraph.legendValueText = "[[value]]";
 					ttMeanMaxUnitGraph.bullet = "square";
-					ttMeanMaxUnitGraph.hidden = checkManualTesterType;
+					ttMeanMaxUnitGraph.hidden = !hiddenReportMean;
 					chart.addGraph(ttMeanMaxUnitGraph);
 					
 					
@@ -293,7 +302,7 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
 					ttMeanPasserGraph.lineThickness = 1;
 					ttMeanPasserGraph.legendValueText = "[[value]]";
 					ttMeanPasserGraph.bullet = "square";
-					ttMeanPasserGraph.hidden = checkAutoTesterType;
+					ttMeanPasserGraph.hidden = hiddenReportMean;
 					chart.addGraph(ttMeanPasserGraph);
 					
 					// Min_passer test time graph
@@ -341,7 +350,7 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
 					// MeanMax test time graph
 					var ttMeanMaxUnitGraph = new AmCharts.AmGraph();
 					ttMeanMaxUnitGraph.title = "Passer_Batch";
-					ttMeanMaxUnitGraph.valueField = "all_meanMaxByTester";
+					ttMeanMaxUnitGraph.valueField = "passer_meanMaxByTester";
 					ttMeanMaxUnitGraph.type = "line";
 					ttMeanMaxUnitGraph.valueAxis = testTimeAxis; // indicate which axis should be used
 					ttMeanMaxUnitGraph.lineColor = colorIndex[i++]; //"#20B2AA";
@@ -349,7 +358,7 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
 					ttMeanMaxUnitGraph.lineThickness = 1;
 					ttMeanMaxUnitGraph.legendValueText = "[[value]]";
 					ttMeanMaxUnitGraph.bullet = "square";
-					ttMeanMaxUnitGraph.hidden = checkManualTesterType;
+					ttMeanMaxUnitGraph.hidden = !hiddenReportMean;
 					chart.addGraph(ttMeanMaxUnitGraph);
 					
 					
@@ -408,7 +417,7 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
                 mssTestTimeGraph.balloonText = "[[value]]";
                 mssTestTimeGraph.lineThickness = 1;
                 mssTestTimeGraph.legendValueText = "[[value]]";
-                mssTestTimeGraph.bullet = "square";
+                mssTestTimeGraph.bullet = "bubble";
 				mssTestTimeGraph.hidden = false;
                 chart.addGraph(mssTestTimeGraph);
 

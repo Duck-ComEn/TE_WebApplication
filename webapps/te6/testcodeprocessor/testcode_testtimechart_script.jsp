@@ -1,4 +1,4 @@
-function generateChart(chartName, chartData , chartTitle, checkManualTesterType, checkAutoTesterType){
+function generateChart(chartName, chartData , chartTitle, hiddenReportMean){
             var chart;
 			var defaultHidden;
 			var colorIndex = new Array("#FF0000","#00FF00","#0000FF","#FAB800","#00B3FF","#EF00FF","#337F00","#A804C5");
@@ -143,8 +143,12 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
 					ttMeanUnitGraph.lineThickness = 1;
 					ttMeanUnitGraph.legendValueText = "[[value]]";
 					ttMeanUnitGraph.bullet = "square";
-					ttMeanUnitGraph.hidden = checkAutoTesterType;
+					ttMeanUnitGraph.hidden = hiddenReportMean;
 					chart.addGraph(ttMeanUnitGraph);
+					
+
+					
+
 
 
 					// Min_Unit test time graph
@@ -200,7 +204,7 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
 					ttMeanMaxUnitGraph.lineThickness = 1;
 					ttMeanMaxUnitGraph.legendValueText = "[[value]]";
 					ttMeanMaxUnitGraph.bullet = "square";
-					ttMeanMaxUnitGraph.hidden = checkManualTesterType;
+					ttMeanMaxUnitGraph.hidden = !hiddenReportMean;
 					chart.addGraph(ttMeanMaxUnitGraph);
 					
 					
@@ -293,7 +297,7 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
 					ttMeanPasserGraph.lineThickness = 1;
 					ttMeanPasserGraph.legendValueText = "[[value]]";
 					ttMeanPasserGraph.bullet = "square";
-					ttMeanPasserGraph.hidden = checkAutoTesterType;
+					ttMeanPasserGraph.hidden = hiddenReportMean;
 					chart.addGraph(ttMeanPasserGraph);
 					
 					// Min_passer test time graph
@@ -341,7 +345,7 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
 					// MeanMax test time graph
 					var ttMeanMaxUnitGraph = new AmCharts.AmGraph();
 					ttMeanMaxUnitGraph.title = "Passer_Batch";
-					ttMeanMaxUnitGraph.valueField = "all_meanMaxByTester";
+					ttMeanMaxUnitGraph.valueField = "passer_meanMaxByTester";
 					ttMeanMaxUnitGraph.type = "line";
 					ttMeanMaxUnitGraph.valueAxis = testTimeAxis; // indicate which axis should be used
 					ttMeanMaxUnitGraph.lineColor = colorIndex[i++]; //"#20B2AA";
@@ -349,7 +353,7 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
 					ttMeanMaxUnitGraph.lineThickness = 1;
 					ttMeanMaxUnitGraph.legendValueText = "[[value]]";
 					ttMeanMaxUnitGraph.bullet = "square";
-					ttMeanMaxUnitGraph.hidden = checkManualTesterType;
+					ttMeanMaxUnitGraph.hidden = !hiddenReportMean;
 					chart.addGraph(ttMeanMaxUnitGraph);
 					
 					

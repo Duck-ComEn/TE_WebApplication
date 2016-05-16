@@ -366,7 +366,7 @@ MM_reloadPage(true);
      <!--------------------------------Event show Condition File-------------------------------------------------------------------->
    <%
 
-     File appFolder = new File("C:\\Tomcat_9.0\\webapps\\te6\\TrialTrackerStatus\\Condition\\");
+     File appFolder = new File("C:\\Tomcat_9.0\\webapps\\te\\TrialTrackerStatus\\Condition\\");
                 
                          File[] list = appFolder.listFiles();
                          
@@ -423,7 +423,7 @@ MM_reloadPage(true);
  //  <!--------------------------------Event Write select All Condition File-------------------------------------------------------------------->
                               try{
                                       
-                                String pathoptionss = "C:\\Tomcat_9.0\\webapps\\te6\\TrialTrackerStatus\\Condition\\OneCondition\\OnlythisCoditiontion.csv";
+                                String pathoptionss = "C:\\Tomcat_9.0\\webapps\\te\\TrialTrackerStatus\\Condition\\OneCondition\\OnlythisCoditiontion.csv";
                                         File optionfiles = new File(pathoptionss);
                                      Writer objWritersss = new BufferedWriter(new FileWriter(optionfiles));
                                        File copyFiless = new File("C:\\Tomcat_9.0\\webapps\\TrialTrackerStatus\\Condition\\OneCondition\\");
@@ -485,12 +485,12 @@ MM_reloadPage(true);
                                 
                               }else{
                                 try{
-                                      String pathoptions = "C:\\Tomcat_9.0\\webapps\\te6\\TrialTrackerStatus\\Condition\\OneCondition\\OnlythisCoditiontion.csv";
+                                      String pathoptions = "C:\\Tomcat_9.0\\webapps\\te\\TrialTrackerStatus\\Condition\\OneCondition\\OnlythisCoditiontion.csv";
                                       File optionfiles = new File(pathoptions);
                                       Writer objWriterss = new BufferedWriter(new FileWriter(optionfiles));
-                                      File copyFiles = new File("C:\\Tomcat_9.0\\webapps\\te6\\TrialTrackerStatus\\Condition\\");
+                                      File copyFiles = new File("C:\\Tomcat_9.0\\webapps\\te\\TrialTrackerStatus\\Condition\\");
                                       File[] copylistfiles = copyFiles.listFiles();
-                                      File deleteFiles = new File("C:\\Tomcat_9.0\\webapps\\te6\\TrialTrackerStatus\\Condition\\OneCondition\\OnlythisCoditiontion.csv");
+                                      File deleteFiles = new File("C:\\Tomcat_9.0\\webapps\\te\\TrialTrackerStatus\\Condition\\OneCondition\\OnlythisCoditiontion.csv");
                                       if(deleteFiles.exists()){
                                     deleteFiles.delete();
                                      }
@@ -508,9 +508,9 @@ MM_reloadPage(true);
 
                                       }
       //  <!--------------------------------Config path Run Trial Tracker-------------------------------------------------------------------->
-                                  String pathcsv = "C:\\Tomcat_9.0\\webapps\\te6\\TrialTrackerStatus\\MacroTrigger\\MacroTrigger.exe";
-                                  File finishfiles = new File("C:\\Tomcat_9.0\\webapps\\te6\\TrialTrackerStatus\\Condition\\OneCondition\\comp.bin");
-                                  File finishfile = new File("C:\\Tomcat_9.0\\webapps\\te6\\TrialTrackerStatus\\");
+                                  String pathcsv = "C:\\Tomcat_9.0\\webapps\\te\\TrialTrackerStatus\\MacroTrigger\\MacroTrigger.exe";
+                                  File finishfiles = new File("C:\\Tomcat_9.0\\webapps\\te\\TrialTrackerStatus\\Condition\\OneCondition\\comp.bin");
+                                  File finishfile = new File("C:\\Tomcat_9.0\\webapps\\te\\TrialTrackerStatus\\");
                                   File[] checklistfiles = finishfile.listFiles();
                                   File filecsv = new File(pathcsv);
                                   filecsv.toURI();
@@ -596,7 +596,7 @@ MM_reloadPage(true);
             <option  value="No_Result.html">Please Select Condition</option>
             <!--------------------------------Event show Condition File-------------------------------------------------------------------->
       <%
-                            File appFolderz = new File("C:\\Tomcat_9.0\\webapps\\te6\\TrialTrackerStatus\\Condition\\");
+                            File appFolderz = new File("C:\\Tomcat_9.0\\webapps\\te\\TrialTrackerStatus\\Condition\\");
                 
                             File[] listz = appFolderz.listFiles();
                           
@@ -702,11 +702,11 @@ MM_reloadPage(true);
                      }else{
                                       try{    
         
-                                  File deleteFile = new File("C:\\Tomcat_9.0\\webapps\\te6\\TrialTrackerStatus\\Condition\\OneSummary\\ConditionFileList.csv");
+                                  File deleteFile = new File("C:\\Tomcat_9.0\\webapps\\te\\TrialTrackerStatus\\Condition\\OneSummary\\ConditionFileList.csv");
                                       if(deleteFile.exists()){
                                     deleteFile.delete();
                                      }
-                                         String pathoption = "C:\\Tomcat_9.0\\webapps\\te6\\TrialTrackerStatus\\Condition\\OneSummary\\ConditionFileList.csv";
+                                         String pathoption = "C:\\Tomcat_9.0\\webapps\\te\\TrialTrackerStatus\\Condition\\OneSummary\\ConditionFileList.csv";
                                         File optionfile = new File(pathoption);
                                     
                                         Writer objWriters = new BufferedWriter(new FileWriter(optionfile));
@@ -723,7 +723,7 @@ MM_reloadPage(true);
                                          objWriters.flush();
                                         objWriters.close();
     //  <!--------------------------------Config path Run Trial Summary -------------------------------------------------------------------->
-                                         String pathexcel = "C:\\Tomcat_9.0\\webapps\\te6\\TrialSummary\\MacroTrigger\\MacroTrigger.exe";
+                                         String pathexcel = "C:\\Tomcat_9.0\\webapps\\te\\TrialSummary\\MacroTrigger\\MacroTrigger.exe";
                                          File fileexcel = new File(pathexcel);
                                             fileexcel.toURI();
                                         Process runs = Runtime.getRuntime().exec("cmd /c start /wait " + fileexcel );
@@ -780,7 +780,7 @@ MM_reloadPage(true);
        
            <%
                    
-        File showpowerpoints = new File("C:\\Tomcat_9.0\\webapps\\te6\\DATA-INF\\Result_htm\\");
+        File showpowerpoints = new File("C:\\Tomcat_9.0\\webapps\\te\\DATA-INF\\Result_htm\\");
       File[] powerpointlistfiles = showpowerpoints.listFiles();
       String powerpointselects=request.getParameter("my_selects");
     String checkpower3 =""; 

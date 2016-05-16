@@ -20,7 +20,7 @@ try{
          
     out.print("1. Username : " +username + " Password : " + password );
     if (username.equals("")==false && password.equals("")==false) {
-	   if (username.equals("administrator") && password.equals("zaq1wsx")) {  
+	   if (username.equals("administrator") && password.equals("zaq1wsx") || username.equals("guest") && password.equals("1234")) {  
 			  session.setAttribute("s_username", username);
 			  //session.setAttribute("s_operator", "123456");		
 			  //session.setAttribute("s_recordcount", "0");	

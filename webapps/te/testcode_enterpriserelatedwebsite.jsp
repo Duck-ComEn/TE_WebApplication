@@ -166,6 +166,10 @@ MM_reloadPage(true);
                     <td><div align="left"><font size="3"><strong><a href="DocumentSharing\Fail F002 CEP product after resume R9.pptx">HDD Terminology and Experiences</a></strong></font></div></td>
                     <td><div align="left"><font size="3">HDD Terminology and Experiences</font></div></td>
                   </tr>
+				  <tr bgcolor="#D5EAFF"> 
+                    <td><div align="left"><font size="3"><strong><a href="https://hgst.jiveon.com/login.jspa?referer=%2Fdocs%2FDOC-49105">CBG FI Training 2015</a></strong></font></div></td>
+                    <td><div align="left"><font size="3">CBG FI Training 2015</font></div></td>
+                  </tr>
 				  
                 </table>
               </div></td>

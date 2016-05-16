@@ -1,4 +1,4 @@
-function generateChart(chartName, chartData , chartTitle, checkManualTesterType, checkAutoTesterType){
+function generateChart(chartName, chartData , chartTitle, chooseReportMean, chooseReportBatch){
             var chart;
 			var defaultHidden;
 			var colorIndex = new Array("#FF0000","#00FF00","#0000FF","#FAB800","#00B3FF","#EF00FF","#337F00","#A804C5");
@@ -143,7 +143,7 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
 					ttMeanUnitGraph.lineThickness = 1;
 					ttMeanUnitGraph.legendValueText = "[[value]]";
 					ttMeanUnitGraph.bullet = "square";
-					ttMeanUnitGraph.hidden = checkAutoTesterType;
+					ttMeanUnitGraph.hidden = checkTesterType;
 					chart.addGraph(ttMeanUnitGraph);
 
 
@@ -200,7 +200,7 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
 					ttMeanMaxUnitGraph.lineThickness = 1;
 					ttMeanMaxUnitGraph.legendValueText = "[[value]]";
 					ttMeanMaxUnitGraph.bullet = "square";
-					ttMeanMaxUnitGraph.hidden = checkManualTesterType;
+					ttMeanMaxUnitGraph.hidden = checkTesterType;
 					chart.addGraph(ttMeanMaxUnitGraph);
 					
 					
@@ -293,7 +293,7 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
 					ttMeanPasserGraph.lineThickness = 1;
 					ttMeanPasserGraph.legendValueText = "[[value]]";
 					ttMeanPasserGraph.bullet = "square";
-					ttMeanPasserGraph.hidden = checkAutoTesterType;
+					ttMeanPasserGraph.hidden = chooseReportBatch;
 					chart.addGraph(ttMeanPasserGraph);
 					
 					// Min_passer test time graph
@@ -349,7 +349,7 @@ function generateChart(chartName, chartData , chartTitle, checkManualTesterType,
 					ttMeanMaxUnitGraph.lineThickness = 1;
 					ttMeanMaxUnitGraph.legendValueText = "[[value]]";
 					ttMeanMaxUnitGraph.bullet = "square";
-					ttMeanMaxUnitGraph.hidden = checkManualTesterType;
+					ttMeanMaxUnitGraph.hidden = chooseReportMean;
 					chart.addGraph(ttMeanMaxUnitGraph);
 					
 					

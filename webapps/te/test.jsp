@@ -25,14 +25,11 @@
 <%@ page buffer="30kb"%>
 
 <body>
-<%//  <!--------------------------------Config path Run Trial Tracker-------------------------------------------------------------------->
-	String pathcsv = "C:\\Tomcat_9.0\\webapps\\te\\TrialTrackerStatus\\MacroTrigger\\MacroTrigger.exe";
-    File filecsv = new File(pathcsv);
-    filecsv.toURI();
-	out.print("Before "+filecsv.toURI());
-	Process p = Runtime.getRuntime().exec("cmd /c start " + filecsv);
-	p.waitFor();
-	out.print("After\n");
-%>
+
+<!-- ============================================Top Layout============================================================================== -->	
+ <%@ include file="PageLayout/testcode_righttoplayout.jsp" %>
+<!-- ================================================================================================================================== -->
+
+
 
 </body>
